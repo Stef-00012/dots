@@ -1,5 +1,6 @@
 {
     username,
+    pkgs,
     ...
 }:
 {
@@ -64,7 +65,7 @@
 
             javascript = {
                 enable = true;
-                bun = true;
+                bun.enable = true;
             };
             
             nix.enable = true;
@@ -112,7 +113,7 @@
                 gwenview = true;
                 imv = false;
                 feh = false;
-                qimfv = false;
+                qimgv = false;
             };
 
             terminal = {
@@ -126,18 +127,17 @@
         styles = {
             qt.enable = true;
             gtk.enable = true;
-            fonts.enable = true;
         };
     };
 
     home = {
-        username = ${username};
+        username = "${username}";
         homeDirectory = "/home/${username}";
         stateVersion = "25.05";
     };
 
     home.packages = with pkgs; [
-        gnupg
+        # gnupg
         pinentry-rofi
     ];
 

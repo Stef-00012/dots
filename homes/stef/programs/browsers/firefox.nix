@@ -29,7 +29,7 @@ in
 
                     engines = {
                         "Google" = {
-                            urls = [ { template = "https://google.com/search?q={searchTerms}"; }; ];
+                            urls = [ { template = "https://google.com/search?q={searchTerms}"; } ];
                         };
 
                         "Nix Packages" = {

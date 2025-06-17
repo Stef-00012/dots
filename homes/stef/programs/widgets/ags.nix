@@ -10,7 +10,7 @@ let
     cfg = config.hmModules.programs.widgets.ags;
 in
 {
-    options.hmModules.programs.widgets.ags.enable = {
+    options.hmModules.programs.widgets.ags = {
         enable = mkEnableOption "Enable AGS";
     };
 
@@ -18,7 +18,7 @@ in
         {
             home.packages = [
                 inputs.ags.packages.${pkgs.system}.agsFull
-            ]
+            ];
         }
     );
 }

@@ -20,5 +20,5 @@ in
         home.file.".config/oh-my-posh/theme.omp.json" = {
             source = ./theme.json;
         };
-    }
+    };
 }

@@ -43,10 +43,14 @@ in
                 {
                     # Zipline Uploads - https://github.com/Stef-00012/Zipline-Upload-Extension/releases/latest/download/ziplineUploads.crx
                     crxPath = "/home/${username}/code/extensions/ziplineUploads/ziplineUploads.crx";
+                    id = "bealbpabncjgdmfocibecjeblkhpbkdp";
+                    version = "2.2.0";
                 }
                 {
                     # INSSIST (Modified) - https://chromewebstore.google.com/detail/inssist-web-client-for-in/bcocdbombenodlegijagbhdjbifpiijp
-                    ctxPath = "/home/${username}/code/extensions/inssist/inssist.crx";
+                    crxPath = "/home/${username}/code/extensions/inssist/inssist.crx";
+                    id = "phjkbpljpjhnamnkloobcjpagcpojabk";
+                    version = "28.0.5";
                 }
             ];
         };

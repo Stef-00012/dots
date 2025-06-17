@@ -9,7 +9,7 @@ let
     cfg = config.hmModules.dev.javascript;
 in
 {
-    options.hmModules.dev.javascript.enable = {
+    options.hmModules.dev.javascript = {
         enable = mkEnableOption "Enable Node.JS";
     };
 
@@ -22,10 +22,10 @@ in
             {
                 home.packages = [
                     pkgs.nodePackages.nodejs
-                ]
+                ];
             }
 
-            (mkIf cfg.bun {
+            (mkIf cfg.bun.enable {
                 home.packages = [ pkgs.bun ];
             })
         ]

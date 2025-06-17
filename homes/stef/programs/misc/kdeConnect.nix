@@ -6,10 +6,10 @@
 }:
 let
     inherit (lib) mkEnableOption mkIf;
-    cfg = config.hmModules.programs.misc.gimp;
+    cfg = config.hmModules.programs.misc.kdeConnect;
 in
 {
-    options.hmModules.programs.misc.gimp = {
+    options.hmModules.programs.misc.kdeConnect = {
         enable = mkEnableOption "Install KDE Connect";
     };
 

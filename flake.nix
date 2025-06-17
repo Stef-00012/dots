@@ -95,7 +95,7 @@
             #         }
             #     ];
             # };
-            nixos = { host = "nixos"; };
+            nixos = nixosMachine { host = "nixos"; };
         };
     };
 }

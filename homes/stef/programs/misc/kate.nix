@@ -6,10 +6,10 @@
 }:
 let
     inherit (lib) mkEnableOption mkIf;
-    cfg = config.hmModules.programs.misc.gimp;
+    cfg = config.hmModules.programs.misc.kate;
 in
 {
-    options.hmModules.programs.misc.gimp = {
+    options.hmModules.programs.misc.kate = {
         enable = mkEnableOption "Install Kate";
     };
 

@@ -3,5 +3,5 @@
         ./discord.nix
         ./telegram.nix
         ./slack.nix
-    ]
+    ];
 }

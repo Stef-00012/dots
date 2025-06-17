@@ -124,7 +124,7 @@ in
             show_panel=false
             line_size=5
             text_size=20
-            text_font=${config.stylix.fonts.sansSerif.name}
+            text_font=Lexend
             paint_mode=brush
             early_exit=true
             fill_shape=false
