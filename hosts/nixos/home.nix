@@ -18,6 +18,7 @@
                 dim = "du -s -h";
                 neofetch = "fastfetch";
                 igdownload = "instaloader -l stefanodelprete_ --stories --no-posts --no-metadata-json";
+                code = "codium";
             };
 
             fetch.enable = true;
@@ -101,6 +102,19 @@
                 obs-studio.enable = true;
                 kate.enable = true;
             };
+
+	    editors = {
+	        vscodium = {
+		    enable = true;
+		    webdev = true;
+		    style = true;
+		    github = true;
+		    shell = true;
+		    markdown = true;
+		};
+
+	        vim.enable = true;
+	    };
 
             widgets = {
                 ags.enable = true;

@@ -20,8 +20,9 @@ let
         clock = "date +'The time is %H.%M on a %A. The date is %b %d, %Y C.E.'";
 
         # nix stuff
-        nixrebuild = "sudo nixos-rebuild switch --flake ~/dots/#main";
-        nixrebuildu = "sudo nixos-rebuild switch --flake ~/dots/#main --upgrade";
+        fr = "nh os switch --hostname ${host} /home/${username}/dots";
+        fu = "nh os switch --hostname ${host} --update /home/${username}/dots";
+        gcnix = "sudo nh clean all && nix store optimise && sudo journalctl --vacuum-time=1s";
     };
 
     mergedAliases = mkMerge [
@@ -86,7 +87,7 @@ in
                 enableCompletion = true;
                 syntaxHighlighting.enable = true;
 
-                initExtra = ''
+                initContent = ''
                     eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/theme.omp.json)"
                     [[ -f ~/.zshrc-personal ]] && source ~/.zshrc-personal
                     ${sharedInit}

@@ -24,11 +24,11 @@ in
                 isDefault = true;
 
                 search = {
-                    default = "Google";
+                    default = "google";
                     force = true;
 
                     engines = {
-                        "Google" = {
+                        "google" = {
                             urls = [ { template = "https://google.com/search?q={searchTerms}"; } ];
                         };
 

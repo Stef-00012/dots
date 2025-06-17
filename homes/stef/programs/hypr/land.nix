@@ -150,7 +150,7 @@ in
                     "ALT, F14, Raise Volume (Extra Mouse Button), exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
 
                     ",XF86AudioLowerVolume, Lower Volume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-                    "F14, exec, Lower Volume (Extra Mouse Button), wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+                    ", F14, Lower Volume (Extra Mouse Button), exec, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
 
                     ",XF86MonBrightnessDown, Raise Brightness, exec, brightnessctl set 5%-"
                     ",XF86MonBrightnessUp, Lower Brightness, exec, brightnessctl set +5%"
@@ -181,7 +181,8 @@ in
                         natural_scroll = true;
                     };
 
-                    sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
+                    numlock_by_default = true;
+                    sensitivity = -0.5; # -1.0 - 1.0, 0 means no modification.
                     accel_profile = "flat";
                 };
 
@@ -210,7 +211,7 @@ in
                         # "almostLinear,0.5,0.5,0.75,1.0"
                         # "quick,0.15,0,0.1,1"
                     ];
-                    
+
                     animation = [
                         "windows, 1, 6, wind, slide"
                         "windowsIn, 1, 6, winIn, slide"
