@@ -1,5 +1,5 @@
 <div align="center">
-    <h1>orangc's flake</h1>
+    <h1>Stef's flake</h1>
     <div>
         <a href="https://github.com/Stef-00012/dots/stargazers"><img src="https://img.shields.io/github/stars/Stef.00012/dots?color=F5BDE6&labelColor=303446&style=for-the-badge&logo=starship&logoColor=F5BDE6"></a>
         <!-- <a href="https://github.com/Stef-00012/dots/"><img src="https://img.shields.io/github/repo-size/Stef-00012/dots?color=C6A0F6&labelColor=303446&style=for-the-badge&logo=github&logoColor=C6A0F6"></a> -->
