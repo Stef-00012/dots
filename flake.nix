@@ -64,37 +64,9 @@
                 ];
             };
 
-        # pkgs = import nixpkgs {
-        #     inherit system;
-
-        #     config = {
-        #         allowUnfree = true;
-        #     };
-        # };
-
     in
     {
         nixosConfigurations = {
-            # main = nixpkgs.lib.nixosSystem {
-            #     specialArgs = {
-            #         inherit system;
-            #         inherit inputs;
-            #     };
-
-            #     modules = [
-            #         ./hosts/${host}/configuration.nix
-            #         inputs.home-manager.nixosModules.default
-            #         {
-            #             home-manager = {
-            #                 extraSpecialArgs = {
-            #                     inherit system;
-            #                     inherit inputs;
-            #                 };
-            #                 users.${username} = import ./homes/${username}/home.nix;
-            #             };
-            #         }
-            #     ];
-            # };
             nixos = nixosMachine { host = "nixos"; };
         };
     };

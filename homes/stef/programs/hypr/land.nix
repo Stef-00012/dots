@@ -82,6 +82,7 @@ in
                         "SUPER SHIFT, right, Move Window Right, movewindow,r"
                         "SUPER SHIFT, up, Move Window Up, movewindow,u"
                         "SUPER SHIFT, down, Move Window Down, movewindow,d"
+                        "SUPER, B, Blur/Unblur Current Window, exec, hyprctl setprop active opaque toggle # toggle transparency for le active window"
                         
                         # "SUPER, PERIOD, Select Emoji, exec, emoji-select a"
                         # "SUPERSHIFT, PERIOD, Select Emoji To Clipboard, exec, emoji-select"
@@ -89,7 +90,6 @@ in
                         # "SUPER, C, exec, rofi-calc"
                         # "SUPERSHIFT, APOSTROPHE, Choose Wallpaper, exec, wall-select" # choose a wallpaper
                         # "SUPER, APOSTROPHE, Random Wallpaper, exec, wall-select --fast" # choose a wallpaper
-                        # "SUPER, B, Blur/Unblur Current Window, exec, hyprctl setprop active opaque toggle # toggle transparency for le active window"
                         # "SUPERSHIFT, I, Toggle Split, togglesplit"
                         # "SUPERSHIFT, F, Float Current Window, togglefloating"
                         # "SUPER, Q, Close Window, killactive"
@@ -147,10 +147,10 @@ in
 
                 binddel = [
                     ",XF86AudioRaiseVolume, Raise Volume, exec,  wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-                    "ALT, F14, Raise Volume (Extra Mouse Button), exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+                    "ALT, F14, Raise Volume (Extra Mouse Button), exec,  wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
 
                     ",XF86AudioLowerVolume, Lower Volume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-                    ", F14, Lower Volume (Extra Mouse Button), exec, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+                    ", F14, Lower Volume (Extra Mouse Button), exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
 
                     ",XF86MonBrightnessDown, Raise Brightness, exec, brightnessctl set 5%-"
                     ",XF86MonBrightnessUp, Lower Brightness, exec, brightnessctl set +5%"
@@ -182,7 +182,7 @@ in
                     };
 
                     numlock_by_default = true;
-                    sensitivity = -0.5; # -1.0 - 1.0, 0 means no modification.
+                    sensitivity = -0.4; # -1.0 - 1.0, 0 means no modification.
                     accel_profile = "flat";
                 };
 
@@ -204,12 +204,6 @@ in
                         "winIn, 0.1, 1.1, 0.1, 1.1"
                         "winOut, 0.3, -0.3, 0, 1"
                         "liner, 1, 1, 1, 1"
-
-                        # "easeOutQuint,0.23,1,0.32,1"
-                        # "easeInOutCubic,0.65,0.05,0.36,1"
-                        # "linear,0,0,1,1"
-                        # "almostLinear,0.5,0.5,0.75,1.0"
-                        # "quick,0.15,0,0.1,1"
                     ];
 
                     animation = [
@@ -221,23 +215,6 @@ in
                         "borderangle, 1, 30, liner, loop"
                         "fade, 1, 10, default"
                         "workspaces, 1, 5, wind"
-
-                        # "global, 1, 10, default"
-                        # "border, 1, 5.39, easeOutQuint"
-                        # "windows, 1, 4.79, easeOutQuint"
-                        # "windowsIn, 1, 4.1, easeOutQuint, popin 87%"
-                        # "windowsOut, 1, 1.49, linear, popin 87%"
-                        # "fadeIn, 1, 1.73, almostLinear"
-                        # "fadeOut, 1, 1.46, almostLinear"
-                        # "fade, 1, 3.03, quick"
-                        # "layers, 1, 3.81, easeOutQuint"
-                        # "layersIn, 1, 4, easeOutQuint, fade"
-                        # "layersOut, 1, 1.5, linear, fade"
-                        # "fadeLayersIn, 1, 1.79, almostLinear"
-                        # "fadeLayersOut, 1, 1.39, almostLinear"
-                        # "workspaces, 1, 1.94, almostLinear, fade"
-                        # "workspacesIn, 1, 1.21, almostLinear, fade"
-                        # "workspacesOut, 1, 1.94, almostLinear, fade"
                     ];
                 };
 
@@ -267,14 +244,10 @@ in
                 windowrulev2 = [
                     "opacity 1 override,class:^(Minecraft* 1.21)$"
 
-                    # "opacity 1 override,class:^(zoom)$"
                     "opacity 0.85 override 0.75 override 0.85 override,class:^(kitty)$"
                     "opacity 0.85 override 0.75 override 0.85 override,class:^(thunar)$"
                     "opacity 0.85 override 0.75 override 0.85 override,initialTitle:^(Open Folder)$"
                     "opacity 0.85 override 0.75 override 0.85 override,class:^(codium-url-handler)$"
-                    # "opacity 0.85 override 0.75 override 0.85 override,class:^(obsidian)$"
-                    # "noblur,class:^(zoom)$"
-                    # "stayfocused,class:^(yad)$"
 
                     # Picture-in-Picture
                     "float, title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"

@@ -103,18 +103,18 @@
                 kate.enable = true;
             };
 
-	    editors = {
-	        vscodium = {
-		    enable = true;
-		    webdev = true;
-		    style = true;
-		    github = true;
-		    shell = true;
-		    markdown = true;
-		};
+            editors = {
+                vscodium = {
+                enable = true;
+                webdev = true;
+                style = true;
+                github = true;
+                shell = true;
+                markdown = true;
+            };
 
-	        vim.enable = true;
-	    };
+                vim.enable = true;
+            };
 
             widgets = {
                 ags.enable = true;
