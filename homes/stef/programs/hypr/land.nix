@@ -256,7 +256,7 @@ in
                     preserve_split = true;
                 };
 
-                windowrulev2 = [
+                windowrule = [
                     "opacity 1 override,class:^(Minecraft* 1.21)$"
 
                     "opacity 0.85 override 0.75 override 0.85 override,class:^(kitty)$"
