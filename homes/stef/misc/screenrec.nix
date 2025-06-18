@@ -75,7 +75,7 @@ in
             screenrecPackage
             pkgs.wl-screenrec
             pkgs.yad
-            pkgs.grimAdd commentMore actions
+            pkgs.grim
             pkgs.slurp
         ];
     };

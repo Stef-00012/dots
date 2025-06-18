@@ -28,6 +28,7 @@ let
         "inode/directory" = fileManager;
         "application/x-xz-compressed-tar" = fileManager;
 
+        "text/*" = editor;
         "audio/*" = [ "mpv.desktop" ];
         "video/*" = [ "mpv.desktop" ];
         "image/*" = [ "org.kde.kdegraphics.gwenview.lib" ];

@@ -15,7 +15,6 @@ let
             ripgrep
             gawk
             diskus
-            file
         ];
 
         text = ''

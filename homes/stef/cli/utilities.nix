@@ -83,6 +83,7 @@ in
                 killall
                 tree
                 libqalculate
+                file
             ];
 
             hmModules.cli.shell.extraAliases = {
