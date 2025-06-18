@@ -15,9 +15,16 @@ in
     
     config = mkIf cfg.enable {
         gtk = {
+            enable = true;
+
+            theme = {
+                package = pkgs.gnome-themes-extra;
+                name = "Adwaita-dark";
+            };
+
             iconTheme = {
-                name = "Papirus-Dark";
-                package = pkgs.papirus-icon-theme;
+                package = pkgs.adwaita-icon-theme;
+                name = "Adwaita";
             };
 
             gtk3.extraConfig = {
@@ -26,6 +33,11 @@ in
 
             gtk4.extraConfig = {
                 gtk-application-prefer-dark-theme = 1;
+            };
+
+            font = {
+                name = "Sans";
+                size = 11;
             };
         };
         

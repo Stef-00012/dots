@@ -54,7 +54,7 @@ in
                 bindd =
                     [
                         # Main Bindings
-                        "SUPER, E, Open File Manager, exec, dolphin"
+                        "SUPER, E, Open File Manager, exec, thunar"
                         "SUPER, Q, Close Window, killactive,"
                         "SUPER, M, Exit, exit,"
                         "SUPER, F, Toggle Floating Window, togglefloating,"
