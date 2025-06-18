@@ -28,6 +28,7 @@ in
                 onefetch
                 owofetch
                 ipfetch
+                fastfetch
             ];
         })
 
