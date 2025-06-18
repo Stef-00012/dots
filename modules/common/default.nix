@@ -1,7 +1,7 @@
 
 {
     imports = [
-        ./sddm
+        ./sddm.nix
         ./bluetooth.nix
         ./boilerplate.nix
         ./networking.nix

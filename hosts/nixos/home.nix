@@ -107,13 +107,13 @@
 
             editors = {
                 vscodium = {
-                enable = true;
-                webdev = true;
-                style = true;
-                github = true;
-                shell = true;
-                markdown = true;
-            };
+                    enable = true;
+                    webdev = true;
+                    style = true;
+                    github = true;
+                    shell = true;
+                    markdown = true;
+                };
 
                 vim.enable = true;
             };
