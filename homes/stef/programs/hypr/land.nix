@@ -53,15 +53,17 @@ in
 
                 bindd =
                     [
+                        # Main Bindings
                         "SUPER, E, Open File Manager, exec, dolphin"
                         "SUPER, Q, Close Window, killactive,"
                         "SUPER, M, Exit, exit,"
-                        "SUPER, V, Toggle Floating Window, togglefloating,"
+                        "SUPER, F, Toggle Floating Window, togglefloating,"
                         "SUPER, SPACE, Open Launcher, exec, rofi -show drun"
                         "SUPER, P, Toggle Dwindle Pseudo, pseudo,"
                         "SUPER, J, Toggle Dwindle Split, togglesplit,"
                         "SUPER ALT, C, Color Picker, exec, hyprpicker -a"
 
+                        # Special Workspace Bindings
                         "SUPER SHIFT, S, Move To Special Workspace (General), movetoworkspace,special"
                         "SUPER, S, Open Special Workspace (General), togglespecialworkspace"
 
@@ -74,6 +76,7 @@ in
                         "SUPER CONTROL SHIFT, T, Move To Special Workspace (Telegram), movetoworkspace, special:telegram"
                         "SUPER CONTROL, T, Open Special Workspace (Telegram), togglespecialworkspace, telegram"
 
+                        # Window Bindings
                         "SUPER, left, Move Focus Left, movefocus,l"
                         "SUPER, right, Move Focus Right, movefocus,r"
                         "SUPER, up, Move Focus Up, movefocus,u"
@@ -102,7 +105,7 @@ in
                         # ",XF86Mail, Open Special Workspace, togglespecialworkspace"
                     ]
                     ++
-                    # workspaces: binds SUPER + [shift +] {1..9} to [move to] workspace {1..9}
+                    # Workspace Bindings: binds SUPER + [shift +] {1..9} to [move to] workspace {1..9}
                     (builtins.concatLists (
                         builtins.genList (
                             i:
@@ -116,28 +119,36 @@ in
                         ) 9
                     ));
 
+                # Media Bindings
                 binddl = [
+                    # Mute Spealer
                     ",XF86AudioMute, Mute Audio, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
                     ",F16, Mute Audio (Mouse Extra Button), exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
+                    # Mute Microphone
                     ",XF86AudioMicMute, Mute Mic, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
                     ",F18, Mute Mic (Mouse Extra Button), exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
 
+                    # Play Media
                     ",XF86AudioPlay, Play Media, exec, playerctl play-pause"
                     "ALT, F15, Play Media (Mouse Extra Button), exec, playerctl play"
 
+                    # Pause Media
                     ",XF86AudioPause, Pause Media, exec, playerctl play-pause"
                     ",F15, Pause Media (Mouse Extra Button), exec, playerctl pause"
 
+                    # Next/Previous Media
                     ",XF86AudioNext, Next Media, exec, playerctl next"
                     ",XF86AudioPrev, Previous Media, exec, playerctl previous"
                 ];
 
+                # Mouse Window Bindings
                 binddm = [
                     "SUPER, mouse:272, Move Window, movewindow"
                     "SUPER, mouse:273, Resize Window, resizewindow"
                 ];
 
+                # Workspace Bindings
                 bindde = [
                     "SUPER CONTROL,right, Switch To Right Workspace, workspace,e+1"
                     "SUPER CONTROL,left, Switch To Left Workspace, workspace,e-1"
@@ -145,13 +156,17 @@ in
                     "SUPER, mouse_up, Switch To Left Workspace, workspace, e-1"
                 ];
 
+                # Media Bindings
                 binddel = [
+                    # Raise Volume
                     ",XF86AudioRaiseVolume, Raise Volume, exec,  wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
                     "ALT, F14, Raise Volume (Extra Mouse Button), exec,  wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
 
+                    # Lower Volume
                     ",XF86AudioLowerVolume, Lower Volume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
                     ", F14, Lower Volume (Extra Mouse Button), exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
 
+                    # Raise/Lower Brightness
                     ",XF86MonBrightnessDown, Raise Brightness, exec, brightnessctl set 5%-"
                     ",XF86MonBrightnessUp, Lower Brightness, exec, brightnessctl set +5%"
                 ];
@@ -183,7 +198,7 @@ in
 
                     numlock_by_default = true;
                     sensitivity = -0.4; # -1.0 - 1.0, 0 means no modification.
-                    accel_profile = "flat";
+                    # accel_profile = "flat";
                 };
 
                 gestures = {
