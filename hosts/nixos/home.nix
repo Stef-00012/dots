@@ -83,6 +83,8 @@
                 discord.enable = true;
                 slack.enable = true;
                 telegram.enable = true;
+                whatsapp.enable = true;
+                element.enable = true;
             };
 
             hypr = {

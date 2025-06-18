@@ -285,6 +285,11 @@ in
                     "float, title:^(Open Folder)(.*)$"
                     "float, title:^(Save As)(.*)$"
                     "float, title:^(File Upload)(.*)$"
+
+                    # Always open apps in their workspace
+                    "workspace special:telegram , class:^(org.telegram.desktop)$"
+                    "workspace special:discord , class:^(discord)$"
+                    "workspace special:spotify , class:^(spotify)$"
                 ];
             };
         };
