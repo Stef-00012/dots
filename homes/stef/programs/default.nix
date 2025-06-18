@@ -6,7 +6,7 @@
         ./misc
         ./editors
         ./widgets
-        ./music.nix
+        ./music
         ./media.nix
         ./terminal.nix
         ./better-control.nix

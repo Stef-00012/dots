@@ -10,7 +10,7 @@ let
 in
 {
     options.hmModules.programs.music.spotify = {
-        enable = mkEnableOption "Install the Spotify Client";
+        enable = mkEnableOption "Install the Spotify Client (do not enable if spicetify is enabled)";
     };
 
     config = mkIf cfg.enable {

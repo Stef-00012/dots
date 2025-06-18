@@ -27,7 +27,7 @@
             benchmarking.enable = true;
             utilities.enable = true;
             instagram.enable = true;
-            spicetify.enable = true;
+            spicetify.enable = false;
 
             git = {
                 enable = true;
@@ -120,7 +120,15 @@
                 ags.enable = true;
             };
 
-            music.spotify.enable = true;
+            music = {
+                spotify.enable = false;
+
+                spicetify = {
+                    enable = true;
+                    alwaysEnableDevTools = true;
+                    experimentalFeatures = true;
+                };
+            };
 
             media = {
                 enable = true;
