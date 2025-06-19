@@ -1,6 +1,6 @@
 {
     imports = [
-        ./discord.nix
+        ./discord
         ./telegram.nix
         ./slack.nix
         ./whatsapp.nix

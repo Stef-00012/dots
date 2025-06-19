@@ -14,7 +14,7 @@ in
     };
 
     config = mkIf cfg.enable {
-        wayland.windowManager.hyprland.settings.bindd = [ "SUPER, D, Launch Chromium, exec, chromium" ];
+        wayland.windowManager.hyprland.settings.bindd = [ "SUPER, C, Launch Chromium, exec, chromium" ];
         
         programs.chromium = {
             enable = true;
@@ -40,6 +40,7 @@ in
                 "djflhoibgkdhkhhcedjiklpkjnoahfmg" # User-Agent Switcher for Chrome
                 "licaccaeplhkahfkoighjblahbnafadl" # Viewstats - YouTube video & channel analytics
                 "cdockenadnadldjbbgcallicgledbeoc" # VisBug
+                "cbghhgpcnddeihccjmnadmkaejncjndb" # Vencord Web
                 {
                     # Zipline Uploads - https://github.com/Stef-00012/Zipline-Upload-Extension/releases/latest/download/ziplineUploads.crx
                     crxPath = "/home/${username}/code/extensions/ziplineUploads/ziplineUploads.crx";

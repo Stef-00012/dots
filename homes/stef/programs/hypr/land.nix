@@ -42,7 +42,6 @@ in
 
                 exec-once = [
                     "[workspace special:spotify silent] spotify"
-                    "[workspace special:discord silent] discord"
                     "[workspace special:telegram silent] Telegram"
                     "systemctl --user start hyprpolkitagent"
                     # "dbus-update-activation-environment --systemd --all"
@@ -67,11 +66,11 @@ in
                         "SUPER SHIFT, S, Move To Special Workspace (General), movetoworkspace,special"
                         "SUPER, S, Open Special Workspace (General), togglespecialworkspace"
 
-                        "SUPER CONTROL SHIFT, D, Move To Special Workspace (Discord), movetoworkspace, special:discord"
-                        "SUPER CONTROL, D, Open Special Workspace (Discord), togglespecialworkspace, discord"
-
                         "SUPER CONTROL SHIFT, S, Move To Special Workspace (Spotify), movetoworkspace, special:spotify"
                         "SUPER CONTROL, S, Open Special Workspace (Spotify), togglespecialworkspace, spotify"
+
+                        "SUPER CONTROL SHIFT, D, Move To Special Workspace (Discord), movetoworkspace, special:discord"
+                        "SUPER CONTROL, D, Open Special Workspace (Discord), togglespecialworkspace, discord"
 
                         "SUPER CONTROL SHIFT, T, Move To Special Workspace (Telegram), movetoworkspace, special:telegram"
                         "SUPER CONTROL, T, Open Special Workspace (Telegram), togglespecialworkspace, telegram"
