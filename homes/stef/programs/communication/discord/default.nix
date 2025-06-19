@@ -23,9 +23,18 @@ in
 
     config = mkMerge [
         (mkIf cfg.enable {
-            wayland.windowManager.hyprland.settings.exec-once = mkIf cfg.arrpc [
-                "sleep 3; ${pkgs.arrpc}/bin/arrpc &"
-            ];
+            wayland.windowManager.hyprland.settings = {
+                exec-once = mkIf cfg.arrpc [
+                    # "sleep 3; ${pkgs.arrpc}/bin/arrpc &"
+                    "${pkgs.arrpc}/bin/arrpc &"
+                ];
+
+                bindd = [
+                    # Discord Special Workspace Bindings
+                    "SUPER CONTROL SHIFT, D, Move To Special Workspace (Discord), movetoworkspace, special:discord"
+                    "SUPER CONTROL, D, Open Special Workspace (Discord), togglespecialworkspace, discord"
+                ];
+            };
 
             home.packages = [
                 (pkgs.discord.override {
@@ -36,11 +45,37 @@ in
         })
 
         (mkIf (cfg.enable && !chromiumCfg.enable) {
-            wayland.windowManager.hyprland.settings.bindd = [ "SUPER, D, Open Discord, exec, discord" ];
+            wayland.windowManager.hyprland.settings = {
+                # Discord App Special Workspace Bindings
+                bindd = [ "SUPER, D, Open Discord, exec, discord" ];
+
+                exec-once = [
+                    # Open Discord App on startup in its special workspace
+                    "[workspace special:discord silent] discord"
+                ];
+
+                windowrule = [
+                    # Always open Discord App in its special workspace
+                    "workspace special:discord , class:^(discord)$"
+                ];
+            };
         })
 
         (mkIf (cfg.enable && chromiumCfg.enable) {
-            wayland.windowManager.hyprland.settings.bindd = [ "SUPER, D, Open Discord, exec, bash ${./script.sh}" ];
+            wayland.windowManager.hyprland.settings = {
+                # Discord Web App Special Workspace Bindings
+                bindd = [ "SUPER, D, Open Discord, exec, bash ${./script.sh}" ];
+
+                exec-once = [
+                    # Open Discord Web App on startup in its special workspace
+                    "[workspace special:discord silent] ${./script.sh}"
+                ];
+
+                windowrule = [
+                    # Always open Discord Web App in its special workspace
+                    "workspace special:discord , class:^(chrome-discord.com__app-Default)$"
+                ];
+            };
         })
     ];
 }

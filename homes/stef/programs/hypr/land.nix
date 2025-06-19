@@ -63,15 +63,6 @@ in
                         "SUPER SHIFT, S, Move To Special Workspace (General), movetoworkspace,special"
                         "SUPER, S, Open Special Workspace (General), togglespecialworkspace"
 
-                        "SUPER CONTROL SHIFT, S, Move To Special Workspace (Spotify), movetoworkspace, special:spotify"
-                        "SUPER CONTROL, S, Open Special Workspace (Spotify), togglespecialworkspace, spotify"
-
-                        "SUPER CONTROL SHIFT, D, Move To Special Workspace (Discord), movetoworkspace, special:discord"
-                        "SUPER CONTROL, D, Open Special Workspace (Discord), togglespecialworkspace, discord"
-
-                        "SUPER CONTROL SHIFT, T, Move To Special Workspace (Telegram), movetoworkspace, special:telegram"
-                        "SUPER CONTROL, T, Open Special Workspace (Telegram), togglespecialworkspace, telegram"
-
                         # Window Bindings
                         "SUPER, left, Move Focus Left, movefocus,l"
                         "SUPER, right, Move Focus Right, movefocus,r"
@@ -281,11 +272,6 @@ in
                     "float, title:^(Open Folder)(.*)$"
                     "float, title:^(Save As)(.*)$"
                     "float, title:^(File Upload)(.*)$"
-
-                    # Always open apps in their workspace
-                    "workspace special:telegram , class:^(org.telegram.desktop)$"
-                    "workspace special:discord , class:^(discord)$"
-                    "workspace special:spotify , class:^(spotify)$"
                 ];
             };
         };

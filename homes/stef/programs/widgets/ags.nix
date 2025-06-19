@@ -18,6 +18,7 @@ in
         {
             home.packages = [
                 inputs.ags.packages.${pkgs.system}.agsFull
+                # pkgs.glib-networking for v3
             ];
         }
     );

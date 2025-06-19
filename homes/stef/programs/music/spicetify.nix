@@ -33,9 +33,20 @@ in
     };
 
     config = mkIf cfg.enable {
-        wayland.windowManager.hyprland.settings.exec-once = [
-            "[workspace special:spotify silent] spotify"
-        ];
+        wayland.windowManager.hyprland.settings = {
+            exec-once = [
+                "[workspace special:spotify silent] spotify"
+            ];
+
+            bindd = [
+                "SUPER CONTROL SHIFT, S, Move To Special Workspace (Spotify), movetoworkspace, special:spotify"
+                "SUPER CONTROL, S, Open Special Workspace (Spotify), togglespecialworkspace, spotify"
+            ];
+
+            windowrule = [
+                "workspace special:spotify , class:^(spotify)$"
+            ];
+        };
 
         programs.spicetify = {
             enable = true;

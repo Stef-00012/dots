@@ -80,7 +80,11 @@
             };
             
             communication = {
-                discord.enable = true;
+                discord = {
+                    enable = true;
+                    arrpc = true;
+                };
+
                 slack.enable = true;
                 telegram.enable = true;
                 whatsapp.enable = true;
