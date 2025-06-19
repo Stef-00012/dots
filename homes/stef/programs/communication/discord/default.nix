@@ -2,7 +2,7 @@
     config,
     pkgs,
     lib,
-    username,
+    pkgs,
     ...
 }:
 let
@@ -19,11 +19,15 @@ in
 {
     options.hmModules.programs.communication.discord = {
         enable = mkEnableOption "Install and configure a Discord client";
-        # arrpc = mkEnableOption "Enable Discord RPC via arrpc";
+        arrpc = mkEnableOption "Enable Discord RPC via arrpc";
     };
 
     config = mkMerge [
         (mkIf cfg.enable {
+            wayland.windowManager.hyprland.settings.exec-once = mkIf cfg.arrpc.enable [
+                "sleep 3; ${pkgs.arrpc}/bin/arrpc &"
+            ];
+
             home.packages = [
                 (pkgs.discord.override {
                     withOpenASAR = true;

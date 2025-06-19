@@ -14,6 +14,10 @@ in
     };
 
     config = mkIf cfg.enable {
+        wayland.windowManager.hyprland.settings.exec-once = [
+            "kdeconnect-indicator"
+        ];
+
         services.kdeconnect = {
             enable = true;
             indicator = true;

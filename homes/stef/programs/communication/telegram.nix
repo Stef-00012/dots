@@ -19,6 +19,10 @@ in
     };
 
     config = mkIf cfg.enable {
+        wayland.windowManager.hyprland.settings.exec-once = [
+            "[workspace special:telegram silent] Telegram"
+        ];
+
         home.packages = [
             pkgs.telegram-desktop
         ];

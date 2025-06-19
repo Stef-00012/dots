@@ -41,13 +41,10 @@ in
                 ];
 
                 exec-once = [
-                    "[workspace special:spotify silent] spotify"
-                    "[workspace special:telegram silent] Telegram"
                     "systemctl --user start hyprpolkitagent"
                     # "dbus-update-activation-environment --systemd --all"
                     # "systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
                     # "lxqt-policykit-agent"
-                    "kdeconnect-indicator"
                 ];
 
                 bindd =

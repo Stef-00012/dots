@@ -14,6 +14,10 @@ in
     };
 
     config = mkIf cfg.enable {
+        wayland.windowManager.hyprland.settings.exec-once = [
+            "[workspace special:spotify silent] spotify"
+        ];
+
         home.packages = with pkgs; [
             spotify
         ];
