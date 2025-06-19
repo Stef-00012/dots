@@ -2,7 +2,6 @@
     config,
     pkgs,
     lib,
-    pkgs,
     ...
 }:
 let
@@ -24,7 +23,7 @@ in
 
     config = mkMerge [
         (mkIf cfg.enable {
-            wayland.windowManager.hyprland.settings.exec-once = mkIf cfg.arrpc.enable [
+            wayland.windowManager.hyprland.settings.exec-once = mkIf cfg.arrpc [
                 "sleep 3; ${pkgs.arrpc}/bin/arrpc &"
             ];
 
