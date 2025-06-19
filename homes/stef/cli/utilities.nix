@@ -84,6 +84,7 @@ in
                 tree
                 libqalculate
                 file
+                biome
             ];
 
             hmModules.cli.shell.extraAliases = {

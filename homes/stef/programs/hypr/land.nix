@@ -37,7 +37,7 @@ in
                     "QT_STYLE_OVERRIDE,Adwaita-Dark"
                     "SDL_VIDEODRIVER,x11"
                     "MOZ_ENABLE_WAYLAND,1"
-                    "EDITOR,vim"
+                    "EDITOR,codium"
                 ];
 
                 exec-once = [

@@ -70,6 +70,7 @@ in
             wayland.enable = true;
             theme = cfg.theme;
             package = pkgs.kdePackages.sddm;
+            autoNumlock = true;
             
             extraPackages = with pkgs.kdePackages; [
                 qtsvg

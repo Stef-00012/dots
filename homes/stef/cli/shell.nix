@@ -37,6 +37,7 @@ let
         if [ -f ~/.config/secrets.env ]; then
         export $(grep -v '^#' ~/.config/secrets.env | xargs)
         fi
+        export EDITOR=vim
     '';
 in
 {

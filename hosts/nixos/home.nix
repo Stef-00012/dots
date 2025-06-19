@@ -158,12 +158,23 @@
         username = "${username}";
         homeDirectory = "/home/${username}";
         stateVersion = "25.05";
+        
+        packages = with pkgs; [
+            pinentry-rofi
+        ];
+
+        pointerCursor = {
+            gtk.enable = true;
+            # x11.enable = true;
+            package = pkgs.bibata-cursors;
+            name = "Bibata-Modern-Classic";
+            size = 20;
+        };
+
+        sessionVariables = {
+            EDITOR = "codium";
+        };
     };
-
-
-    home.packages = with pkgs; [
-        pinentry-rofi
-    ];
 
     programs.home-manager.enable = true;
 }
