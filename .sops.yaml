@@ -1,2 +1,12 @@
 keys:
-  - &nixos_admin age1e4g876l76f3pywvx9fpy57q8fay9ut2sxdh5tj0tuauq5ugm4evqyruz2a
+  - &master age15c35gtvl0lutpa72k5fvazfaa4te344kunv7scld5zfdukmr8fcsh3rvdp
+  - &nixos_admin age1s3396w9rdxrsl4czndquxnkm27kj5p4996ndlmmvdpmp3dxdp3rq9w5z8h
+  - &nixos_server age1st4ru7dkrv2faxm2s2snf7pzpzddysvfvlsvtpsdfth78gwhvazs6vrsfv
+
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    key_groups:
+      - age:
+          - *master
+          - *nixos_admin
+          - *nixos_server

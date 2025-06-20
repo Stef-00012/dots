@@ -35,6 +35,7 @@
     let
         system = "x86_64-linux";
         username = "stef";
+        group = "users";
         host = "nixos";
 
         nixosMachine =  { host }:
@@ -45,6 +46,7 @@
                         system
                         host
                         username
+                        group
                         ;
                 };
                 modules = [
@@ -58,6 +60,7 @@
                                     system
                                     host
                                     username
+                                    group
                                     ;
                                 };
                             useUserPackages = true;

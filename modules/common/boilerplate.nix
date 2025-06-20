@@ -2,9 +2,26 @@
     config,
     pkgs,
     username,
+    group,
     ...
 }:
 {
+    modules.common.sops.secrets = {
+        "wakatime.cfg" = {
+            path = "/home/${username}/.wakatime.cfg";
+            owner = username;
+            group = group;
+            mode = "0440";
+        };
+
+        zipline_token = {
+            path = "/home/${username}/.config/zipline/token.key";
+            owner = username;
+            group = group;
+            mode = "0400";
+        };
+    };
+
     boot = {
         # Kernel
         kernelPackages = pkgs.linuxPackages_latest;

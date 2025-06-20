@@ -56,6 +56,13 @@
             xdg.enable = true;
             screenshot.enable = true;
             screenrec.enable = true;
+
+            zipline = {
+                enable = true;
+                domain = "i.stefdp.com";
+                originalName = true;
+                overrideDomain = "https://sdp.li";
+            };
         };
 
         dev = {

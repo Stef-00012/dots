@@ -13,8 +13,8 @@ let
         set -euo pipefail
 
         usage() {
-        echo "Usage: screenshot --ocr|--fullscreen [--swappy]|--area [--swappy]"
-        exit 1
+            echo "Usage: screenshot --ocr|--fullscreen [--swappy]|--area [--swappy]"
+            exit 1
         }
 
         FILENAME="/tmp/screenshot.png"
@@ -36,43 +36,43 @@ let
         done
 
         if (( OCR )); then
-        grim -g "$(slurp)" "$FILENAME"
-        tesseract -l eng "$FILENAME" - | wl-copy
-        rm "$FILENAME"
-        exit 0
+            grim -g "$(slurp)" "$FILENAME"
+            tesseract -l eng "$FILENAME" - | wl-copy
+            rm "$FILENAME"
+            exit 0
         fi
 
         if (( FULLSCREEN || AREA )); then
-        wayfreeze & PID=$!
-        sleep 0.1
+            wayfreeze & PID=$!
+            sleep 0.1
 
-        if (( FULLSCREEN )); then
-            grim - | {
-            if (( USE_SWAPPY )); then
-                cat > "$FILENAME"
-                kill $PID
-                swappy -f "$FILENAME" || notify-send "Swappy failed"
+            if (( FULLSCREEN )); then
+                grim - | {
+                    if (( USE_SWAPPY )); then
+                        cat > "$FILENAME"
+                        kill $PID
+                        swappy -f "$FILENAME" || notify-send "Swappy failed"
+                    else
+                        wl-copy
+                        kill $PID
+                        # notify-send "Screenshot copied to clipboard"
+                    fi
+                }
             else
-                wl-copy
-                kill $PID
-                # notify-send "Screenshot copied to clipboard"
+                GEOM=$(slurp) || { kill $PID; exit 1; } # add this before exit 1 if you want the cancel notif: notify-send "Screenshot cancelled";
+                grim -g "$GEOM" - | {
+                if (( USE_SWAPPY )); then
+                    cat > "$FILENAME"
+                    kill $PID
+                    swappy -f "$FILENAME" || notify-send "Swappy failed"
+                else
+                    wl-copy
+                    kill $PID
+                    # notify-send "Screenshot copied to clipboard"
+                fi
+                }
             fi
-            }
-        else
-            GEOM=$(slurp) || { kill $PID; exit 1; } # add this before exit 1 if you want the cancel notif: notify-send "Screenshot cancelled";
-            grim -g "$GEOM" - | {
-            if (( USE_SWAPPY )); then
-                cat > "$FILENAME"
-                kill $PID
-                swappy -f "$FILENAME" || notify-send "Swappy failed"
-            else
-                wl-copy
-                kill $PID
-                # notify-send "Screenshot copied to clipboard"
-            fi
-            }
-        fi
-        exit 0
+            exit 0
         fi
 
         usage
