@@ -124,6 +124,8 @@
 
             widgets = {
                 ags.enable = true;
+                
+                waybar.enable = true; # TEMPORARY
             };
 
             music = {

@@ -68,7 +68,7 @@ in
 
                 exec-once = [
                     # Open Discord Web App on startup in its special workspace
-                    "[workspace special:discord silent] ${./script.sh}"
+                    "[workspace special:discord silent] bash ${./script.sh}"
                 ];
 
                 windowrule = [
