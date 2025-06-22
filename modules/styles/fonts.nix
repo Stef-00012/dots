@@ -25,6 +25,7 @@ in
                 material-icons
                 material-symbols
                 nerd-fonts.ubuntu-mono
+                nerd-fonts.fira-code
             ];
         };
     };

@@ -105,6 +105,7 @@ in
                         "editor.defaultFormatter" = "jock.svg";
                     };
                     "security.workspace.trust.untrustedFiles" = "open";
+                    "editor.fontFamily" = "FiraCode Nerd Font";
                 };
 
                 keybindings = [

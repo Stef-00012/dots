@@ -105,6 +105,8 @@
         rtkit.enable = true;
         polkit.enable = true;
 
+        pam.services.sddm.enableGnomeKeyring = true;
+
         polkit.extraConfig = ''
             polkit.addRule(function(action, subject) {
                 if (
