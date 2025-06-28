@@ -9,5 +9,6 @@
         ./kdeConnect.nix
         ./gparted.nix
         ./kate.nix
+        ./syncthing.nix
     ];
 }

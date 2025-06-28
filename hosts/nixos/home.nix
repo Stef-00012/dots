@@ -114,6 +114,7 @@
                 kdeConnect.enable = true;
                 obs-studio.enable = true;
                 kate.enable = true;
+                syncthing.enable = true;
             };
 
             editors = {
