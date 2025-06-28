@@ -96,9 +96,9 @@
             enableSSHSupport = true;
         };
 
-        kdeconnect = {
-            enable = true;
-        };
+        kdeconnect.enable = true;
+
+        gpu-screen-recorder.enable = true;
     };
 
     security = {

@@ -38,6 +38,9 @@ in
             bindd = [
                 "SUPER, N, Open swaync Panel, exec, swaync-client -t "
                 "SUPER SHIFT, N, Clear Notifications, exec, swaync-client -C"
+
+                ## "SUPER, N, Open Notification Center, exec, ags request -i desktop-shell toggle-notifs"
+                ## "SUPER SHIFT, N, Clear Notifications, exec, ags request -i desktop-shell clear-notifs"
             ];
             exec-once = [
                 "swaync"

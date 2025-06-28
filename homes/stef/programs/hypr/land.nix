@@ -55,9 +55,11 @@ in
                         "SUPER, M, Exit, exit,"
                         "SUPER, F, Toggle Floating Window, togglefloating,"
                         "SUPER, SPACE, Open Launcher, exec, rofi -show drun"
+                        ## "SUPER, SPACE, Open Launcher, exec, ags request -i desktop-shell toggle-launcher-app"
+                        ## "SUPER ALT, C, Open Calculator, exec, ags request -i desktop-shell toggle-launcher-calculator"
                         "SUPER, P, Toggle Dwindle Pseudo, pseudo,"
                         "SUPER, J, Toggle Dwindle Split, togglesplit,"
-                        "SUPER ALT, C, Color Picker, exec, hyprpicker -a"
+                        "SUPER ALT, P, Color Picker, exec, hyprpicker -a"
 
                         # Special Workspace Bindings
                         "SUPER SHIFT, S, Move To Special Workspace (General), movetoworkspace,special"
@@ -80,12 +82,7 @@ in
                         # "SUPER, C, exec, rofi-calc"
                         # "SUPERSHIFT, APOSTROPHE, Choose Wallpaper, exec, wall-select" # choose a wallpaper
                         # "SUPER, APOSTROPHE, Random Wallpaper, exec, wall-select --fast" # choose a wallpaper
-                        # "SUPERSHIFT, I, Toggle Split, togglesplit"
-                        # "SUPERSHIFT, F, Float Current Window, togglefloating"
-                        # "SUPER, Q, Close Window, killactive"
                         # "SUPER, F, Make Window Fullscreen, fullscreen,"
-                        # ",mouse:275, Scroll Workspace Forward, workspace, e+1"
-                        # ",mouse:276,Scroll Workspace Backward, workspace, e-1"
                         # "ALT,Tab, Cycle To Next Window, cyclenext"
                         # "ALT,Tab, Cycle To Next Window, bringactivetotop"
                         
@@ -272,6 +269,10 @@ in
                     "float, title:^(Open Folder)(.*)$"
                     "float, title:^(Save As)(.*)$"
                     "float, title:^(File Upload)(.*)$"
+                ];
+
+                layerrule = [
+                    "noanim, gtk4-layer-shell"
                 ];
             };
         };

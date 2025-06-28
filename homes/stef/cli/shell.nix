@@ -18,6 +18,7 @@ let
     commonAliases = {
         ftp = "ncftp";
         clock = "date +'The time is %H.%M on a %A. The date is %b %d, %Y C.E.'";
+        agsn = "GIO_EXTRA_MODULES=$(nix eval --raw nixpkgs#glib-networking)/lib/gio/modules ags";
 
         # nix stuff
         fr = "nh os switch --hostname ${host} /home/${username}/dots";
