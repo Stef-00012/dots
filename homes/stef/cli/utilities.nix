@@ -85,6 +85,8 @@ in
                 libqalculate
                 file
                 biome
+                cloc
+                lm_sensors
             ];
 
             hmModules.cli.shell.extraAliases = {
