@@ -193,6 +193,7 @@ in
                 misc = {
                     mouse_move_enables_dpms = true;
                     key_press_enables_dpms = true;
+                    focus_on_activate = true;
                 };
 
                 animations = {
@@ -273,6 +274,7 @@ in
 
                 layerrule = [
                     "noanim, gtk4-layer-shell"
+                    "noanim, selection"
                 ];
             };
         };
