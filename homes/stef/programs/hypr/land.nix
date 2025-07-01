@@ -242,12 +242,12 @@ in
                 };
 
                 windowrule = [
-                    "opacity 1 override,class:^(Minecraft* 1.21)$"
+                    "opacity 1 override, class:^(Minecraft* 1.21)$"
 
-                    "opacity 0.85 override 0.75 override 0.85 override,class:^(kitty)$"
-                    "opacity 0.85 override 0.75 override 0.85 override,class:^(thunar)$"
-                    "opacity 0.85 override 0.75 override 0.85 override,initialTitle:^(Open Folder)$"
-                    "opacity 0.85 override 0.75 override 0.85 override,class:^(codium-url-handler)$"
+                    "opacity 0.85 override 0.75 override 0.85 override, class:^(kitty)$"
+                    "opacity 0.85 override 0.75 override 0.85 override, class:^(thunar)$"
+                    "opacity 0.85 override 0.75 override 0.85 override, initialTitle:^(Open Folder)$"
+                    "opacity 0.85 override 0.75 override 0.85 override, class:^(codium-url-handler)$"
 
                     # Picture-in-Picture
                     "float, title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
@@ -270,6 +270,14 @@ in
                     "float, title:^(Open Folder)(.*)$"
                     "float, title:^(Save As)(.*)$"
                     "float, title:^(File Upload)(.*)$"
+                    "float, class:^(org.telegram.desktop)$, title:^(Media viewer)$"
+
+                    # Desktop Shell Windows
+                    "float, class:^(gjs)$"
+                    "noanim, class:^(gjs)$"
+                    "noblur, class:^(gjs)$, title:negative:^(AGS Session Menu)$"
+                    "pin, class:^(gjs)$, title:^(AGS Notification Center)$"
+                    "pin, class:^(gjs)$, title:^(AGS Session Menu)$"
                 ];
 
                 layerrule = [
