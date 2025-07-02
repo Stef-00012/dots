@@ -87,6 +87,10 @@ in
                 layerrule = [
                     "noanim, gtk4-layer-shell"
                 ];
+
+                exec-once = [
+                    "ags run"
+                ];
             };
         }
     );
