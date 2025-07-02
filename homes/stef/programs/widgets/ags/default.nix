@@ -65,8 +65,8 @@ in
             wayland.windowManager.hyprland.settings = {
                 bindd = [
                     # Notifications
-                    "SUPER, N, Open Notification Center, exec, ags request -i desktop-shell toggle-notifs"
-                    "SUPER SHIFT, N, Clear Notifications, exec, ags request -i desktop-shell clear-notifs"
+                    "SUPER, N, Open Notification Center, exec, ags request -i desktop-shell toggle-notif"
+                    "SUPER SHIFT, N, Clear Notifications, exec, ags request -i desktop-shell clear-notif"
 
                     # Launchers
                     "SUPER, SPACE, Open Launcher, exec, ags request -i desktop-shell toggle-launcher-app"
@@ -74,6 +74,9 @@ in
 
                     # Clipboard (home/stef/misc/clipboard.nix)
                     ## "SUPER, V, Open Clipboard, exec, ags request -i desktop-shell toggle-launcher-clipboard"
+
+                    # Session Menu
+                    "SUPER, \\, Open Session Menu, exec, ags request -i desktop-shell toggle-session-menu"
                 ];
 
                 windowrule = [

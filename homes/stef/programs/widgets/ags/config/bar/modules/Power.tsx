@@ -1,7 +1,7 @@
-import { Gdk, Gtk } from "ags/gtk4";
 import { type Accessor, createState } from "ags";
-import { execAsync } from "ags/process";
 import { setIsSessionMenuVisible } from "@/app";
+import { execAsync } from "ags/process";
+import { Gdk, Gtk } from "ags/gtk4";
 
 interface Props {
 	class?: string | Accessor<string>;
@@ -12,7 +12,7 @@ export default function Power({ class: className }: Props) {
 	const [isPopoverOpen, setIsPopoverOpen] = createState(false);
 
 	function handleLeftClick() {
-		setIsSessionMenuVisible((prev) => !prev)
+		setIsSessionMenuVisible((prev) => !prev);
 	}
 
 	function handleRightClick() {
