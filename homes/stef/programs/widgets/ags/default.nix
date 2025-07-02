@@ -76,7 +76,7 @@ in
                     ## "SUPER, V, Open Clipboard, exec, ags request -i desktop-shell toggle-launcher-clipboard"
 
                     # Session Menu
-                    "SUPER, \\, Open Session Menu, exec, ags request -i desktop-shell toggle-session-menu"
+                    "SUPER, BACKSLASH, Open Session Menu, exec, ags request -i desktop-shell toggle-session-menu"
                 ];
 
                 windowrule = [
