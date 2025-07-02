@@ -56,6 +56,7 @@
             xdg.enable = true;
             screenshot.enable = true;
             screenrec.enable = true;
+            emote.enable = true;
 
             zipline = {
                 enable = true;

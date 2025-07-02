@@ -5,5 +5,6 @@
         ./screenshot.nix
         ./screenrec.nix
         ./zipline-upload.nix
+        ./emote-picker.nix
     ];
 }
