@@ -1,8 +1,9 @@
 import { BACKLIGHT_BASE_DIR, OSD_TIMEOUT_TIME } from "@/constants/config";
-import { monitorFile, readFileAsync } from "ags/file";
 import { type Accessor, createComputed, createState } from "ags";
+import { monitorFile, readFileAsync } from "ags/file";
 import { type Gdk, Gtk } from "ags/gtk4";
 import type AstalIO from "gi://AstalIO";
+import { sleep } from "@/util/timer";
 import { timeout } from "ags/time";
 import giCairo from "gi://cairo";
 import Wp from "gi://AstalWp";
@@ -24,7 +25,10 @@ export default function OSD({ gdkmonitor, hidden }: Props) {
 	const defaultMicrophone = wp?.audio.defaultMicrophone;
 
 	const [isVisible, setIsVisible] = createState(false);
-	const visibleState = createComputed([isVisible, hidden], transformVisibleState)
+	const visibleState = createComputed(
+		[isVisible, hidden],
+		transformVisibleState,
+	);
 
 	let lastTimeout: AstalIO.Time;
 	let isStartup = true;
@@ -84,7 +88,6 @@ export default function OSD({ gdkmonitor, hidden }: Props) {
 
 	function transformVisibleState(isVisible: boolean, hidden: boolean) {
 		return isVisible && !hidden;
-
 	}
 
 	function updateSpeakerState(speaker: Wp.Endpoint) {
@@ -137,7 +140,7 @@ export default function OSD({ gdkmonitor, hidden }: Props) {
 	return (
 		<window
 			gdkmonitor={gdkmonitor}
-			visible={visibleState}
+			// visible={visibleState}
 			class="osd"
 			title="AGS OSD"
 			css={`margin-top: ${marginTop}px;`}
@@ -147,35 +150,59 @@ export default function OSD({ gdkmonitor, hidden }: Props) {
 				self.connect("map", () => {
 					self.get_surface()?.set_input_region(new giCairo.Region());
 				});
+
+				const revealer = self.child as Gtk.Revealer;
+				const transitionDuration = revealer.get_transition_duration();
+
+				visibleState.subscribe(async () => {
+					const visible = visibleState.get();
+
+					if (!visible) {
+						revealer.set_reveal_child(visible);
+
+						await sleep(transitionDuration);
+					}
+
+					self.set_visible(visible);
+
+					if (visible) {
+						revealer.set_reveal_child(visible);
+					}
+				});
 			}}
 		>
-			<box
-				heightRequest={maxHeight}
-				widthRequest={maxWidth}
-				class="osd-container"
+			<revealer
+				transitionDuration={300}
+				transitionType={Gtk.RevealerTransitionType.CROSSFADE}
 			>
-				<image
-					iconName={osdState((state) => state.icon)}
-					class="icon"
-				/>
+				<box
+					heightRequest={maxHeight}
+					widthRequest={maxWidth}
+					class="osd-container"
+				>
+					<image
+						iconName={osdState((state) => state.icon)}
+						class="icon"
+					/>
 
-				<Gtk.ProgressBar
-					hexpand
-					valign={Gtk.Align.CENTER}
-					class={osdState((state) =>
-						Math.round(state.percentage * 100) > 100
-							? "progress overfilled"
-							: "progress",
-					)}
-					fraction={osdState((state) => state.percentage)}
-				/>
+					<Gtk.ProgressBar
+						hexpand
+						valign={Gtk.Align.CENTER}
+						class={osdState((state) =>
+							Math.round(state.percentage * 100) > 100
+								? "progress overfilled"
+								: "progress",
+						)}
+						fraction={osdState((state) => state.percentage)}
+					/>
 
-				<label
-					label={osdState(
-						(state) => `${Math.round(state.percentage * 100)}%`,
-					)}
-				/>
-			</box>
+					<label
+						label={osdState(
+							(state) => `${Math.round(state.percentage * 100)}%`,
+						)}
+					/>
+				</box>
+			</revealer>
 		</window>
 	);
 }
