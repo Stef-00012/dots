@@ -5,6 +5,11 @@
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
 
+        astal = {
+            url = "github:aylur/astal";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
         ags = {
             url = "github:aylur/ags";
             inputs.nixpkgs.follows = "nixpkgs";

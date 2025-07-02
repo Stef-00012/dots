@@ -1,6 +1,6 @@
 {
     imports = [
-        ./ags.nix
-        ./waybar # temporary
+        ./ags
+        ./waybar
     ];
 }

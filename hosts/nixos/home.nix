@@ -133,7 +133,7 @@
             widgets = {
                 ags.enable = true;
                 
-                waybar.enable = true; # TEMPORARY
+                waybar.enable = false; # TEMPORARY
             };
 
             music = {

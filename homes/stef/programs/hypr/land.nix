@@ -54,9 +54,7 @@ in
                         "SUPER, Q, Close Window, killactive,"
                         "SUPER, M, Exit, exit,"
                         "SUPER, F, Toggle Floating Window, togglefloating,"
-                        "SUPER, SPACE, Open Launcher, exec, rofi -show drun"
-                        ## "SUPER, SPACE, Open Launcher, exec, ags request -i desktop-shell toggle-launcher-app"
-                        ## "SUPER ALT, C, Open Calculator, exec, ags request -i desktop-shell toggle-launcher-calculator"
+                        ## "SUPER, SPACE, Open Launcher, exec, rofi -show drun"
                         "SUPER, P, Toggle Dwindle Pseudo, pseudo,"
                         "SUPER, J, Toggle Dwindle Split, togglesplit,"
                         "SUPER ALT, P, Color Picker, exec, hyprpicker -a"
@@ -271,17 +269,9 @@ in
                     "float, title:^(Save As)(.*)$"
                     "float, title:^(File Upload)(.*)$"
                     "float, class:^(org.telegram.desktop)$, title:^(Media viewer)$"
-
-                    # Desktop Shell Windows
-                    "float, class:^(gjs)$"
-                    "noanim, class:^(gjs)$"
-                    "noblur, class:^(gjs)$, title:negative:^(AGS Session Menu)$"
-                    "pin, class:^(gjs)$, title:^(AGS Notification Center)$"
-                    "pin, class:^(gjs)$, title:^(AGS Session Menu)$"
                 ];
 
                 layerrule = [
-                    "noanim, gtk4-layer-shell"
                     "noanim, selection"
                 ];
             };

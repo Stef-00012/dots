@@ -1,0 +1,579 @@
+// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
+// $fg-color: #{"@theme_fg_color"};
+// $bg-color: #{"@theme_bg_color"};
+@use "sass:string";
+
+@function gtkalpha($color, $alpha) {
+    @return string.unquote("alpha(#{$color},#{$alpha})");
+}
+
+$rosewater-color: #f4dbd6;
+$flamingo-color: #f0c6c6;
+$pink-color: #f5bde6;
+$mauvre-color: #c6a0f6;
+$red-color: #ed8796;
+$maroon-color: #ee99a0;
+$peach-color: #f5a97f;
+$yellow-color: #eed49f;
+$green-color: #a6da95;
+$teal-color: #8bd5ca;
+$sky-color: #91d7e3;
+$sapphire-color: #7dc4e4;
+$blue-color: #8aadf4;
+$lavender-color: #b7bdf8;
+$text-color: #cad3f5;
+$subtext1-color: #b8c0e0;
+$subtext0-color: #a5adcb;
+$overlay2-color: #939ab7;
+$overlay1-color: #8087a2;
+$overlay0-color: #6e738d;
+$surface2-color: #5b6078;
+$surface1-color: #494d64;
+$surface0-color: #363a4f;
+$base-color: #24273a;
+$mantle-color: #1e2030;
+$crust-color: #181926;
+
+* {
+    font-family: Lexend, FiraCodeNerdFont, MapleMono, JetBrainsMono NFM, Font Awesome, sans-serif;
+    font-size: 14px;
+    color: $text-color;
+}
+
+tooltip {
+    background: $mantle-color;
+    border-radius: 15px;
+}
+
+tooltip label {
+    color: $text-color;
+}
+
+button {
+    border-radius: 8px;
+    background-image: unset;
+    background-color: $mantle-color;
+    outline-color: $surface1-color;
+}
+
+button:hover {
+    background-color: gtkalpha($mantle-color, 0.6);
+}
+
+check {
+    background-color: $surface0-color;
+    background-image: unset;
+    border-radius: 6px;
+    margin-right: 6px;
+    border-color: $mantle-color;
+}
+
+check:hover {
+    background-color: gtkalpha($surface0-color, 0.6);
+}
+
+check:checked {
+    background-color: $surface2-color;
+    color: $text-color;
+}
+
+check:checked:hover {
+    background-color: gtkalpha($surface2-color, 0.6);
+}
+
+popover {
+    arrow,
+    contents {
+        background-color: $mantle-color;
+    }
+
+    button {
+        background-color: $base-color;
+    }
+
+    button:hover {
+        background-color: gtkalpha($base-color, 0.6);
+    }
+}
+
+.notification {
+    border-radius: 13px;
+    background-color: $base-color;
+    margin: 0.5rem 1rem 0.5rem 1rem;
+    box-shadow: 2px 3px 8px 0 gtkalpha(black, 0.4);
+    border: 1pt solid gtkalpha($base-color, 0.03);
+
+    &.center {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    &.critical {
+        border: 1pt solid gtkalpha($red-color, 0.4);
+
+        .header {
+            .app-name {
+                color: gtkalpha($red-color, 0.8);
+            }
+
+            .app-icon {
+                color: gtkalpha($red-color, 0.6);
+            }
+        }
+    }
+
+    .header {
+        padding: 0.5rem;
+        color: gtkalpha($subtext0-color, 0.5);
+
+        .app-icon {
+            margin: 0 0.4rem;
+        }
+
+        .app-name {
+            margin-right: 0.3rem;
+            font-weight: bold;
+
+            &:first-child {
+                margin-left: 0.4rem;
+            }
+        }
+
+        .time {
+            margin: 0 0.4rem;
+        }
+    }
+
+    separator {
+        margin: 0 0.4rem;
+        background-color: gtkalpha($overlay0-color, 0.1);
+    }
+
+    .content {
+        margin: 1rem;
+        margin-top: 0.5rem;
+
+        .summary {
+            font-size: 1.2em;
+            color: $text-color;
+        }
+
+        .body {
+            color: gtkalpha($text-color, 0.8);
+        }
+
+        .image {
+            border: 1px solid gtkalpha($overlay0-color, 0.02);
+            margin-right: 0.5rem;
+            border-radius: 9px;
+            min-width: 100px;
+            min-height: 100px;
+            background-size: cover;
+            background-position: center;
+        }
+    }
+
+    .actions {
+        margin: 1rem;
+        margin-top: 0;
+
+        button {
+            margin: 0 0.3rem;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .progress-bar {
+        progress {
+            border-color: $overlay0-color;
+            background-color: $overlay0-color;
+        }
+
+        trough {
+            border-color: $crust-color;
+            background-color: $crust-color;
+        }
+
+        progress,
+        trough {
+            min-height: 2px;
+        }
+    }
+}
+
+window.bar {
+    background: $base-color;
+    color: $text-color;
+    font-weight: bold;
+
+    >centerbox {
+        border-radius: 10px;
+    }
+
+    .module-group {
+        margin: 6px;
+        border-radius: 8px;
+        padding: 8px;
+        background-color: $mantle-color;
+        margin-right: 2px;
+
+        &.last {
+            margin-right: 0;
+        }
+
+        &.end {
+            margin-right: 6px;
+        }
+
+        .cpu-module,
+        .disk-module {
+            margin-right: 12px;
+        }
+    }
+
+    // last modules in groups with other modules
+    .notification-module {
+        margin-right: 0;
+    }
+
+    .image-cover-art {
+        border-radius: 8px;
+        min-width: 35px;
+        min-height: 35px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .time {
+        .calendar {
+            margin-left: 3px;
+            margin-right: 3px;
+
+            header {
+                button {
+                    background-color: unset;
+                }
+
+                button:hover {
+                    background-color: gtkalpha($crust-color, 0.6);
+                    background-image: unset;
+                }
+            }
+
+            grid {
+                .day-number {
+                    border-radius: 20px;
+                    outline-color: $crust-color;
+
+                    &.other-month {
+                        color: $surface2-color;
+                    }
+
+                    &:selected {
+                        background-color: $crust-color;
+                    }
+
+                    &.today {
+                        background-color: $surface0-color;
+                    }
+
+                    &:hover {
+                        background-color: gtkalpha($crust-color, 0.5);
+                        color: $text-color;
+                    }
+
+                }
+
+            }
+        }
+    }
+
+    .tray-popover {
+        .tray-item {
+            .tray-popover-menu {
+                modelbutton {
+                    background-color: unset;
+                    margin-top: 3px;
+                    margin-bottom: 3px;
+                }
+
+                modelbutton:first-child {
+                    margin-top: 0;
+                }
+
+                modelbutton:last-child {
+                    margin-bottom: 0;
+                }
+
+                modelbutton.title {
+                    font-weight: bold;
+                    margin-bottom: 6px;
+                }
+
+                modelbutton:hover {
+                    background-color: gtkalpha($base-color, 0.8);
+                }
+
+                separator {
+                    margin-top: 6px;
+                    margin-bottom: 6px;
+                    background-color: gtkalpha($overlay0-color, 0.5);
+                }
+            }
+        }
+    }
+
+    .battery-icon,
+    .cpu-icon,
+    .disk-icon,
+    .media-icon,
+    .lyrics-icon,
+    .microphone-icon,
+    .microphone-bluetooth-icon,
+    .network-icon,
+    .speaker-icon,
+    .speaker-bluetooth-icon,
+    .ram-icon,
+    .time-icon.clock {
+        margin-right: 6px;
+    }
+
+    .notification-icon {
+        margin-right: 12px;
+
+        .icon {
+            margin-right: -8px;
+        }
+
+        .unread {
+            color: $red-color;
+            margin-bottom: 6px;
+        }
+
+        &.unread {
+            margin-right: 6px;
+        }
+    }
+}
+
+window.notification-popups {
+    all: unset;
+
+}
+
+window.notification-center {
+    background-color: gtkalpha(#000000, 0.2);
+
+    .notification-container {
+        background-color: gtkalpha($crust-color, 0.95);
+        border-radius: 15px;
+        padding: 1rem;
+        margin: 1rem;
+        box-shadow: 2px 3px 8px 0 gtkalpha(black, 0.4);
+
+        .header {
+            .title-container {
+                .dismiss-all {
+                    background-color: $base-color;
+                }
+
+                .dismiss-all:hover {
+                    background-color: gtkalpha($base-color, 0.6);
+                }
+
+                .title {
+                    font-size: 30px;
+                    font-weight: bold;
+                }
+            }
+
+            .dnd-container {
+                margin-top: 10px;
+                margin-bottom: 10px;
+
+                .dnd-title {
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+
+                .dnd-toggle {
+                    background-color: $base-color;
+
+                    &:checked {
+                        background-color: $overlay0-color;
+
+                        slider {
+                            background-color: $surface1-color;
+                        }
+                    }
+
+                    slider {
+                        background-image: unset;
+                        background-color: $overlay0-color;
+                    }
+                }
+            }
+        }
+
+        .header-separator {
+            background-color: gtkalpha($overlay0-color, 0.5);
+            margin-bottom: 6px;
+        }
+
+        .category {
+            margin-top: 6px;
+            margin-bottom: 6px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .category-icon {
+                margin-right: 3px;
+            }
+
+            .category-title {
+                font-size: 22px;
+                font-weight: bold;
+            }
+
+            .category-separator {
+                background-color: gtkalpha($overlay0-color, 0.5);
+                margin-top: 6px;
+            }
+
+            .dismiss-category {
+                background-image: unset;
+                background-color: $base-color;
+            }
+        }
+
+        .notification {
+            margin-bottom: 1rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+window.launcher {
+    .launcher-container {
+        background-color: gtkalpha($crust-color, 0.95);
+        border-radius: 15px;
+        padding: 1rem;
+        box-shadow: 2px 3px 8px 0 gtkalpha(black, 0.4);
+
+        .search-entry {
+            background-color: $mantle-color;
+            border-radius: 8px;
+            padding: 4px 8px;
+            color: $text-color;
+            font-size: 20px;
+            margin-bottom: 12px;
+
+            &:focus {
+                background-color: gtkalpha($mantle-color, 0.8);
+            }
+        }
+
+        .apps-container {
+            .app-container {
+                padding: 6px;
+                margin-top: 3px;
+                margin-bottom: 3px;
+                background-color: $mantle-color;
+                border-radius: 8px;
+
+                &:first-child {
+                    margin-top: 6px;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                .app-icon {
+                    margin-right: 12px;
+                }
+            }
+        }
+
+        .calculator-container {
+            .calculator-result {
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+            .calculator-separator {
+                margin-top: 6px;
+            }
+        }
+    }
+}
+
+window.osd {
+    background-color: transparent;
+
+    .osd-container {
+        background-color: $base-color;
+        border-radius: 30px;
+        padding: 5px 10px;
+
+        .icon {
+            margin-right: 5px;
+        }
+
+        .progress {
+            margin-right: 5px;
+
+            &.overfilled {
+                progress {
+                    border-color: $red-color;
+                    background-color: $red-color;
+                }
+            }
+
+            progress {
+                border-color: $overlay0-color;
+                background-color: $overlay0-color;
+            }
+
+            progress,
+            trough {
+                min-height: 10px;
+                border-radius: 30px;
+            }
+        }
+    }
+}
+
+window.session-menu {
+    background-color: gtkalpha(black, 0.6);
+
+    button {
+        border-radius: 20px;
+    }
+
+    label {
+        margin-top: 10px;
+    }
+
+    tooltip {
+        label {
+            margin-top: 0;
+        }
+    }
+}
