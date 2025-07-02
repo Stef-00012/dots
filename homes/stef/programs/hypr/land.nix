@@ -194,6 +194,10 @@ in
                     focus_on_activate = true;
                 };
 
+                cursor = {
+                    no_warps = true;
+                };
+
                 animations = {
                     enabled = true;
 
