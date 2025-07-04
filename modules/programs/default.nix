@@ -5,5 +5,6 @@
         ./hyprland.nix
         ./appimages.nix
         ./core.nix
+        ./waydroid.nix
     ];
 }

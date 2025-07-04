@@ -30,6 +30,7 @@
             thunar.enable = true;
             hyprland.enable = true;
             appimages.enable = true;
+            waydroid.enable = false;
         };
 
         gaming = {

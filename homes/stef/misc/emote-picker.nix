@@ -18,6 +18,10 @@ in
             bindd = [
                 "SUPER, PERIOD, Open Clipboard, exec, emote"
             ];
+
+            exec-once = [
+                "emote"
+            ];
         };
     };
 }
