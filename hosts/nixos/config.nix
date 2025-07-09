@@ -37,6 +37,7 @@
             enable = true;
             wine.enable = false;
             lutris.enable = false;
+            heroic.enable = false;
             bottles.enable = false;
             steam.enable = true;
             minecraft = {

@@ -25,7 +25,6 @@ in
         (mkIf cfg.enable {
             wayland.windowManager.hyprland.settings = {
                 exec-once = mkIf cfg.arrpc [
-                    # "sleep 3; ${pkgs.arrpc}/bin/arrpc &"
                     "${pkgs.arrpc}/bin/arrpc &"
                 ];
 

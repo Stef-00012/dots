@@ -103,6 +103,7 @@
                 land.enable = true;
                 idle.enable = true;
                 lock.enable = true;
+                winwrap.enable = false;
             };
 
             misc = {
@@ -133,8 +134,7 @@
 
             widgets = {
                 ags.enable = true;
-                
-                waybar.enable = false; # TEMPORARY
+                waybar.enable = false;
             };
 
             music = {

@@ -74,17 +74,10 @@ in
             enabledCustomApps = with spicePkgs.apps; [
                 lyricsPlus
                 marketplace
-                # {
-                #     name = "lyricsPlus";
-                # }
-                # {
-                #     name = "marketplace";
-                # }
             ];
 
             wayland = true;
             theme = spicePkgs.themes.defaultDynamic;
-            # colorScheme = "mocha";
         };
     };
 }

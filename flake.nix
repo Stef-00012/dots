@@ -20,6 +20,11 @@
             inputs.nixpkgs.follows = "nixpkgs-small";
         };
 
+        hyprland-plugins = {
+            url = "github:hyprwm/hyprland-plugins";
+            inputs.hyprland.follows = "hyprland";
+        };
+
         home-manager = {
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";

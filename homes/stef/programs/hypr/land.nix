@@ -54,7 +54,6 @@ in
                         "SUPER, Q, Close Window, killactive,"
                         "SUPER, M, Exit, exit,"
                         "SUPER, F, Toggle Floating Window, togglefloating,"
-                        ## "SUPER, SPACE, Open Launcher, exec, rofi -show drun"
                         "SUPER, P, Toggle Dwindle Pseudo, pseudo,"
                         "SUPER, J, Toggle Dwindle Split, togglesplit,"
                         "SUPER ALT, P, Color Picker, exec, hyprpicker -a"
@@ -73,11 +72,7 @@ in
                         "SUPER SHIFT, up, Move Window Up, movewindow,u"
                         "SUPER SHIFT, down, Move Window Down, movewindow,d"
                         "SUPER, B, Blur/Unblur Current Window, exec, hyprctl setprop active opaque toggle # toggle transparency for le active window"
-                        
-                        # "SUPER, PERIOD, Select Emoji, exec, emoji-select a"
-                        # "SUPERSHIFT, PERIOD, Select Emoji To Clipboard, exec, emoji-select"
 
-                        # "SUPER, C, exec, rofi-calc"
                         # "SUPERSHIFT, APOSTROPHE, Choose Wallpaper, exec, wall-select" # choose a wallpaper
                         # "SUPER, APOSTROPHE, Random Wallpaper, exec, wall-select --fast" # choose a wallpaper
                         # "SUPER, F, Make Window Fullscreen, fullscreen,"
@@ -132,8 +127,8 @@ in
 
                 # Workspace Bindings
                 bindde = [
-                    "SUPER CONTROL,right, Switch To Right Workspace, workspace,e+1"
-                    "SUPER CONTROL,left, Switch To Left Workspace, workspace,e-1"
+                    "SUPER CONTROL, right, Switch To Right Workspace, workspace,e+1"
+                    "SUPER CONTROL, left, Switch To Left Workspace, workspace,e-1"
                     "SUPER, mouse_down, Switch To Right Workspace, workspace, e+1"
                     "SUPER, mouse_up, Switch To Left Workspace, workspace, e-1"
                 ];
@@ -261,17 +256,23 @@ in
 
                     # Dialog windows – float+center these windows.
                     "center, title:^(Open File)(.*)$"
-                    "center, title:^(Select a File)(.*)$"
-                    "center, title:^(Choose wallpaper)(.*)$"
-                    "center, title:^(Open Folder)(.*)$"
-                    "center, title:^(Save As)(.*)$"
-                    "center, title:^(File Upload)(.*)$"
                     "float, title:^(Open File)(.*)$"
+
+                    "center, title:^(Select a File)(.*)$"
                     "float, title:^(Select a File)(.*)$"
+
+                    "center, title:^(Choose wallpaper)(.*)$"
                     "float, title:^(Choose wallpaper)(.*)$"
+
+                    "center, title:^(Open Folder)(.*)$"
                     "float, title:^(Open Folder)(.*)$"
+
+                    "center, title:^(Save As)(.*)$"
                     "float, title:^(Save As)(.*)$"
+
+                    "center, title:^(File Upload)(.*)$"
                     "float, title:^(File Upload)(.*)$"
+
                     "float, class:^(org.telegram.desktop)$, title:^(Media viewer)$"
                 ];
 

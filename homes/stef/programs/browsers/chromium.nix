@@ -38,7 +38,6 @@ in
                 "dhdgffkkebhmkfjojejmpbldmpobfkfo" # Tampermonkey
                 "ddkjiahejlhfcafbddmgiahcphecmpfh" # uBlock Origin Lite
                 "djflhoibgkdhkhhcedjiklpkjnoahfmg" # User-Agent Switcher for Chrome
-                "licaccaeplhkahfkoighjblahbnafadl" # Viewstats - YouTube video & channel analytics
                 "cdockenadnadldjbbgcallicgledbeoc" # VisBug
                 "cbghhgpcnddeihccjmnadmkaejncjndb" # Vencord Web
                 {

@@ -19,11 +19,6 @@ in
 
     config = mkIf cfg.enable (
         {
-            # home.packages = [
-            #     inputs.ags.packages.${pkgs.system}.agsFull
-            #     # pkgs.glib-networking for v3
-            # ];
-
             programs.ags = {
                 enable = true;
 
@@ -41,7 +36,7 @@ in
                     inputs.astal.packages.${pkgs.system}.mpris
                     inputs.astal.packages.${pkgs.system}.network
                     inputs.astal.packages.${pkgs.system}.notifd
-                    # inputs.astal.packages.${pkgs.system}.powerprofiles
+                    inputs.astal.packages.${pkgs.system}.powerprofiles
                     inputs.astal.packages.${pkgs.system}.tray
                     inputs.astal.packages.${pkgs.system}.wireplumber
                     libsoup_3
@@ -58,7 +53,7 @@ in
                 inputs.astal.packages.${pkgs.system}.hyprland
                 inputs.astal.packages.${pkgs.system}.mpris
                 inputs.astal.packages.${pkgs.system}.notifd
-                inputs.astal.packages.${pkgs.system}.powerprofiles
+                inputs.astal.packages.${pkgs.system}.powerprofiles #
                 inputs.astal.packages.${pkgs.system}.tray
             ];
 

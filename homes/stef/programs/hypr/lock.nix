@@ -15,11 +15,9 @@ in
     
     config = mkIf cfg.enable {
         home.packages = [ pkgs.hyprlock ];
-        # home.file.".config/hypr/hyprlock.conf".text =
-        #     ''source = ~/dots/homes/orangc/programs/hypr/lock/hyprlock.conf'';
+
         wayland.windowManager.hyprland.settings.bindd = [
             "SUPER, L, Lock Screen, exec, hyprlock"
-            # ",XF86HomePage, Lock Screen, exec, hyprlock"
         ];
     };
 }

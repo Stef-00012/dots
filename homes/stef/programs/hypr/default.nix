@@ -2,6 +2,7 @@
     imports = [
         ./land.nix
         ./idle.nix
-        ./lock
+        ./lock.nix
+        ./winwrap.nix
     ];
 }
