@@ -38,6 +38,7 @@ in
                     "SDL_VIDEODRIVER,x11"
                     "MOZ_ENABLE_WAYLAND,1"
                     "EDITOR,codium"
+                    "GTK_THEME,Adwaita-dark"
                 ];
 
                 exec-once = [

@@ -150,6 +150,7 @@
             media = {
                 enable = true;
                 gwenview = true;
+                file-roller = true;
                 imv = false;
                 feh = false;
                 qimgv = false;

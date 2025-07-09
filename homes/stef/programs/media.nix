@@ -16,6 +16,7 @@ in
         imv = mkEnableOption "Enable imv image viewer";
         feh = mkEnableOption "Enable feh image viewer";
         qimgv = mkEnableOption "Enable qimgv image viewer";
+        file-roller = mkEnableOption "Enable file roller archive manager";
     };
 
     config = mkIf cfg.enable (
@@ -32,6 +33,10 @@ in
                         occivink.crop
                     ];
                 };
+
+                home.file.".config/mpv/mpv.conf".text = ''
+                    audio=pulse
+                '';
             }
 
             (mkIf cfg.gwenview {
@@ -48,6 +53,10 @@ in
 
             (mkIf cfg.qimgv {
                 home.packages = [ pkgs.qimgv ];
+            })
+
+            (mkIf cfg.file-roller {
+                home.packages = [ pkgs.file-roller ];
             })
         ]
     );

@@ -31,9 +31,10 @@ let
         "text/*" = editor;
         "audio/*" = [ "mpv.desktop" ];
         "video/*" = [ "mpv.desktop" ];
-        "image/*" = [ "org.kde.kdegraphics.gwenview.lib" ];
+        "image/*" = [ "gwenview.desktop" ];
         "application/json" = editor;
         "application/pdf" = browser;
+        "application/zip" = [ "org.gnome.FileRoller.desktop" ];
 
         "x-scheme-handler/tg" = [ "telegramdesktop.desktop" ];
         "x-scheme-handler/discord" = [ "discord.desktop" ];
