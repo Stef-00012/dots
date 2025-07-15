@@ -13,5 +13,15 @@
         ./postgresql.nix
         ./linkwarden.nix
         ./convertx.nix
+        ./meilisearch.nix
+        ./syncthing.nix
+        ./searxng.nix
+        ./grafana.nix
+        ./lyrics-api.nix
+        ./likeify.nix
+        ./discord-user-apps.nix
+        ./apprise-api.nix
+        ./pi-hole.nix
+        ./prometheus
     ];
 }

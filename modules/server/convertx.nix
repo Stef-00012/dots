@@ -39,7 +39,7 @@ in
         ];
 
         virtualisation.oci-containers.containers."convertx" = {
-            image = "ghcr.io/c4illin/convertx"; # corentinth is the original, sharevb is a guy who forked convertx
+            image = "ghcr.io/c4illin/convertx";
             ports = [ "${toString cfg.port}:3000" ];
             volumes = [
                 "/var/lib/convertx:/app/data"

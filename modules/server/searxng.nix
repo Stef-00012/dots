@@ -24,12 +24,13 @@ in
 
         domain = mkOption {
             type = types.str;
-            default = "search.orangc.net";
+            default = "search.stefdp.com";
             description = "The domain for SearXNG to be hosted at";
         };
 
         port = mkOption {
             type = types.port;
+            default = 3015;
             description = "The port for SearXNG to be hosted at";
         };
     };

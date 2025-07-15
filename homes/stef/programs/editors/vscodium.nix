@@ -107,6 +107,7 @@ in
                     "security.workspace.trust.untrustedFiles" = "open";
                     "editor.fontFamily" = "FiraCode Nerd Font";
                     "redhat.telemetry.enabled" = false;
+                    "editor.tabSize" = 4;
                 };
 
                 keybindings = [

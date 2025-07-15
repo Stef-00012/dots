@@ -72,20 +72,15 @@
                 port = 3003;
             };
 
-            your_spotify = {
-                api = {
-                    enable = false;
-                    domain = "api.spotify.stefdp.com";
-                    port = 9000;
-                    clientDomain = "spotify.stefdp.com";
-                };
-
-                web = {
-                    enable = false;
-                    domain = "spotify.stefdp.com";
-                    port = 3000;
-                    apiDomain = "api.spotify.stefdp.com";
-                };
+            your_spotify-api = {
+                enable = false;
+                domain = "api.spotify.stefdp.com";
+                port = 9000;
+            };
+            your_spotify-web = {
+                enable = false;
+                domain = "spotify.stefdp.com";
+                port = 3000;
             };
 
             speedtest-tracker = {
@@ -126,17 +121,83 @@
             };
 
             linkwarden = {
-                # BROKEN
                 enable = false;
                 domain = "links.stefdp.com";
                 port = 3004;
-                meilisearchPort = 3005;
+            };
+
+            # Required for linkwarden
+            meilisearch = {
+                enable = false;
+                # domain = "meilisearch.stefdp.com";
+                port = 3005;
             };
 
             convertx = {
                 enable = false;
                 domain = "convert.stefdp.com";
                 port = 3013;
+            };
+
+            syncthing = {
+                enable = false;
+                domain = "syncthing.stefdp.com";
+                port = 8384;
+            };
+
+            searxng = {
+                enable = false;
+                domain = "search.stefdp.com";
+                port = 3015;
+            };
+
+            grafana = {
+                enable = false;
+                domain = "grafana.stefdp.com";
+                port = 3007;
+            };
+
+            prometheus = {
+                enable = false;
+                # domain = "prometheus.stefdp.com";
+                port = 9090;
+            };
+
+            prometheus-node_exporter = {
+                enable = false;
+                # domain = "node-exporter.stefdp.com";
+                port = 9100;
+            };
+
+            lyrics-api = {
+                enable = false;
+                domain = "lyrics.stefdp.com";
+                port = 3010;
+            };
+
+            likeify = {
+                enable = false;
+                domain = "likeify.stefdp.com";
+                port = 3008;
+            };
+
+            discord-user-apps = {
+                enable = false;
+                domain = "bot.stefdp.com";
+                port = 3009;
+            };
+
+            # Required for discord-user-apps
+            apprise-api = {
+                enable = false;
+                # domain = "apprise.stefdp.com";
+                port = 3012;
+            };
+
+            pi-hole = {
+                enable = false;
+                # domain = "pi-hole.stefdp.com";
+                port = 3007;
             };
         };
     };

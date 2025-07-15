@@ -14,10 +14,10 @@ let
         types
         ;
 
-    cfg = config.modules.server.your_spotify.web;
+    cfg = config.modules.server.your_spotify-web;
 in
 {
-    options.modules.server.your_spotify.web = {
+    options.modules.server.your_spotify-web = {
         enable = mkEnableOption "Enable yur_spotify web UI";
 
         name = mkOption {
@@ -36,12 +36,6 @@ in
             default = "spotify.stefdp.com";
             description = "The domain for your_spotify web UI to be hosted at";
         };
-
-        apiDomain = mkOption {
-            type = types.str;
-            default = "api.spotify.stefdp.com";
-            description = "The domain of the your_spotify APIt";
-        };
     };
 
     config = mkIf cfg.enable {
@@ -49,7 +43,7 @@ in
             image = "yooooomi/your_spotify_client";
             ports = [ "${toString cfg.port}:3000" ];
             environment = {
-                API_ENDPOINT = "https://${cfg.apiDomain}";
+                API_ENDPOINT = "https://${config.modules.server.your_spotify-api.domain}";
             };
         };
     };

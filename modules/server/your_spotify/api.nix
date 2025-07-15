@@ -11,10 +11,10 @@ let
         mkIf
         types
         ;
-    cfg = config.modules.server.your_spotify.api;
+    cfg = config.modules.server.your_spotify-api;
 in
 {
-    options.modules.server.your_spotify.api = {
+    options.modules.server.your_spotify-api = {
         enable = mkEnableOption "Enable your_spotify API";
 
         name = mkOption {
@@ -33,12 +33,6 @@ in
             default = 9000;
             description = "The port for your_spotify API to be hosted at";
         };
-
-        clientDomain = mkOption {
-            type = types.str;
-            default = "spotify.stefdp.com";
-            description = "The domain of the your_spotify client";
-        };
     };
 
     config = mkIf cfg.enable {
@@ -52,7 +46,7 @@ in
 
             settings = {
                 SPOTIFY_PUBLIC = "e5f671a44755418e8fb5a190dbcd9c10";
-                CLIENT_ENDPOINT = "https://${cfg.clientDomain}";
+                CLIENT_ENDPOINT = "https://${config.modules.server.your_spotify-web.domain}";
                 PORT = cfg.port;
                 CORS = "i-want-a-security-vulnerability-and-want-to-allow-all-origins";
                 API_ENDPOINT = "https://${cfg.domain}";
