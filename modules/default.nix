@@ -4,5 +4,6 @@
         ./common
         ./programs
         ./styles
+        ./server
     ];
 }

@@ -40,6 +40,7 @@ in
                 "djflhoibgkdhkhhcedjiklpkjnoahfmg" # User-Agent Switcher for Chrome
                 "cdockenadnadldjbbgcallicgledbeoc" # VisBug
                 "cbghhgpcnddeihccjmnadmkaejncjndb" # Vencord Web
+                "pnidmkljnhbjfffciajlcpeldoljnidn" # Linkwarden
                 {
                     # Zipline Uploads - https://github.com/Stef-00012/Zipline-Upload-Extension/releases/latest/download/ziplineUploads.crx
                     crxPath = "/home/${username}/code/extensions/ziplineUploads/ziplineUploads.crx";

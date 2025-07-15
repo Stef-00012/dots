@@ -11,7 +11,11 @@
 Modular NixOS configuration for my machine.
 
 ## Thank you
-- [orangc](https://github.com/orangci) for the base flake
+- this flake is a fork of [orangc](https://orangc.net)'s [flake](https://orangc.net/dots)
 
 ## License
 - [License: GNU AGPLv3](./LICENSE)
+
+## TO-DO
+- [ ] Test `your_spotify`
+- [ ] Check if postgresql db is accessible publicly or just locally

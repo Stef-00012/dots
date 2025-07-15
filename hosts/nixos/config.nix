@@ -1,15 +1,10 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, inputs, system, username, ... }:
 
 {
     imports =
-        [ # Include the results of the hardware scan.
+        [
             ./hardware.nix
             ../../modules
-            # inputs.home-manager.nixosModules.default
         ];
 
     modules = {
@@ -48,6 +43,101 @@
 
         styles = {
             fonts.enable = true;
+        };
+
+        # VPS:
+
+        server = {
+            filebrowser = {
+                enable = false;
+                domain = "fb.stefdp.com";
+                port = 5080;
+            };
+
+            it-tools = {
+                enable = false;
+                domain = "tools.stefdp.com";
+                port = 3014;
+            };
+
+            jellyfin = {
+                enable = false;
+                domain = "jellyfin.stefdp.com";
+                port = 8096;
+            };
+
+            ntfy = {
+                enable = false;
+                domain = "ntfy.stefdp.com";
+                port = 3003;
+            };
+
+            your_spotify = {
+                api = {
+                    enable = false;
+                    domain = "api.spotify.stefdp.com";
+                    port = 9000;
+                    clientDomain = "spotify.stefdp.com";
+                };
+
+                web = {
+                    enable = false;
+                    domain = "spotify.stefdp.com";
+                    port = 3000;
+                    apiDomain = "api.spotify.stefdp.com";
+                };
+            };
+
+            speedtest-tracker = {
+                enable = false;
+                domain = "speedtest.stefdp.com";
+                port = 6080;
+            };
+
+            glance = {
+                enable = false;
+                domain = "dash.stefdp.com";
+                port = 3001;
+            };
+
+            vaultwarden = {
+                enable = false;
+                domain = "vw.stefdp.com";
+                port = 3006;
+            };
+
+            zipline = {
+                enable = false;
+                domain = "i.stefdp.com";
+                port = 3002;
+            };
+
+            # Required for zipline, linkwarden and umami
+            postgresql = {
+                enable = false;
+                name = "PostgreSQL";
+                port = 5432;
+            };
+
+            umami = {
+                enable = false;
+                domain = "umami.stefdp.com";
+                port = 3011;
+            };
+
+            linkwarden = {
+                # BROKEN
+                enable = false;
+                domain = "links.stefdp.com";
+                port = 3004;
+                meilisearchPort = 3005;
+            };
+
+            convertx = {
+                enable = false;
+                domain = "convert.stefdp.com";
+                port = 3013;
+            };
         };
     };
 

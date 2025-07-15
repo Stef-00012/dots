@@ -1,6 +1,7 @@
 {
     config,
     lib,
+    pkgs,
     ...
 }:
 let
@@ -15,10 +16,20 @@ in
     config = mkIf cfg.enable {
         qt = {
             enable = true;
-            platformTheme.name = "gtk3";
-            style.name = "adwaita-dark";
+            platformTheme.name = "qt6ct"; # qt5ct - qtct
+            style.name = "Adwaita-dark";
             # style.name = lib.mkForce "adwaita-dark";
             # platformTheme.name = lib.mkForce "gtk3";
+        };
+
+        home = {
+            packages = with pkgs; [
+                libsForQt5.qt5ct
+                kdePackages.qt6ct
+
+                adwaita-qt
+                adwaita-qt6
+            ];
         };
     };
 }

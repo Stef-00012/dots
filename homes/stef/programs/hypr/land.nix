@@ -34,7 +34,7 @@ in
                     "QT_QPA_PLATFORM,wayland;xcb"
                     "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
                     "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-                    "QT_STYLE_OVERRIDE,Adwaita-Dark"
+                    "QT_STYLE_OVERRIDE,Adwaita-dark"
                     "SDL_VIDEODRIVER,x11"
                     "MOZ_ENABLE_WAYLAND,1"
                     "EDITOR,codium"
@@ -145,8 +145,8 @@ in
                     ", F14, Lower Volume (Extra Mouse Button), exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
 
                     # Raise/Lower Brightness
-                    ",XF86MonBrightnessDown, Raise Brightness, exec, brightnessctl set 5%-"
-                    ",XF86MonBrightnessUp, Lower Brightness, exec, brightnessctl set +5%"
+                    ",XF86MonBrightnessUp, Raise Brightness, exec, brightnessctl set +5%"
+                    ",XF86MonBrightnessDown, Lower Brightness, exec, brightnessctl set 5%-"
                 ];
 
                 monitor = [ ",preferred,auto,1" ];
