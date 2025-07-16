@@ -4,7 +4,6 @@
         ./it-tools.nix
         ./jellyfin.nix
         ./ntfy.nix
-        ./your_spotify
         ./speedtest-tracker.nix
         ./glance.nix
         ./vaultwarden.nix
@@ -22,6 +21,11 @@
         ./discord-user-apps.nix
         ./apprise-api.nix
         ./pi-hole.nix
+        ./create-addons.nix
+        ./personal-site.nix
+        ./receiptify.nix
+        ./your_spotify
         ./prometheus
+        ./create-addons-notifier
     ];
 }
