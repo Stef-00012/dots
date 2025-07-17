@@ -24,6 +24,9 @@
         ./create-addons.nix
         ./personal-site.nix
         ./receiptify.nix
+        ./wireguard.nix
+        ./nginx.nix
+        ./mailcow-dockerized.nix
         ./your_spotify
         ./prometheus
         ./create-addons-notifier

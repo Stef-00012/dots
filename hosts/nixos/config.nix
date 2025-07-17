@@ -104,6 +104,13 @@
             zipline = {
                 enable = false;
                 domain = "i.stefdp.com";
+                domainAliases = [
+                    "sdp.li"
+                    "l.stefdp.com"
+                    "stef.likes-ur.mom"
+                    "stef.likes-ur.dad"
+                    "you-are.part-of.my.id"
+                ];
                 port = 3002;
             };
 
@@ -129,7 +136,6 @@
             # Required for linkwarden
             meilisearch = {
                 enable = false;
-                # domain = "meilisearch.stefdp.com";
                 port = 3005;
             };
 
@@ -146,7 +152,7 @@
             };
 
             searxng = {
-                enable = false;
+                enable = true;
                 domain = "search.stefdp.com";
                 port = 3015;
             };
@@ -159,7 +165,6 @@
 
             prometheus = {
                 enable = false;
-                # domain = "prometheus.stefdp.com";
                 port = 9090;
             };
 
@@ -203,6 +208,9 @@
             create-addons = {
                 enable = false;
                 domain = "create-addons.stefdp.com";
+                domainAliases = [
+                    "create.orangc.net"
+                ];
                 port = 3016;
                 repoUrl = "https://github.com/Stef-00012/create-addons";
             };
@@ -233,6 +241,21 @@
                 # domain = "create-addon-notifier-telegram.stefdp.com";
                 # port = 3019;
                 repoUrl = "https://github.com/Stef-00012/discord-create-notifier";
+            };
+
+            mailcow-dockerized = {
+                enable = false;
+                domain = "mail.stefdp.com";
+                domainAliases = [
+                    "autodiscover.*"
+                    "autoconfig.*"
+                ];
+                port = 7080;
+                repoUrl = "https://github.com/mailcow/mailcow-dockerized";
+            };
+
+            nginx = {
+                enable = true;
             };
         };
     };

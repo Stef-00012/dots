@@ -24,14 +24,26 @@ in
 
         domain = mkOption {
             type = types.str;
-            # default = "prometheus.stefdp.com";
             description = "The domain for prometheus to be hosted at";
+        };
+
+        domainAliases = mkOption {
+            type = types.listOf types.str;
+            default = [ ];
+            description = "Optional list of domain aliases for prometheus";
         };
 
         port = mkOption {
             type = types.port;
             default = 9090;
             description = "The port for prometheus to be hosted at";
+        };
+
+        nginxConfig = mkOption {
+            type = types.nullOr types.attrs;
+            readOnly = true;
+            description = "Nginx virtualHost options";
+            default = null;
         };
     };
 

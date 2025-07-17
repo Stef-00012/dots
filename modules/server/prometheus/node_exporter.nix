@@ -20,14 +20,26 @@ in
 
         domain = mkOption {
             type = types.str;
-            # default = "convert.stefdp.com";
             description = "The domain for prometheus-node_exporter to be hosted at";
+        };
+
+        domainAliases = mkOption {
+            type = types.listOf types.str;
+            default = [ ];
+            description = "Optional list of domain aliases for prometheus-node_exporter";
         };
 
         port = mkOption {
             type = types.port;
             default = 9100;
             description = "The port for prometheus-node_exporter to be hosted at";
+        };
+
+        nginxConfig = mkOption {
+            type = types.nullOr types.attrs;
+            readOnly = true;
+            description = "Nginx virtualHost options";
+            default = null;
         };
     };
 

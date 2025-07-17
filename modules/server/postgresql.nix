@@ -22,6 +22,13 @@ in
             default = 5432;
             description = "The port for PostgreSQL to be hosted at";
         };
+
+        nginxConfig = mkOption {
+            type = types.nullOr types.attrs;
+            readOnly = true;
+            description = "Nginx virtualHost options";
+            default = null;
+        };
     };
 
     config = mkIf cfg.enable {

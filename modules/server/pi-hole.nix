@@ -24,10 +24,23 @@ in
             description = "The domain for pi-hole to be hosted at";
         };
 
+        domainAliases = mkOption {
+            type = types.listOf types.str;
+            default = [ ];
+            description = "Optional list of domain aliases for pi-hole";
+        };
+
         port = mkOption {
             type = types.port;
             default = 3007;
             description = "The port for pi-hole to be hosted at";
+        };
+
+        nginxConfig = mkOption {
+            type = types.nullOr types.attrs;
+            readOnly = true;
+            description = "Nginx virtualHost options";
+            default = null;
         };
     };
 

@@ -18,7 +18,7 @@ let
 in
 {
     options.modules.server.your_spotify-web = {
-        enable = mkEnableOption "Enable yur_spotify web UI";
+        enable = mkEnableOption "Enable your_spotify web UI";
 
         name = mkOption {
             type = types.str;
@@ -31,10 +31,43 @@ in
             description = "The port for your_spotify web UI to be hosted at";
         };
 
+        domainAliases = mkOption {
+            type = types.listOf types.str;
+            default = [ ];
+            description = "Optional list of domain aliases for your_spotify web UI";
+        };
+
         domain = mkOption {
             type = types.str;
             default = "spotify.stefdp.com";
             description = "The domain for your_spotify web UI to be hosted at";
+        };
+
+        nginxConfig = mkOption {
+            type = types.nullOr types.attrs;
+            readOnly = true;
+            description = "Nginx virtualHost options";
+            default = {
+                # addSSL = true;
+                # enableACME = true;
+                # forceSSL = true;
+
+                serverName = cfg.domain;
+                serverAliases = cfg.domainAliases;
+
+                locations."/" = {
+                    proxyPass = "http://localhost:${toString cfg.port}";
+                    extraConfig = ''
+                        proxy_set_header Upgrade $http_upgrade;
+                        proxy_set_header Connection $http_connection;
+                        proxy_http_version 1.1;
+                        proxy_set_header Host $host;
+                        proxy_set_header X-Real-IP $remote_addr;
+                        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                        proxy_set_header X-Forwarded-Proto $scheme;
+                    '';
+                };
+            };
         };
     };
 

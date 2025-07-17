@@ -27,6 +27,12 @@ in
             description = "The domain for ntfy to be hosted at";
         };
 
+        domainAliases = mkOption {
+            type = types.listOf types.str;
+            default = [ ];
+            description = "Optional list of domain aliases for ntfy";
+        };
+
         port = mkOption {
             type = types.port;
             default = 3003;
@@ -37,6 +43,33 @@ in
             type = types.str;
             default = "/var/lib/ntfy";
             description = "Path to the data dir";
+        };
+
+        nginxConfig = mkOption {
+            type = types.nullOr types.attrs;
+            readOnly = true;
+            description = "Nginx virtualHost options";
+            default = {
+                # addSSL = true;
+                # enableACME = true;
+                # forceSSL = true;
+
+                serverName = cfg.domain;
+                serverAliases = cfg.domainAliases;
+
+                locations."/" = {
+                    proxyPass = "http://localhost:${toString cfg.port}";
+                    extraConfig = ''
+                        proxy_set_header Upgrade $http_upgrade;
+                        proxy_set_header Connection $http_connection;
+                        proxy_http_version 1.1;
+                        proxy_set_header Host $host;
+                        proxy_set_header X-Real-IP $remote_addr;
+                        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                        proxy_set_header X-Forwarded-Proto $scheme;
+                    '';
+                };
+            };
         };
     };
 

@@ -20,13 +20,18 @@ in
 
         domain = mkOption {
             type = types.str;
-            # default = "create-addon-notifier-telegram.stefdp.com";
             description = "The domain for create-addon-notifier-telegram to be hosted at";
         };
 
+        domainAliases = mkOption {
+            type = types.listOf types.str;
+            default = [ ];
+            description = "Optional list of domain aliases for create-addon-notifier-telegram";
+        };
+
+        # Nothing on this bot uses ports
         port = mkOption {
             type = types.port;
-            # default = 3018;
             description = "The port for create-addon-notifier-telegram to be hosted at";
         };
 
@@ -34,6 +39,13 @@ in
             type = types.str;
             default = "https://github.com/Stef-00012/telegram-create-notifier";
             description = "The Git repository URL for create-addon-notifier-telegram";
+        };
+
+        nginxConfig = mkOption {
+            type = types.nullOr types.attrs;
+            readOnly = true;
+            description = "Nginx virtualHost options";
+            default = null;
         };
     };
 

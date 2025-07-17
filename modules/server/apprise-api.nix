@@ -20,14 +20,26 @@ in
 
         domain = mkOption {
             type = types.str;
-            # default = "apprise.stefdp.com";
             description = "The domain for apprise-api to be hosted at";
+        };
+
+        domainAliases = mkOption {
+            type = types.listOf types.str;
+            default = [ ];
+            description = "Optional list of domain aliases for apprise-api";
         };
 
         port = mkOption {
             type = types.port;
             default = 3012;
             description = "The port for apprise-api to be hosted at";
+        };
+
+        nginxConfig = mkOption {
+            type = types.nullOr types.attrs;
+            readOnly = true;
+            description = "Nginx virtualHost options";
+            default = null;
         };
     };
 

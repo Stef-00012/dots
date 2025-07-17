@@ -43,6 +43,12 @@ in
             description = "The domain for Filebrowser to be hosted at";
         };
 
+        domainAliases = mkOption {
+            type = types.listOf types.str;
+            default = [ ];
+            description = "Optional list of domain aliases for Filebrowser";
+        };
+
         dataDir = mkOption {
             type = types.str;
             default = "/var/lib/filebrowser";

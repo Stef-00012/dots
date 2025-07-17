@@ -26,8 +26,20 @@ in
 
         domain = mkOption {
             type = types.str;
-            # default = "meilisearch.stefdp.com";
             description = "The domain for meilisearch to be hosted at";
+        };
+
+        domainAliases = mkOption {
+            type = types.listOf types.str;
+            default = [ ];
+            description = "Optional list of domain aliases for meilisearch";
+        };
+
+        nginxConfig = mkOption {
+            type = types.nullOr types.attrs;
+            readOnly = true;
+            description = "Nginx virtualHost options";
+            default = null;
         };
     };
 

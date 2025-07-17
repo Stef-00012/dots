@@ -39,10 +39,43 @@ in
             description = "The domain for glance to be hosted at";
         };
 
+        domainAliases = mkOption {
+            type = types.listOf types.str;
+            default = [ ];
+            description = "Optional list of domain aliases for glance";
+        };
+
         port = mkOption {
             type = types.port;
             default = 3001;
             description = "The port for glance to be hosted at";
+        };
+
+        nginxConfig = mkOption {
+            type = types.nullOr types.attrs;
+            readOnly = true;
+            description = "Nginx virtualHost options";
+            default = {
+                # addSSL = true;
+                # enableACME = true;
+                # forceSSL = true;
+
+                serverName = cfg.domain;
+                serverAliases = cfg.domainAliases;
+
+                locations."/" = {
+                    proxyPass = "http://localhost:${toString cfg.port}";
+                    extraConfig = ''
+                        proxy_set_header Upgrade $http_upgrade;
+                        proxy_set_header Connection $http_connection;
+                        proxy_http_version 1.1;
+                        proxy_set_header Host $host;
+                        proxy_set_header X-Real-IP $remote_addr;
+                        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                        proxy_set_header X-Forwarded-Proto $scheme;
+                    '';
+                };
+            };
         };
     };
     # maybe in the future https://github.com/glanceapp/community-widgets/blob/main/widgets/google-calendar-list-by-anant-j/README.md
@@ -58,6 +91,7 @@ in
             settings = {
                 # https://github.com/glanceapp/glance/blob/main/docs/configuration.md
                 server.port = cfg.port;
+                server.proxied = true;
                 branding = {
                     app-background-color = "#191724";
                     hide-footer = true;
