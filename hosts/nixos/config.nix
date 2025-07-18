@@ -264,6 +264,13 @@
                 repoUrl = "https://github.com/Stef-00012/discord-create-notifier";
             };
 
+            api = {
+                enable = false;
+                domain = "api.stefdp.com";
+                port = 3019;
+                repoUrl = "https://github.com/Stef-00012/api";
+            };
+
             mailcow-dockerized = {
                 enable = false;
                 domain = "mail.stefdp.com";

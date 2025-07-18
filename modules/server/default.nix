@@ -25,6 +25,7 @@
         ./personal-site.nix
         ./receiptify.nix
         ./wireguard.nix
+        ./api.nix
         ./nginx.nix
         ./mailcow-dockerized.nix
         ./your_spotify
