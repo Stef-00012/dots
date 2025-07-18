@@ -72,11 +72,7 @@
                 port = 3003;
                 users = [
                     {
-                        username = "testuser123";
-                        role = "user";
-                    }
-                    {
-                        username = "testadmin123";
+                        username = "stef";
                         role = "admin";
                     }
                 ];
