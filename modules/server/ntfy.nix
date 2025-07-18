@@ -42,19 +42,43 @@ in
 
         users = mkOption {
             type = types.listOf (types.submodule {
-            options = {
-                username = mkOption {
-                type = types.str;
-                description = "Username for the ntfy user";
+                options = {
+                    username = mkOption {
+                        type = types.str;
+                        description = "Username for the ntfy user";
+                    };
+
+                    role = mkOption {
+                        type = types.enum [ "user" "admin" ];
+                        description = "Role for the ntfy user (user or admin)";
+                    };
                 };
-                role = mkOption {
-                type = types.enum [ "user" "admin" ];
-                description = "Role for the ntfy user (user or admin)";
-                };
-            };
             });
             default = [ ];
             description = "List of ntfy users with username and role (user or admin)";
+        };
+
+        topics = mkOption {
+            type = types.listOf (types.submodule {
+                options = {
+                    name = mkOption {
+                        type = types.str;
+                        description = "Name of the ntfy topic";
+                    };
+
+                    users = mkOption {
+                        type = types.listOf types.str;
+                        description = "Usernames for the ntfy topic";
+                    };
+
+                    permission = mkOption {
+                        type = types.enum [ "read-write" "read-only" "write-only" "deny" ];
+                        description = "Permission for the users on this topic";
+                    };
+                };
+            });
+            default = [ ];
+            description = "List of ntfy topics with username of the user who can access it and with what permission";
         };
 
         nginxConfig = mkOption {
@@ -140,11 +164,48 @@ in
                 pkgs.findutils
             ];
             serviceConfig = {
-                ExecStart = pkgs.writeShellScript "run-ntfy-users" (
-                    builtins.concatStringsSep "\n" (
+                ExecStart = pkgs.writeShellScript "run-ntfy-users" ''
+                    ${builtins.concatStringsSep "\n" (
                         map (user: "yes $(cat /var/secrets/ntfy-users | grep ${user.username} | awk -F'=' '{print $2}' | xargs) | ntfy user -c /etc/ntfy/server.yml add --role=${user.role} ${user.username}") cfg.users
-                    )
-                );
+                    )}
+
+                    user_list=$(ntfy user -c /etc/ntfy/server.yml list 2>&1)
+
+                    previous_users=(${builtins.concatStringsSep " " (
+                        map (user: "${user.username}") cfg.users
+                    )})
+                    
+                    is_in_previous_users() {
+                        local user=$1
+                        for prev in "''${previous_users[@]}"; do
+                            if [[ "$prev" == "$user" ]]; then
+                                return 0
+                            fi
+                        done
+                        return 1
+                    }
+
+                    # Read line by line
+                    while read -r line; do
+                        if [[ $line =~ ^user\ ([^[:space:]]+) ]]; then
+                            username="''${BASH_REMATCH[1]}"
+                            if [[ "$username" == "*" ]]; then
+                                continue
+                            fi
+                            if ! is_in_previous_users "$username"; then
+                                ntfy user -c /etc/ntfy/server.yml remove $username
+                            fi
+                        fi
+                    done <<< "$user_list"
+
+                    ntfy access -c /etc/ntfy/server.yml --reset
+
+                    ${builtins.concatStringsSep "\n" (
+                        map (topic: builtins.concatStringsSep "\n" (
+                            map (user: "ntfy access -c /etc/ntfy/server.yml ${user} ${topic.name} ${topic.permission}") topic.users
+                        )) cfg.topics
+                    )}
+                '';
                 Restart = "no";
             };
         };

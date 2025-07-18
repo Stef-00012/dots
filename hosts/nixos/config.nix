@@ -70,13 +70,25 @@
             };
 
             ntfy = {
-                enable = false;
+                enable = true;
                 domain = "ntfy.stefdp.com";
                 port = 3003;
                 users = [
                     {
                         username = "stef";
                         role = "admin";
+                    }
+                ];
+                topics = [
+                    {
+                        name = "compleanni_hemerald";
+                        users = [ "everyone" ];
+                        permission = "read-only";
+                    }
+                    {
+                        name = "birthdays";
+                        users = [ "everyone" ];
+                        permission = "read-only";
                     }
                 ];
             };
@@ -161,7 +173,7 @@
             };
 
             searxng = {
-                enable = true;
+                enable = false;
                 domain = "search.stefdp.com";
                 port = 3015;
             };
@@ -264,7 +276,7 @@
             };
 
             nginx = {
-                enable = true;
+                enable = false;
             };
         };
     };
