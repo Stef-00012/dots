@@ -22,7 +22,10 @@
         };
 
         programs = {
-            thunar.enable = true;
+            thunar = {
+                enable = true;
+                archive-plugin.enable = true;
+            };
             hyprland.enable = true;
             appimages.enable = true;
             waydroid.enable = false;

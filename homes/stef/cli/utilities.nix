@@ -87,6 +87,7 @@ in
                 biome
                 cloc
                 lm_sensors
+                inetutils
             ];
 
             hmModules.cli.shell.extraAliases = {

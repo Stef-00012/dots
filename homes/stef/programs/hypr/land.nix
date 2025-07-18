@@ -151,6 +151,13 @@ in
 
                 monitor = [ ",preferred,auto,1" ];
 
+                # monitorv2 = {
+                #     output = "eDP-1";
+                #     mode = "preferred";
+                #     position = "auto";
+                #     scale = 1;
+                # };
+
                 general = {
                     gaps_in = 6;
                     gaps_out = 8;
