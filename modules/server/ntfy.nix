@@ -1,6 +1,7 @@
 {
     config,
     lib,
+    pkgs,
     ...
 }:
 let
@@ -39,10 +40,21 @@ in
             description = "The port for ntfy to be hosted at";
         };
 
-        dataDir = mkOption {
-            type = types.str;
-            default = "/var/lib/ntfy";
-            description = "Path to the data dir";
+        users = mkOption {
+            type = types.listOf (types.submodule {
+            options = {
+                username = mkOption {
+                type = types.str;
+                description = "Username for the ntfy user";
+                };
+                role = mkOption {
+                type = types.enum [ "user" "admin" ];
+                description = "Role for the ntfy user (user or admin)";
+                };
+            };
+            });
+            default = [ ];
+            description = "List of ntfy users with username and role (user or admin)";
         };
 
         nginxConfig = mkOption {
@@ -74,12 +86,10 @@ in
     };
 
     config = mkIf cfg.enable {
-        # systemd.tmpfiles.rules = [
-        #     "d ${cfg.dataDir} 0755 ntfy-sh ntfy-sh -"
-        #     "d ${cfg.dataDir}/attachments 0755 ntfy-sh ntfy-sh -"
-        # ];
-
-        # systemd.services.ntfy-sh.serviceConfig.StateDirectory = lib.mkForce "ntfy";
+        # File format:
+        # user1 = password1
+        # user2 = password2
+        modules.common.sops.secrets.ntfy-users.path = "/var/secrets/ntfy-users";
 
         services.ntfy-sh = {
             enable = true;
@@ -88,18 +98,14 @@ in
                 base-url = "https://${cfg.domain}";
                 listen-http = ":${toString cfg.port}";
 
-                # cache-file = "${cfg.dataDir}/cache.db";
-                # auth-file = "${cfg.dataDir}/auth.db";
-
                 auth-default-access = "deny-all";
                 behind-proxy = true;
 
-                # attachment-cache-dir = "${cfg.dataDir}/attachments";
                 attachment-total-size-limit = "3G";
 
                 # web-push-public-key = "REDACTED";
                 # web-push-private-key = "REDACTED";
-                # web-push-file = ${cfg.dataDir}/webpush.db;
+                # web-push-file = /var/lib/ntfy-sh/webpush.db;
                 # web-push-email-address = "me@stefdp.com";
 
                 enable-login = true;
@@ -118,6 +124,28 @@ in
                     "emails_sent_failure -> trace"
                     "emails_sent_success -> trace"
                 ];
+            };
+        };
+
+        systemd.services.ntfy-users = {
+            description = "Run ntfy-users app";
+            after = [ "ntfy-sh.service" ];
+            wantedBy = [ "multi-user.target" ];
+            path = [
+                pkgs.gcc
+                pkgs.vips
+                pkgs.openssl_3
+                pkgs.ntfy-sh
+                pkgs.gawk
+                pkgs.findutils
+            ];
+            serviceConfig = {
+                ExecStart = pkgs.writeShellScript "run-ntfy-users" (
+                    builtins.concatStringsSep "\n" (
+                        map (user: "yes $(cat /var/secrets/ntfy-users | grep ${user.username} | awk -F'=' '{print $2}' | xargs) | ntfy user -c /etc/ntfy/server.yml add --role=${user.role} ${user.username}") cfg.users
+                    )
+                );
+                Restart = "no";
             };
         };
     };
