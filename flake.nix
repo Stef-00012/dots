@@ -86,6 +86,7 @@
     {
         nixosConfigurations = {
             nixos = nixosMachine { host = "nixos"; };
+            server = nixosMachine { host = "server"; };
         };
     };
 }
