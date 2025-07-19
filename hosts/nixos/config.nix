@@ -12,16 +12,6 @@
             enable = true;
         };
 
-        common = {
-            bluetooth.enable = true;
-            printing.enable = true;
-            sound.enable = true;
-            networking.enable = true;
-            virtualisation.enable = false;
-            sops.enable = true;
-            ssh.enable = false;
-        };
-
         programs = {
             thunar = {
                 enable = true;
@@ -47,6 +37,16 @@
 
         styles = {
             fonts.enable = true;
+        };
+
+        common = {
+            bluetooth.enable = true;
+            printing.enable = true;
+            sound.enable = true;
+            networking.enable = true;
+            virtualisation.enable = false;
+            sops.enable = true;
+            ssh.enable = false;
         };
 
         # VPS:
