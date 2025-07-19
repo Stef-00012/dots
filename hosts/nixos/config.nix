@@ -19,6 +19,7 @@
             networking.enable = true;
             virtualisation.enable = false;
             sops.enable = true;
+            ssh.enable = false;
         };
 
         programs = {
@@ -280,6 +281,14 @@
                 ];
                 port = 7080;
                 repoUrl = "https://github.com/mailcow/mailcow-dockerized";
+            };
+
+            fail2ban = {
+                enable = false;
+            };
+
+            cloud-init = {
+                enable = false;
             };
 
             nginx = {

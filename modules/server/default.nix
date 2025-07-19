@@ -28,6 +28,7 @@
         ./api.nix
         ./nginx.nix
         ./mailcow-dockerized.nix
+        ./fail2ban.nix
         ./your_spotify
         ./prometheus
         ./create-addons-notifier

@@ -9,5 +9,6 @@
         ./sound.nix
         ./sops.nix
         ./virtualisation.nix
+        ./ssh.nix
     ];
 }
