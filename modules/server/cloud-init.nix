@@ -21,7 +21,7 @@ in
     config = mkIf cfg.enable {
         services.cloud-init = {
             enable = true;
-            network.enable
+            network.enable = true;
         };
     };
 }

@@ -117,6 +117,7 @@
                 obs-studio.enable = true;
                 kate.enable = true;
                 syncthing.enable = true;
+                realvnc.enable = true;
             };
 
             editors = {

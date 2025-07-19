@@ -10,5 +10,6 @@
         ./gparted.nix
         ./kate.nix
         ./syncthing.nix
+        ./realvnc.nix
     ];
 }
