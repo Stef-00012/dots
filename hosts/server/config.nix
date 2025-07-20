@@ -338,6 +338,11 @@
         pinentry-rofi
     ];
 
+    environment.variables = {
+        TERM = "xterm";
+        EDITOR = "vim";
+    };
+
     environment.pathsToLink = [ "/share/zsh" ];
 
     swapDevices = [{
