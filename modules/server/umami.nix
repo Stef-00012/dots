@@ -65,6 +65,8 @@ in
     config = mkIf cfg.enable {
         modules.common.sops.secrets.umami-app-secret.path = "/var/secrets/umami-app-secret";
 
+        systemd.services.postgresql.after = [ "podman-umami.service" ];
+
         virtualisation.oci-containers.containers.umami = {
             image = "ghcr.io/umami-software/umami:postgresql-latest";
             ports = [ "${toString cfg.port}:3000" ];

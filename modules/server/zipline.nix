@@ -65,7 +65,7 @@ in
         modules.common.sops.secrets.zipline-core-secret.path = "/var/secrets/zipline-core-secret";
         
         systemd.services.zipline.requires = [ "postgresql.service" ];
-        systemd.services.zipline.after = [ "postgresql.service" ];
+        systemd.services.zipline.before = [ "postgresql.service" ];
 
         services.zipline = {
             enable = true;
