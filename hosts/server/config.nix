@@ -71,7 +71,7 @@
             };
 
             ntfy = {
-                enable = false;
+                enable = true;
                 domain = "ntfy.stefdp.com";
                 port = 3003;
                 users = [
