@@ -284,7 +284,7 @@
             };
 
             fail2ban = {
-                enable = false;
+                enable = true;
             };
 
             cloud-init = {
