@@ -229,7 +229,7 @@
             };
 
             create-addons = {
-                enable = false;
+                enable = true;
                 domain = "create-addons.stefdp.com";
                 domainAliases = [
                     "create.orangc.net"
