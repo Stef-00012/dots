@@ -150,16 +150,16 @@
                 port = 3011;
             };
 
+            # Required for linkwarden
+            meilisearch = {
+                enable = true;
+                port = 3005;
+            };
+
             linkwarden = {
                 enable = true;
                 domain = "links.stefdp.com";
                 port = 3004;
-            };
-
-            # Required for linkwarden
-            meilisearch = {
-                enable = false;
-                port = 3005;
             };
 
             convertx = {
