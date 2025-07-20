@@ -267,7 +267,7 @@
             };
 
             api = {
-                enable = false;
+                enable = true;
                 domain = "api.stefdp.com";
                 port = 3019;
                 repoUrl = "https://github.com/Stef-00012/api";
