@@ -113,7 +113,7 @@
             };
 
             glance = {
-                enable = true;
+                enable = false;
                 domain = "dash.stefdp.com";
                 port = 3001;
             };
