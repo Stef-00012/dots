@@ -19,7 +19,7 @@ let
         filterAttrs (_name: mod:
             mod ? enable
             && mod.enable == true
-            && mod ? domain
+            && builtins.hasAttr "domain" mod
             && mod.domain != null
             && mod.domain != ""
             && builtins.isString mod.domain
