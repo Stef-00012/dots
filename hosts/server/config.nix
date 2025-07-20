@@ -139,19 +139,19 @@
 
             # Required for zipline, linkwarden and umami
             postgresql = {
-                enable = false;
+                enable = true;
                 name = "PostgreSQL";
                 port = 5432;
             };
 
             umami = {
-                enable = true;
+                enable = false;
                 domain = "umami.stefdp.com";
                 port = 3011;
             };
 
             linkwarden = {
-                enable = true;
+                enable = false;
                 domain = "links.stefdp.com";
                 port = 3004;
             };
