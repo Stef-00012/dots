@@ -59,7 +59,7 @@
             };
 
             it-tools = {
-                enable = false;
+                enable = true;
                 domain = "tools.stefdp.com";
                 port = 3014;
             };
