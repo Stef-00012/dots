@@ -47,7 +47,6 @@ in
             readOnly = true;
             description = "Nginx virtualHost options";
             default = {
-                addSSL = true;
                 enableACME = true;
                 forceSSL = true;
 
