@@ -125,7 +125,7 @@
             };
 
             zipline = {
-                enable = true;
+                enable = false;
                 domain = "i.stefdp.com";
                 domainAliases = [
                     "sdp.li"
@@ -145,7 +145,7 @@
             };
 
             umami = {
-                enable = false;
+                enable = true;
                 domain = "umami.stefdp.com";
                 port = 3011;
             };
