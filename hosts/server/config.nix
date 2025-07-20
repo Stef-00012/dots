@@ -246,7 +246,7 @@
             };
 
             receiptify = {
-                enable = false;
+                enable = true;
                 domain = "receiptify.stefdp.com";
                 port = 3018;
                 repoUrl = "https://github.com/Stef-00012/receiptify";
