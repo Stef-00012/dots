@@ -260,7 +260,7 @@
             };
 
             create-addon-notifier-discord = {
-                enable = false;
+                enable = true;
                 # domain = "create-addon-notifier-telegram.stefdp.com";
                 # port = 3019;
                 repoUrl = "https://github.com/Stef-00012/discord-create-notifier";
