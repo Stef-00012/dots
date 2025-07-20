@@ -99,6 +99,7 @@
                 domain = "api.spotify.stefdp.com";
                 port = 9000;
             };
+
             your_spotify-web = {
                 enable = false;
                 domain = "spotify.stefdp.com";

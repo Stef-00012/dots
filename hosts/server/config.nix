@@ -95,12 +95,13 @@
             };
 
             your_spotify-api = {
-                enable = false;
+                enable = true;
                 domain = "api.spotify.stefdp.com";
                 port = 9000;
             };
+
             your_spotify-web = {
-                enable = false;
+                enable = true;
                 domain = "spotify.stefdp.com";
                 port = 3000;
             };
