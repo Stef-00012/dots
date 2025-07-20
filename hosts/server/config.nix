@@ -65,7 +65,7 @@
             };
 
             jellyfin = {
-                enable = false;
+                enable = true;
                 domain = "jellyfin.stefdp.com";
                 port = 8096;
             };
