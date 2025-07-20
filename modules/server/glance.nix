@@ -15,9 +15,9 @@ let
     cfg = config.modules.server.glance;
     serverModules = config.modules.server;
 
-    sites =
-      builtins.filter (mod: (mod.enable or false) && (mod ? domain))
-        (builtins.attrValues serverModules);
+    sites = builtins.attrValues (
+        filterAttrs (_name: mod: mod ? enable && mod.enable == true && mod ? domain && mod.domain != null) serverModules
+    );
 
     siteList = builtins.map (mod: {
         title = mod.name or mod.domain;
