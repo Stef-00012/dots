@@ -342,13 +342,30 @@
 
     swapDevices = [{
         device = "/swapfile";
-        size = 16 * 1024; # 16GB
+        size = 8 * 1024; # 8GB
     }];
 
-    systemd.services.fprintd = {
-        wantedBy = [ "multi-user.target" ];
-        serviceConfig.Type = "simple";
+    networking.interfaces.ens3.ipv4.addresses = [
+        {
+            address = "173.208.137.167";
+            prefixLength = 28;
+        }
+    ];
+
+    networking.interfaces.ens3.ipv6.addresses = [
+        {
+            address = "2604:4300:a:353:2b9:d7ff:fe5e:d79";
+            prefixLength = 64;
+        }
+    ];
+
+    networking.defaultGateway6 = {
+        address = "2604:4300:a:353::1";
+        interface = "ens3";
     };
+
+    networking.defaultGateway = "173.208.137.161";
+    networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
 
     # Enable the OpenSSH daemon.
     # services.openssh.enable = true;
