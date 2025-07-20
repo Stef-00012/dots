@@ -204,15 +204,9 @@
             };
 
             likeify = {
-                enable = false;
+                enable = true;
                 domain = "likeify.stefdp.com";
                 port = 3008;
-            };
-
-            discord-user-apps = {
-                enable = false;
-                domain = "bot.stefdp.com";
-                port = 3009;
             };
 
             # Required for discord-user-apps
@@ -220,6 +214,12 @@
                 enable = false;
                 # domain = "apprise.stefdp.com";
                 port = 3012;
+            };
+
+            discord-user-apps = {
+                enable = false;
+                domain = "bot.stefdp.com";
+                port = 3009;
             };
 
             pi-hole = {
