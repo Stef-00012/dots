@@ -163,7 +163,7 @@
             };
 
             convertx = {
-                enable = false;
+                enable = true;
                 domain = "convert.stefdp.com";
                 port = 3013;
             };

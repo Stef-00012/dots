@@ -85,7 +85,7 @@ in
                 DATABASE_URL = "postgresql://linkwarden:@localhost/linkwarden?host=/run/postgresql";
                 NEXTAUTH_URL = "http://localhost:${toString cfg.port}/api/v1/auth";
                 MEILI_HOST = "http://localhost:${toString config.modules.server.meilisearch.port}";
-                # NEXT_PUBLIC_DISABLE_REGISTRATION = "true";
+                NEXT_PUBLIC_DISABLE_REGISTRATION = "true";
             };
         };
     };
