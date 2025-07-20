@@ -107,7 +107,7 @@
             };
 
             speedtest-tracker = {
-                enable = false;
+                enable = true;
                 domain = "speedtest.stefdp.com";
                 port = 6080;
             };
