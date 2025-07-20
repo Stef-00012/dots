@@ -169,7 +169,7 @@
             };
 
             syncthing = {
-                enable = false;
+                enable = true;
                 domain = "syncthing.stefdp.com";
                 port = 8384;
             };
