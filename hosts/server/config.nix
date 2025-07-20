@@ -292,7 +292,7 @@
             };
 
             nginx = {
-                enable = false;
+                enable = true;
             };
         };
     };
