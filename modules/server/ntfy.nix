@@ -152,7 +152,7 @@ in
 
         systemd.services.ntfy-users = {
             description = "Run ntfy-users app";
-            after = [ "ntfy-sh.service" ];
+            before = [ "ntfy-sh.service" ];
             wantedBy = [ "multi-user.target" ];
             path = [
                 pkgs.gcc
