@@ -239,7 +239,7 @@
             };
 
             personal-site = {
-                enable = false;
+                enable = true;
                 domain = "stefdp.com";
                 port = 3017;
                 repoUrl = "https://github.com/Stef-00012/personal-site";
