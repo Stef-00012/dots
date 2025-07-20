@@ -16,12 +16,7 @@ let
     serverModules = config.modules.server;
 
     sites = builtins.attrValues (
-      filterAttrs (_name: mod:
-        let
-          _ = builtins.trace "glance: domain=${toString (mod.domain or "<unset>")}" null;
-        in
-          mod ? enable && mod.enable == true && mod ? domain && mod.domain != null
-      ) serverModules
+        filterAttrs (_name: mod: mod ? enable && mod.enable == true && mod ? domain) serverModules
     );
 
     siteList = builtins.map (mod: {
