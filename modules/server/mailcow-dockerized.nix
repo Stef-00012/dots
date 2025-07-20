@@ -47,22 +47,22 @@ in
             readOnly = true;
             description = "Nginx virtualHost options";
             default = {
-                # addSSL = true;
-                # enableACME = true;
-                # forceSSL = true;
-                # http2 = true;
+                addSSL = true;
+                enableACME = true;
+                forceSSL = true;
+                http2 = true;
 
                 serverName = cfg.domain;
                 serverAliases = cfg.domainAliases;
 
                 extraConfig = ''
-                    # ssl_session_timeout 1d;
-                    # ssl_session_cache shared:SSL:50m;
-                    # ssl_session_tickets off;
+                    ssl_session_timeout 1d;
+                    ssl_session_cache shared:SSL:50m;
+                    ssl_session_tickets off;
 
-                    # ssl_protocols TLSv1.2;
-                    # ssl_ciphers HIGH:!aNULL:!MD5:!SHA1:!kRSA;
-                    # ssl_prefer_server_ciphers off;
+                    ssl_protocols TLSv1.2;
+                    ssl_ciphers HIGH:!aNULL:!MD5:!SHA1:!kRSA;
+                    ssl_prefer_server_ciphers off;
                 '';
 
                 locations = {

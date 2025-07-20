@@ -86,9 +86,9 @@ in
             readOnly = true;
             description = "Nginx virtualHost options";
             default = {
-                # addSSL = true;
-                # enableACME = true;
-                # forceSSL = true;
+                addSSL = true;
+                enableACME = true;
+                forceSSL = true;
 
                 serverName = cfg.domain;
                 serverAliases = cfg.domainAliases;
