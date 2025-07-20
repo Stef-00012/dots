@@ -22,6 +22,7 @@ let
             && mod ? domain
             && mod.domain != null
             && mod.domain != ""
+            && builtins.isString mod.domain
         ) serverModules
     );
 
