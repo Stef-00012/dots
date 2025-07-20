@@ -9,7 +9,7 @@
 
     modules = {
         dm.sddm = {
-            enable = true;
+            enable = false;
         };
 
         programs = {
@@ -17,8 +17,8 @@
                 enable = false;
                 archive-plugin.enable = false;
             };
-            hyprland.enable = true;
-            appimages.enable = true;
+            hyprland.enable = false;
+            appimages.enable = false;
             waydroid.enable = false;
         };
 
@@ -40,9 +40,9 @@
         };
 
         common = {
-            bluetooth.enable = true;
-            printing.enable = true;
-            sound.enable = true;
+            bluetooth.enable = false;
+            printing.enable = false;
+            sound.enable = false;
             networking.enable = true;
             virtualisation.enable = false;
             sops.enable = true;
@@ -366,9 +366,6 @@
 
     networking.defaultGateway = "173.208.137.161";
     networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
-
-    # Enable the OpenSSH daemon.
-    # services.openssh.enable = true;
 
     # Open ports in the firewall.
     # networking.firewall.allowedTCPPorts = [ ... ];

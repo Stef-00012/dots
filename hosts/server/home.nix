@@ -53,7 +53,7 @@
 
         misc = {
             clipboard.enable = false;
-            xdg.enable = true;
+            xdg.enable = false;
             screenshot.enable = false;
             screenrec.enable = false;
             emote.enable = false;
@@ -68,17 +68,17 @@
 
         dev = {
             python = {
-                enable = true;
+                enable = false;
                 version = "python313";
             };
 
             javascript = {
-                enable = true;
-                bun.enable = true;
+                enable = false;
+                bun.enable = false;
             };
             
-            nix.enable = true;
-            misc.enable = true;
+            nix.enable = false;
+            misc.enable = false;
         };
 
         programs = {
@@ -100,9 +100,9 @@
             };
 
             hypr = {
-                land.enable = true;
-                idle.enable = true;
-                lock.enable = true;
+                land.enable = false;
+                idle.enable = false;
+                lock.enable = false;
                 winwrap.enable = false;
             };
 
@@ -158,16 +158,16 @@
             };
 
             terminal = {
-                enable = true;
+                enable = false;
                 emulator = "kitty";
             };
 
-            better-control.enable = true;
+            better-control.enable = false;
         };
 
         styles = {
-            qt.enable = true;
-            gtk.enable = true;
+            qt.enable = false;
+            gtk.enable = false;
         };
     };
 
@@ -180,16 +180,8 @@
             pinentry-rofi
         ];
 
-        pointerCursor = {
-            gtk.enable = true;
-            # x11.enable = true;
-            package = pkgs.bibata-cursors;
-            name = "Bibata-Modern-Classic";
-            size = 20;
-        };
-
         sessionVariables = {
-            EDITOR = "codium";
+            EDITOR = "vim";
         };
     };
 
