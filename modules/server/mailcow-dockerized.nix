@@ -20,7 +20,7 @@ in
 
         domain = mkOption {
             type = types.str;
-            default = "mailcow-dockerized.stefdp.com";
+            default = "mail.stefdp.com";
             description = "The domain for mailcow-dockerized to be hosted at";
         };
 
