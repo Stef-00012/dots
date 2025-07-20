@@ -181,18 +181,18 @@
             };
 
             grafana = {
-                enable = false;
+                enable = true;
                 domain = "grafana.stefdp.com";
                 port = 3007;
             };
 
             prometheus = {
-                enable = false;
+                enable = true;
                 port = 9090;
             };
 
             prometheus-node_exporter = {
-                enable = false;
+                enable = true;
                 # domain = "node-exporter.stefdp.com";
                 port = 9100;
             };
