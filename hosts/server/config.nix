@@ -53,7 +53,7 @@
 
         server = {
             filebrowser = {
-                enable = false;
+                enable = true;
                 domain = "fb.stefdp.com";
                 port = 5080;
             };
