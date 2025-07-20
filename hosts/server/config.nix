@@ -211,13 +211,13 @@
 
             # Required for discord-user-apps
             apprise-api = {
-                enable = false;
+                enable = true;
                 # domain = "apprise.stefdp.com";
                 port = 3012;
             };
 
             discord-user-apps = {
-                enable = false;
+                enable = true;
                 domain = "bot.stefdp.com";
                 port = 3009;
             };
