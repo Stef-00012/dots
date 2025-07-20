@@ -60,7 +60,7 @@ in
                 scrape_configs:
                   - job_name: "prometheus"
                     static_configs:
-                      - targets: ["173.208.137.167:${toString config.modules.server.prometheus-node_exporter.port}"]
+                      - targets: ["localhost:${toString config.modules.server.prometheus-node_exporter.port}"]
             '';
             webConfigFile = "/var/secrets/prometheus-web.yml";
         };
