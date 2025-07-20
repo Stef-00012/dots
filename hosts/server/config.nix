@@ -198,7 +198,7 @@
             };
 
             lyrics-api = {
-                enable = false;
+                enable = true;
                 domain = "lyrics.stefdp.com";
                 port = 3010;
             };
