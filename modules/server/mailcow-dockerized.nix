@@ -130,6 +130,7 @@ in
                 pkgs.docker
                 pkgs.docker-compose
                 pkgs.gnutar
+                pkgs.gzip
             ];
             serviceConfig = {
                 WorkingDirectory = "/var/lib/mailcow-dockerized";
@@ -238,21 +239,29 @@ in
                     # source /var/lib/mailcow-dockerized/mailcow.conf
 
                     source /var/lib/mailcow-dockerized/mailcow.conf
+
+                    echo "downloading roundcube"
         
                     mkdir -m 755 data/web/rc
                     wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.11/roundcubemail-1.6.11-complete.tar.gz | tar -xvz --no-same-owner -C data/web/rc --strip-components=1 -f -
-                    docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chown www-data:www-data /web/rc/logs /web/rc/temp
-                    docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chown root:www-data /web/rc/config
-                    docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chmod 750 /web/rc/logs /web/rc/temp /web/rc/config
+                    docker exec $(docker ps -f name=php-fpm-mailcow -q) chown www-data:www-data /web/rc/logs /web/rc/temp
+                    docker exec $(docker ps -f name=php-fpm-mailcow -q) chown root:www-data /web/rc/config
+                    docker exec $(docker ps -f name=php-fpm-mailcow -q) chmod 750 /web/rc/logs /web/rc/temp /web/rc/config
                     
+                    echo "downloading mimetypes"
+
                     wget -O data/web/rc/config/mime.types http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
                     
+                    echo "creating roundcube database and user"
+
                     DBROUNDCUBE=$(LC_ALL=C </dev/urandom tr -dc A-Za-z0-9 2> /dev/null | head -c 28)
                     echo Database password for user roundcube is $DBROUNDCUBE
-                    docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p''${DBROOT} -e "CREATE DATABASE roundcubemail CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-                    docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p''${DBROOT} -e "CREATE USER 'roundcube'@'%' IDENTIFIED BY '${"\${DBROUNDCUBE}"}';"
-                    docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p''${DBROOT} -e "GRANT ALL PRIVILEGES ON roundcubemail.* TO 'roundcube'@'%';"
+                    docker exec $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p''${DBROOT} -e "CREATE DATABASE roundcubemail CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+                    docker exec $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p''${DBROOT} -e "CREATE USER 'roundcube'@'%' IDENTIFIED BY '${"\${DBROUNDCUBE}"}';"
+                    docker exec $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p''${DBROOT} -e "GRANT ALL PRIVILEGES ON roundcubemail.* TO 'roundcube'@'%';"
                     
+                    echo "creating roundcube config file"
+
                     cat <<EOCONFIG > data/web/rc/config/config.inc.php
                     <?php
                     \$config['db_dsnw'] = 'mysql://roundcube:''${DBROUNDCUBE}@mysql/roundcubemail';
@@ -283,23 +292,31 @@ in
                     \$config['managesieve_vacation'] = 1;
                     EOCONFIG
                     
-                    docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chown root:www-data /web/rc/config/config.inc.php
-                    docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chmod 640 /web/rc/config/config.inc.php
+                    docker exec $(docker ps -f name=php-fpm-mailcow -q) chown root:www-data /web/rc/config/config.inc.php
+                    docker exec $(docker ps -f name=php-fpm-mailcow -q) chmod 640 /web/rc/config/config.inc.php
                     
+                    echo "creating nginx config for roundcube"
+
                     cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
                     location /rc/ {
                       alias /web/rc/public_html/;
                     }
                     EOCONFIG
+
+                    echo "cleaning up roundcube installer"
                     
                     rm -r data/web/rc/installer
                     sed -i -e "s/\(\$config\['enable_installer'\].* = \)true/\1false/" data/web/rc/config/config.inc.php
                     
+                    echo "updating roundcube composer dependencies"
+
                     cp -n data/web/rc/composer.json-dist data/web/rc/composer.json
-                    docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer update --no-dev -o
+                    docker exec -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer update --no-dev -o
                     
-                    docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer audit
+                    docker exec -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer audit
                     
+                    echo "updating dovecot configuration"
+
                     cat  <<EOCONFIG >> data/conf/dovecot/extra.conf
                     remote ''${IPV4_NETWORK}.0/24 {
                       disable_plaintext_auth = no
@@ -310,6 +327,8 @@ in
                     EOCONFIG
                     
                     docker compose restart dovecot-mailcow
+
+                    echo "adding roundcube cleandb job"
                     
                     cat <<EOCONFIG > /var/lib/mailcow-dockerized/docker-compose.override.yml
                     services:
