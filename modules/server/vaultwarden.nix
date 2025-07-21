@@ -67,7 +67,7 @@ in
     };
 
     config = mkIf cfg.enable {
-        modules.common.sops.secrets.vaultwarden_admin_token.path = "/var/lib/vaultwarden.env";
+        modules.common.sops.secrets.vaultwarden-env.path = "/var/lib/vaultwarden.env";
 
         services.vaultwarden = {
             enable = true;
