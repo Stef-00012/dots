@@ -350,7 +350,7 @@ in
                     echo "Visit https://${cfg.domain}/rc/installer and make sure everything is set to 'OK' (some 'NOT AVAILABLE' are expected)"
                     echo "If there is no 'NOT OK', press next"
                     echo "If in the next page there is no 'NOT OK', press the 'Initialize database' button"
-                    echo "After you pressed the button, run the following script as root:
+                    echo "After you pressed the button, run the following script as root:"
                     echo "/var/lib/mailcow-installer/finish.sh"
                     echo "======================= !! IMPORTANT !! ======================="
 
