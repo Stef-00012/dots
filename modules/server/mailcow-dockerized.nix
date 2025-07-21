@@ -319,10 +319,10 @@ in
 
                     # docker compose up -d
                 '';
-                ExecStopPost = pkgs.writeShellScript "stop-mailcow-dockerized" ''
-                    cd /var/lib/mailcow-dockerized
-                    docker compose down
-                '';
+                # ExecStopPost = pkgs.writeShellScript "stop-mailcow-dockerized" ''
+                #     cd /var/lib/mailcow-dockerized
+                #     docker compose down
+                # '';
                 Restart = "no";
             };
         };
