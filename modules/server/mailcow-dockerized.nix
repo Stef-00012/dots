@@ -192,7 +192,7 @@ in
                         echo "Directory is not empty. Exiting."
                         cd /var/lib/mailcow-dockerized
                         docker compose up -d
-                        exit 1
+                        exit 0
                     fi
 
                     umask 0022
