@@ -302,6 +302,9 @@ in
                     echo "Copying snake-oil certificate..."
                     cp -n -d data/assets/ssl-example/*.pem data/assets/ssl/
 
+                    cp /var/lib/acme/${cfg.domain}/fullchain.pem data/assets/ssl/cert.pem
+                    cp /var/lib/acme/${cfg.domain}/key.pem data/assets/ssl/key.pem
+
                     docker compose up -d
 
                     # source /var/lib/mailcow-dockerized/mailcow.conf
@@ -391,9 +394,9 @@ in
                 4190
             ];
 
-            trustedInterfaces = [
-                "br-mailcow"
-            ];
+            # trustedInterfaces = [
+            #     "br-mailcow"
+            # ];
         };
     };
 }
