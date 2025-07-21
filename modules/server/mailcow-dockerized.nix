@@ -234,7 +234,6 @@ in
 
                     cd /var/lib/mailcow-dockerized
                     docker compose up -d
-                    docker compose down
 
                     source /var/lib/mailcow-dockerized/mailcow.conf
 
@@ -318,9 +317,9 @@ in
                           ofelia.job-exec.roundcube_cleandb.command: "/bin/bash -c \"[ -f /web/rc/bin/cleandb.sh ] && /web/rc/bin/cleandb.sh\""
                     EOCONFIG
 
-                    docker compose up -d
+                    # docker compose up -d
                 '';
-                ExecStop = pkgs.writeShellScript "stop-mailcow-dockerized" ''
+                ExecStopPost = pkgs.writeShellScript "stop-mailcow-dockerized" ''
                     cd /var/lib/mailcow-dockerized
                     docker compose down
                 '';
