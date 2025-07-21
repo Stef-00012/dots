@@ -12,6 +12,8 @@ let
     finishScript = pkgs.writeText "mailcow-installer-finish-sh" ''
         cd /var/lib/mailcow-dockerized
 
+        source /var/lib/mailcow-dockerized/mailcow.conf
+
         echo "creating nginx config for roundcube"
         
         cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
