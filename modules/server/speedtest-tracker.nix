@@ -88,7 +88,6 @@ in
                 PGID = "1000";
                 CHART_DATETIME_FORMAT = "m/j G.i";
                 DATETIME_FORMAT = "j M Y, G.i.s";
-                SPEEDTEST_SERVERS = "26065,24115";
             };
         };
     };
