@@ -155,7 +155,7 @@ in
         systemd.tmpfiles.rules = [
             "d /var/lib/mailcow-dockerized 0755 root root -"
             "d /var/lib/mailcow-installer 0755 root root -" 
-            "C /var/lib/mailcow-installer/finish.sh 0644 root root - ${finishScript}"
+            "C /var/lib/mailcow-installer/finish.sh 0755 root root - ${finishScript}"
         ];
 
         virtualisation.docker.enable = true;
