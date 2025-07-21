@@ -173,7 +173,7 @@ in
 
         systemd.services.mailcow-dockerized = {
             description = "Run mailcow-dockerized app";
-            after = [ "network.target" ];
+            after = [ "network.target" "nginx.service" ];
             wantedBy = [ "multi-user.target" ];
             path = [
                 pkgs.git
@@ -282,6 +282,8 @@ in
 
                     DISABLE_IPv6=n
                     SKIP_OLEFY=n
+
+                    SKIP_LETS_ENCRYPT=y
                     EOF
                     
                     cat /var/secrets/mailcow-dockerized-env >> /var/lib/mailcow-dockerized/mailcow.conf
