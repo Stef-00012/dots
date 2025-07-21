@@ -119,7 +119,7 @@
             };
 
             vaultwarden = {
-                enable = false;
+                enable = true;
                 domain = "vw.stefdp.com";
                 port = 3006;
             };

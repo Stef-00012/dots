@@ -287,6 +287,19 @@ in
                     cat /var/secrets/mailcow-dockerized-env >> /var/lib/mailcow-dockerized/mailcow.conf
 
                     cd /var/lib/mailcow-dockerized
+
+                    mkdir -p data/assets/ssl
+
+                    chmod 600 /var/lib/mailcow-dockerized/mailcow.conf
+
+                    source /var/lib/mailcow-dockerized/mailcow.conf
+
+                    echo "Generating snake-oil certificate..."
+                    openssl req -x509 -newkey rsa:4096 -keyout data/assets/ssl-example/key.pem -out data/assets/ssl-example/cert.pem -days 365 -subj "/C=DE/ST=NRW/L=Willich/O=mailcow/OU=mailcow/CN=${MAILCOW_HOSTNAME}" -sha256 -nodes
+                    
+                    echo "Copying snake-oil certificate..."
+                    cp -n -d data/assets/ssl-example/*.pem data/assets/ssl/
+
                     docker compose up -d
 
                     # source /var/lib/mailcow-dockerized/mailcow.conf
@@ -355,8 +368,6 @@ in
                     echo "After you pressed the button, run the following script as root:"
                     echo "/var/lib/mailcow-installer/finish.sh"
                     echo "======================= !! IMPORTANT !! ======================="
-
-                    # docker compose up -d
                 '';
                 # ExecStopPost = pkgs.writeShellScript "stop-mailcow-dockerized" ''
                 #     cd /var/lib/mailcow-dockerized

@@ -77,6 +77,11 @@ in
                 domain = "https://${cfg.domain}/";
                 signupsAllowed = false;
                 rocketPort = cfg.port;
+                smtpHost = "mail.stefdp.com";
+                smtpFrom = "vaultwarden@stefdp.com";
+                smtpPort = 587;
+                smtpSecurity = "starttls";
+                smtpUsername = "vaultwarden@stefdp.com";
             };
         };
     };
