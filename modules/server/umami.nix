@@ -69,7 +69,7 @@ in
 
         virtualisation.oci-containers.containers.umami = {
             image = "ghcr.io/umami-software/umami:postgresql-latest";
-            ports = [ "${toString cfg.port}:3000" ];
+            ports = [ "127.0.0.1:${toString cfg.port}:3000" ];
             environmentFiles = [ "/var/secrets/umami-app-secret" ];
 
             volumes = [

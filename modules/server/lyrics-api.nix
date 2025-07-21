@@ -66,7 +66,7 @@ in
     config = mkIf cfg.enable {
         virtualisation.oci-containers.containers."lyrics-api" = {
             image = "stefdp/lyrics-api:latest";
-            ports = [ "${toString cfg.port}:3000" ];
+            ports = [ "127.0.0.1:${toString cfg.port}:3000" ];
         };
     };
 }

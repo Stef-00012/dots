@@ -73,7 +73,7 @@ in
     config = mkIf cfg.enable {
         virtualisation.oci-containers.containers."your_spotify-web" = {
             image = "yooooomi/your_spotify_client";
-            ports = [ "${toString cfg.port}:3000" ];
+            ports = [ "127.0.0.1:${toString cfg.port}:3000" ];
             environment = {
                 API_ENDPOINT = "https://${config.modules.server.your_spotify-api.domain}";
             };

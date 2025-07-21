@@ -53,7 +53,7 @@ in
 
         virtualisation.oci-containers.containers."apprise-api" = {
             image = "caronc/apprise:latest";
-            ports = [ "${toString cfg.port}:8000" ];
+            ports = [ "127.0.0.1:${toString cfg.port}:8000" ];
             volumes = [
                 "/var/lib/apprise-api/config:/config"
                 "/var/lib/apprise-api/plugin:/plugin"

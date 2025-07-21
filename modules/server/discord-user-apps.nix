@@ -75,7 +75,7 @@ in
 
         virtualisation.oci-containers.containers."discord-user-apps" = {
             image = "stefdp/discord-user-apps";
-            ports = [ "${toString cfg.port}:3000" ];
+            ports = [ "127.0.0.1:${toString cfg.port}:3000" ];
             volumes = [
                 "/var/lib/discord-user-apps/data:/bot/data"
                 "/var/lib/discord-user-apps/permissions:/bot/src/data/permissions"

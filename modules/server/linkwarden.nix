@@ -74,7 +74,7 @@ in
 
         virtualisation.oci-containers.containers.linkwarden = {
             image = "ghcr.io/linkwarden/linkwarden:latest";
-            ports = [ "${toString cfg.port}:3000" ];
+            ports = [ "127.0.0.1:${toString cfg.port}:3000" ];
             volumes = [
                 "/run/postgresql:/run/postgresql"
                 "/var/lib/linkwarden:/data/data"

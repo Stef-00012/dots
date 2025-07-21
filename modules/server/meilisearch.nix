@@ -52,7 +52,7 @@ in
 
         virtualisation.oci-containers.containers."meilisearch" = {
             image = "getmeili/meilisearch:v1.12.8";
-            ports = [ "${toString cfg.port}:7700" ];
+            ports = [ "127.0.0.1:${toString cfg.port}:7700" ];
             environmentFiles = [ "/var/secrets/meilisearch-env" ];
             volumes = [
                 "/var/lib/meilisearch:/meili_data"

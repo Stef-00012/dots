@@ -72,7 +72,7 @@ in
 
         virtualisation.oci-containers.containers."likeify" = {
             image = "stefdp/likeify";
-            ports = [ "${toString cfg.port}:3000" ];
+            ports = [ "127.0.0.1:${toString cfg.port}:3000" ];
             environmentFiles = [ "/var/secrets/likeify-env" ];
             volumes = [
                 "/var/lib/likeify:/app/data"
