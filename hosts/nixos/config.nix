@@ -46,7 +46,7 @@
             networking.enable = true;
             virtualisation.enable = false;
             sops.enable = true;
-            ssh.enable = false;
+            ssh.enable = true;
         };
 
         # VPS:
