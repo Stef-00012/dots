@@ -8,6 +8,55 @@ let
         types
         ;
     cfg = config.modules.server.mailcow-dockerized;
+
+    finishScript = pkgs.writeText "mailcow-installer-finish-sh" ''
+        cd /var/lib/mailcow-dockerized
+
+        echo "creating nginx config for roundcube"
+        
+        cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
+        location /rc/ {
+          alias /web/rc/public_html/;
+        }
+        EOCONFIG
+        
+        echo "cleaning up roundcube installer"
+        
+        rm -r data/web/rc/installer
+        sed -i -e "s/\(\$config\['enable_installer'\].* = \)true/\1false/" data/web/rc/config/config.inc.php
+        
+        echo "updating roundcube composer dependencies"
+        
+        cp -n data/web/rc/composer.json-dist data/web/rc/composer.json
+        docker exec -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer update --no-dev -o
+        
+        docker exec -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer audit
+        
+        echo "updating dovecot configuration"
+        
+        cat  <<EOCONFIG >> data/conf/dovecot/extra.conf
+        remote ''${IPV4_NETWORK}.0/24 {
+          disable_plaintext_auth = no
+        }
+        remote ''${IPV6_NETWORK} {
+          disable_plaintext_auth = no
+        }
+        EOCONFIG
+        
+        docker compose restart dovecot-mailcow
+        
+        echo "adding roundcube cleandb job"
+        
+        cat <<EOCONFIG > /var/lib/mailcow-dockerized/docker-compose.override.yml
+        services:
+          php-fpm-mailcow:
+            labels:
+              ofelia.enabled: "true"
+              ofelia.job-exec.roundcube_cleandb.schedule: "@every 168h"
+              ofelia.job-exec.roundcube_cleandb.user: "www-data"
+              ofelia.job-exec.roundcube_cleandb.command: "/bin/bash -c \"[ -f /web/rc/bin/cleandb.sh ] && /web/rc/bin/cleandb.sh\""
+        EOCONFIG
+    '';
 in
 {
     options.modules.server.mailcow-dockerized = {
@@ -105,6 +154,8 @@ in
 
         systemd.tmpfiles.rules = [
             "d /var/lib/mailcow-dockerized 0755 root root -"
+            "d /var/lib/mailcow-installer 0755 root root -" 
+            "C /var/lib/mailcow-installer/finish.sh 0644 root root - ${finishsh}"
         ];
 
         virtualisation.docker.enable = true;
@@ -294,51 +345,12 @@ in
                     
                     docker exec $(docker ps -f name=php-fpm-mailcow -q) chown root:www-data /web/rc/config/config.inc.php
                     docker exec $(docker ps -f name=php-fpm-mailcow -q) chmod 640 /web/rc/config/config.inc.php
-                    
-                    # echo "creating nginx config for roundcube"
 
-                    # cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
-                    # location /rc/ {
-                    #   alias /web/rc/public_html/;
-                    # }
-                    # EOCONFIG
-
-                    # echo "cleaning up roundcube installer"
-                    
-                    # rm -r data/web/rc/installer
-                    # sed -i -e "s/\(\$config\['enable_installer'\].* = \)true/\1false/" data/web/rc/config/config.inc.php
-                    
-                    # echo "updating roundcube composer dependencies"
-
-                    # cp -n data/web/rc/composer.json-dist data/web/rc/composer.json
-                    # docker exec -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer update --no-dev -o
-                    
-                    # docker exec -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer audit
-                    
-                    # echo "updating dovecot configuration"
-
-                    # cat  <<EOCONFIG >> data/conf/dovecot/extra.conf
-                    # remote ''${IPV4_NETWORK}.0/24 {
-                    #   disable_plaintext_auth = no
-                    # }
-                    # remote ''${IPV6_NETWORK} {
-                    #   disable_plaintext_auth = no
-                    # }
-                    # EOCONFIG
-                    
-                    # docker compose restart dovecot-mailcow
-
-                    # echo "adding roundcube cleandb job"
-                    
-                    # cat <<EOCONFIG > /var/lib/mailcow-dockerized/docker-compose.override.yml
-                    # services:
-                    #   php-fpm-mailcow:
-                    #     labels:
-                    #       ofelia.enabled: "true"
-                    #       ofelia.job-exec.roundcube_cleandb.schedule: "@every 168h"
-                    #       ofelia.job-exec.roundcube_cleandb.user: "www-data"
-                    #       ofelia.job-exec.roundcube_cleandb.command: "/bin/bash -c \"[ -f /web/rc/bin/cleandb.sh ] && /web/rc/bin/cleandb.sh\""
-                    # EOCONFIG
+                    echo "=========== !! IMPORTANT !! ==========="
+                    echo "Visit https://${cfg.domain}/rc/installer and make sure everything is set to 'OK' (some 'NOT AVAILABLE' are expected)"
+                    echo "If there is no 'NOT OK', run the following script as root:"
+                    echo "/var/lib/mailcow-installer/finish.sh"
+                    echo "=========== !! IMPORTANT !! ==========="
 
                     # docker compose up -d
                 '';
