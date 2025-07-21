@@ -274,7 +274,7 @@
             };
 
             mailcow-dockerized = {
-                enable = false;
+                enable = true;
                 domain = "mail.stefdp.com";
                 # domainAliases = [
                 #     "autodiscover.*"
