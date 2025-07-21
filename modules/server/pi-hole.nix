@@ -58,7 +58,7 @@ in
             ports = [
                 "53:53/tcp"
                 "53:53/udp"
-                "${toString cfg.port}:80/tcp"
+                "127.0.0.1:${toString cfg.port}:80/tcp"
             ];
             volumes = [
                 "/var/lib/pi-hole/etc:/etc/pihole"
