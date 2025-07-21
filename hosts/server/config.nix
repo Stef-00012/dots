@@ -276,10 +276,10 @@
             mailcow-dockerized = {
                 enable = true;
                 domain = "mail.stefdp.com";
-                # domainAliases = [
-                #     "autodiscover.*"
-                #     "autoconfig.*"
-                # ];
+                domainAliases = [
+                    "autodiscover.mail.stefdp.com"
+                    "autoconfig.mail.stefdp.com"
+                ];
                 port = 7080;
                 repoUrl = "https://github.com/mailcow/mailcow-dockerized";
             };
