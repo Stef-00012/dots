@@ -303,42 +303,42 @@ in
                     }
                     EOCONFIG
 
-                    echo "cleaning up roundcube installer"
+                    # echo "cleaning up roundcube installer"
                     
-                    rm -r data/web/rc/installer
-                    sed -i -e "s/\(\$config\['enable_installer'\].* = \)true/\1false/" data/web/rc/config/config.inc.php
+                    # rm -r data/web/rc/installer
+                    # sed -i -e "s/\(\$config\['enable_installer'\].* = \)true/\1false/" data/web/rc/config/config.inc.php
                     
-                    echo "updating roundcube composer dependencies"
+                    # echo "updating roundcube composer dependencies"
 
-                    cp -n data/web/rc/composer.json-dist data/web/rc/composer.json
-                    docker exec -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer update --no-dev -o
+                    # cp -n data/web/rc/composer.json-dist data/web/rc/composer.json
+                    # docker exec -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer update --no-dev -o
                     
-                    docker exec -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer audit
+                    # docker exec -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer audit
                     
-                    echo "updating dovecot configuration"
+                    # echo "updating dovecot configuration"
 
-                    cat  <<EOCONFIG >> data/conf/dovecot/extra.conf
-                    remote ''${IPV4_NETWORK}.0/24 {
-                      disable_plaintext_auth = no
-                    }
-                    remote ''${IPV6_NETWORK} {
-                      disable_plaintext_auth = no
-                    }
-                    EOCONFIG
+                    # cat  <<EOCONFIG >> data/conf/dovecot/extra.conf
+                    # remote ''${IPV4_NETWORK}.0/24 {
+                    #   disable_plaintext_auth = no
+                    # }
+                    # remote ''${IPV6_NETWORK} {
+                    #   disable_plaintext_auth = no
+                    # }
+                    # EOCONFIG
                     
-                    docker compose restart dovecot-mailcow
+                    # docker compose restart dovecot-mailcow
 
-                    echo "adding roundcube cleandb job"
+                    # echo "adding roundcube cleandb job"
                     
-                    cat <<EOCONFIG > /var/lib/mailcow-dockerized/docker-compose.override.yml
-                    services:
-                      php-fpm-mailcow:
-                        labels:
-                          ofelia.enabled: "true"
-                          ofelia.job-exec.roundcube_cleandb.schedule: "@every 168h"
-                          ofelia.job-exec.roundcube_cleandb.user: "www-data"
-                          ofelia.job-exec.roundcube_cleandb.command: "/bin/bash -c \"[ -f /web/rc/bin/cleandb.sh ] && /web/rc/bin/cleandb.sh\""
-                    EOCONFIG
+                    # cat <<EOCONFIG > /var/lib/mailcow-dockerized/docker-compose.override.yml
+                    # services:
+                    #   php-fpm-mailcow:
+                    #     labels:
+                    #       ofelia.enabled: "true"
+                    #       ofelia.job-exec.roundcube_cleandb.schedule: "@every 168h"
+                    #       ofelia.job-exec.roundcube_cleandb.user: "www-data"
+                    #       ofelia.job-exec.roundcube_cleandb.command: "/bin/bash -c \"[ -f /web/rc/bin/cleandb.sh ] && /web/rc/bin/cleandb.sh\""
+                    # EOCONFIG
 
                     # docker compose up -d
                 '';
