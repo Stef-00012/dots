@@ -295,13 +295,13 @@ in
                     docker exec $(docker ps -f name=php-fpm-mailcow -q) chown root:www-data /web/rc/config/config.inc.php
                     docker exec $(docker ps -f name=php-fpm-mailcow -q) chmod 640 /web/rc/config/config.inc.php
                     
-                    echo "creating nginx config for roundcube"
+                    # echo "creating nginx config for roundcube"
 
-                    cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
-                    location /rc/ {
-                      alias /web/rc/public_html/;
-                    }
-                    EOCONFIG
+                    # cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
+                    # location /rc/ {
+                    #   alias /web/rc/public_html/;
+                    # }
+                    # EOCONFIG
 
                     # echo "cleaning up roundcube installer"
                     
