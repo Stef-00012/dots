@@ -34,6 +34,12 @@ in
             description = "Optional list of domain aliases for wireguard";
         };
 
+        interface = mkOption {
+            type = types.str;
+            default = "eth0";
+            description = "The name of the wireguard interface";
+        };
+
         nginxConfig = mkOption {
             type = types.nullOr types.attrs;
             readOnly = true;
@@ -44,7 +50,7 @@ in
 
     config = mkIf cfg.enable {
         networking.nat.enable = true;
-        networking.nat.externalInterface = "eth0";
+        networking.nat.externalInterface = cfg.interface;
         networking.nat.internalInterfaces = [ "wg0" ];
         networking.firewall = {
             allowedUDPPorts = [ 51820 ];
@@ -61,11 +67,11 @@ in
                 listenPort = cfg.port;
 
                 postSetup = ''
-                    ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
+                    ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.100.0.0/24 -o ${cfg.interface} -j MASQUERADE
                 '';
 
                 postShutdown = ''
-                    ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
+                    ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.100.0.0/24 -o ${cfg.interface} -j MASQUERADE
                 '';
 
                 privateKeyFile = "/var/lib/wireguard/privatekey";

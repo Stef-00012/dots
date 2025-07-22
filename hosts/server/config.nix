@@ -241,6 +241,9 @@
             personal-site = {
                 enable = true;
                 domain = "stefdp.com";
+                domainAliases = [
+                    "www.stefdp.com"
+                ];
                 port = 3017;
                 repoUrl = "https://github.com/Stef-00012/personal-site";
             };
@@ -271,6 +274,12 @@
                 domain = "api.stefdp.com";
                 port = 3019;
                 repoUrl = "https://github.com/Stef-00012/api";
+            };
+
+            wireguard = {
+                enable = false;
+                port = 51820;
+                interface = "ens3";
             };
 
             mailcow-dockerized = {

@@ -66,6 +66,7 @@ in
         modules.common.sops.secrets.umami-app-secret.path = "/var/secrets/umami-app-secret";
 
         systemd.services.postgresql.before = [ "podman-umami.service" ];
+        systemd.services.postgresql.requiredBy = [ "podman-umami.service" ];
 
         virtualisation.oci-containers.containers.umami = {
             image = "ghcr.io/umami-software/umami:postgresql-latest";

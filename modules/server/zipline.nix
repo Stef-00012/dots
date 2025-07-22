@@ -63,17 +63,30 @@ in
 
     config = mkIf cfg.enable {
         modules.common.sops.secrets.zipline-core-secret.path = "/var/secrets/zipline-core-secret";
-        
-        systemd.services.zipline.requires = [ "postgresql.service" ];
-        systemd.services.zipline.before = [ "postgresql.service" ];
 
-        services.zipline = {
-            enable = true;
-            environmentFiles = [ config.modules.common.sops.secrets.zipline-core-secret.path ];
-            database.createLocally = false;
+        systemd.tmpfiles.rules = [
+            "d /var/lib/zipline 0755 root root -"
+            "d /var/lib/zipline/uploads 0755 root root -"
+            "d /var/lib/zipline/public 0755 root root -"
+            "d /var/lib/zipline/themes 0755 root root -"
+        ];
 
-            settings = {
-                CORE_PORT = cfg.port;
+        systemd.services.postgresql.before = [ "podman-zipline.service" ];
+        systemd.services.postgresql.requiredBy = [ "podman-zipline.service" ];
+
+        virtualisation.oci-containers.containers.zipline = {
+            image = "ghcr.io/diced/zipline:trunk";
+            ports = [ "127.0.0.1:${toString cfg.port}:3000" ];
+            environmentFiles = [ "/var/secrets/zipline-core-secret" ];
+
+            volumes = [
+                "/run/postgresql:/run/postgresql:ro"
+                "/var/lib/zipline/uploads:/zipline/uploads"
+                "/var/lib/zipline/public:/zipline/public"
+                "/var/lib/zipline/themes:/zipline/themes"
+            ];
+
+            environment = {
                 DATABASE_URL = "postgresql://zipline:@localhost/zipline?host=/run/postgresql";
             };
         };

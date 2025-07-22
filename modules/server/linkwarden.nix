@@ -71,6 +71,7 @@ in
         ];
 
         systemd.services.postgresql.before = [ "podman-linkwarden.service" ];
+        systemd.services.postgresql.requiredBy = [ "podman-linkwarden.service" ];
 
         virtualisation.oci-containers.containers.linkwarden = {
             image = "ghcr.io/linkwarden/linkwarden:latest";

@@ -119,7 +119,7 @@
             };
 
             vaultwarden = {
-                enable = true;
+                enable = false;
                 domain = "vw.stefdp.com";
                 port = 3006;
             };
@@ -271,6 +271,12 @@
                 domain = "api.stefdp.com";
                 port = 3019;
                 repoUrl = "https://github.com/Stef-00012/api";
+            };
+
+            wireguard = {
+                enable = false;
+                port = 51820;
+                interface = "wlp0s20f3";
             };
 
             mailcow-dockerized = {
