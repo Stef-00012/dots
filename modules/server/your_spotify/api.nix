@@ -52,7 +52,7 @@ in
                 serverAliases = cfg.domainAliases;
 
                 extraConfig = ''
-                    client_max_body_size 15M;
+                    client_max_body_size 1024M;
                 '';
 
                 locations."/" = {
