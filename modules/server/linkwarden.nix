@@ -70,7 +70,7 @@ in
             "d /var/lib/linkwarden 0755 root root -"
         ];
 
-        systemd.services.postgresql.after = [ "podman-linkwarden.service" ];
+        systemd.services.postgresql.before = [ "podman-linkwarden.service" ];
 
         virtualisation.oci-containers.containers.linkwarden = {
             image = "ghcr.io/linkwarden/linkwarden:latest";

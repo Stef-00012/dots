@@ -117,7 +117,7 @@ in
         # NTFY_WEB_PUSH_PRIVATE_KEY=xxx
         modules.common.sops.secrets.ntfy-env.path = "/var/secrets/ntfy-env";
 
-        systemd.services.ntfy-sh.serviceConfig.EnvironmentFile = config.modules.common.sops.secrets.ntfy-env.path;
+        systemd.services.ntfy-sh.serviceConfig.EnvironmentFile = "/var/secrets/ntfy-env";
 
         services.ntfy-sh = {
             enable = true;
@@ -157,7 +157,8 @@ in
 
         systemd.services.ntfy-users = {
             description = "Run ntfy-users app";
-            before = [ "ntfy-sh.service" ];
+            after = [ "ntfy-sh.service" ];
+            requires = [ "ntfy-sh.service" ];
             wantedBy = [ "multi-user.target" ];
             path = [
                 pkgs.gcc
