@@ -30,6 +30,12 @@ in
             description = "Optional list of domain aliases for convertx";
         };
 
+        icon = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The icon for ";
+        };
+
         port = mkOption {
             type = types.port;
             default = 3013;

@@ -24,6 +24,12 @@ in
             description = "The port for prometheus-node_exporter to be hosted at";
         };
 
+        icon = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The icon for ";
+        };
+
         nginxConfig = mkOption {
             type = types.nullOr types.attrs;
             readOnly = true;

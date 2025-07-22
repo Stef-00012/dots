@@ -14,7 +14,7 @@ in
 
         name = mkOption {
             type = types.str;
-            default = "Speedtest Tracker";
+            default = "Umami";
         };
 
         port = mkOption {
@@ -33,6 +33,12 @@ in
             type = types.listOf types.str;
             default = [ ];
             description = "Optional list of domain aliases for umami";
+        };
+
+        icon = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The icon for ";
         };
 
         nginxConfig = mkOption {

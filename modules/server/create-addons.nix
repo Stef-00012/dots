@@ -36,6 +36,12 @@ in
             description = "The port for create-addons to be hosted at";
         };
 
+        icon = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The icon for ";
+        };
+
         repoUrl = mkOption {
             type = types.str;
             default = "https://github.com/Stef-00012/create-addons";

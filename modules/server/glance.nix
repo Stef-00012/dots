@@ -22,7 +22,7 @@ let
     siteList = builtins.map (mod: {
         title = mod.name or mod.domain;
         url = "https://${mod.domain}";
-        icon = "sh:${lib.strings.replaceStrings [" "] ["-"] (lib.strings.toLower mod.name)}";
+        icon = mod.icon or "sh:${lib.strings.replaceStrings [" "] ["-"] (lib.strings.toLower mod.name)}";
     }) sites;
 in
 {
@@ -50,6 +50,12 @@ in
             type = types.port;
             default = 3001;
             description = "The port for glance to be hosted at";
+        };
+
+        icon = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The icon for ";
         };
 
         nginxConfig = mkOption {

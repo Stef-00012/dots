@@ -28,7 +28,7 @@ in
 
         name = mkOption {
             type = types.str;
-            default = "Filebrowser";
+            default = "FileBrowser Quantum";
         };
 
         port = mkOption {
@@ -47,6 +47,12 @@ in
             type = types.listOf types.str;
             default = [ ];
             description = "Optional list of domain aliases for Filebrowser";
+        };
+
+        icon = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The icon for ";
         };
 
         dataDir = mkOption {

@@ -24,6 +24,12 @@ in
             description = "The domain for api to be hosted at";
         };
 
+        icon = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The icon for ";
+        };
+
         domainAliases = mkOption {
             type = types.listOf types.str;
             default = [ ];

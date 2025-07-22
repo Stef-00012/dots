@@ -66,7 +66,7 @@ in
 
         name = mkOption {
             type = types.str;
-            default = "Create Addons";
+            default = "Mailcow";
         };
 
         domain = mkOption {
@@ -85,6 +85,12 @@ in
             type = types.port;
             default = 7080;
             description = "The port for mailcow-dockerized to be hosted at";
+        };
+
+        icon = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The icon for ";
         };
 
         repoUrl = mkOption {

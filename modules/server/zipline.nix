@@ -34,6 +34,12 @@ in
             description = "Optional list of domain aliases for zipline";
         };
 
+        icon = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The icon for ";
+        };
+
         nginxConfig = mkOption {
             type = types.nullOr types.attrs;
             readOnly = true;

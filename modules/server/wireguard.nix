@@ -23,6 +23,12 @@ in
             description = "The port for wireguard to be hosted at";
         };
 
+        icon = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The icon for ";
+        };
+
         interface = mkOption {
             type = types.str;
             default = "eth0";

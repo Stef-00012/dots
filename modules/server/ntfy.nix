@@ -81,6 +81,12 @@ in
             description = "List of ntfy topics with username of the user who can access it and with what permission";
         };
 
+        icon = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The icon for ";
+        };
+
         nginxConfig = mkOption {
             type = types.nullOr types.attrs;
             readOnly = true;
