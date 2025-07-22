@@ -132,7 +132,7 @@
             };
 
             zipline = {
-                enable = false;
+                enable = true;
                 domain = "i.stefdp.com";
                 domainAliases = [
                     "sdp.li"
