@@ -51,6 +51,10 @@ in
                 serverName = cfg.domain;
                 serverAliases = cfg.domainAliases;
 
+                extraConfig = ''
+                    client_max_body_size 15M;
+                '';
+
                 locations."/" = {
                     proxyPass = "http://localhost:${toString cfg.port}";
                     extraConfig = ''
