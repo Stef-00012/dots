@@ -166,6 +166,7 @@
                 enable = true;
                 domain = "convert.stefdp.com";
                 port = 3013;
+                icon = "https://cdn.jsdelivr.net/gh/selfhst/icons/png/convertx.png";
             };
 
             syncthing = {
