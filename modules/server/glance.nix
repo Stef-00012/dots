@@ -16,16 +16,13 @@ let
     serverModules = config.modules.server;
 
     sites = builtins.attrValues (
-        lib.filterAttrs (_name: mod:
-            let hasDomain = mod ? domain; in
-            mod ? enable && mod.enable == true &&
-            hasDomain && mod.domain != null
-        ) serverModules
+        filterAttrs (_name: mod: mod ? enable && mod.enable == true && mod ? domain) serverModules
     );
 
     siteList = builtins.map (mod: {
         title = mod.name or mod.domain;
         url = "https://${mod.domain}";
+        icon = "sh:${lib.strings.replaceStrings [" "] ["-"] (lib.strings.toLower mod.name)}";
     }) sites;
 in
 {
