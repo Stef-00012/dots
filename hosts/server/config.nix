@@ -206,12 +206,14 @@
                 enable = true;
                 domain = "lyrics.stefdp.com";
                 port = 3010;
+                icon = "mdi:music-note";
             };
 
             likeify = {
                 enable = true;
                 domain = "likeify.stefdp.com";
                 port = 3008;
+                icon = "mdi:thumb-up";
             };
 
             # Required for discord-user-apps
@@ -225,6 +227,7 @@
                 enable = true;
                 domain = "bot.stefdp.com";
                 port = 3009;
+                icon = "sh:discord";
                 url = "https://bot.stefdp.com/invite";
             };
 
