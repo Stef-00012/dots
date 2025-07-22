@@ -171,7 +171,7 @@ in
             serviceConfig = {
                 ExecStart = pkgs.writeShellScript "run-ntfy-users" ''
                     ${builtins.concatStringsSep "\n" (
-                        map (user: "yes $(cat /var/secrets/ntfy-users | grep ${user.username} | awk -F'=' '{print $2}' | xargs) | ntfy user -c /etc/ntfy/server.yml add --role=${user.role} ${user.username}") cfg.users
+                        map (user: "yes $(cat /var/secrets/ntfy-users | grep ${user.username} | awk -F'=' '{print $2}' | xargs) | ntfy user -c /etc/ntfy/server.yml add --ignore-exists --role=${user.role} ${user.username}") cfg.users
                     )}
 
                     user_list=$(ntfy user -c /etc/ntfy/server.yml list 2>&1)
