@@ -17,7 +17,9 @@ let
 
     sites = builtins.attrValues (
         lib.filterAttrs (_name: mod:
-            mod ? enable && mod.enable == true && mod ? domain && mod.domain != null
+            let hasDomain = mod ? domain; in
+            mod ? enable && mod.enable == true &&
+            hasDomain && mod.domain != null
         ) serverModules
     );
 
