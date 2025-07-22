@@ -114,6 +114,13 @@ in
         # user2 = password2
         modules.common.sops.secrets.ntfy-users.path = "/var/secrets/ntfy-users";
 
+        # NTFY_WEB_PUSH_PRIVATE_KEY=xxx
+        modules.common.sops.secrets.ntfy-env.path = "/var/secrets/ntfy-env";
+
+        systemd.services.ntfy-sh.environmentFiles = [
+            "/var/secrets/ntfy-env"
+        ];
+
         services.ntfy-sh = {
             enable = true;
 
@@ -126,10 +133,10 @@ in
 
                 attachment-total-size-limit = "3G";
 
-                # web-push-public-key = "REDACTED";
-                # web-push-private-key = "REDACTED";
-                # web-push-file = /var/lib/ntfy-sh/webpush.db;
-                # web-push-email-address = "me@stefdp.com";
+                # get public and private keys by running "ntfy webpush keys"
+                web-push-public-key = "BAE3cZ3ASBaWasfDpuHhNygp1kvZ0_BfX1y2xtN6pD-hlphLHYs-TBq6fNbwfMpr0fENZkuzxr8CDk2DasvdJG4";
+                web-push-file = /var/lib/ntfy-sh/webpush.db;
+                web-push-email-address = "me@stefdp.com";
 
                 enable-login = true;
 
