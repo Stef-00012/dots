@@ -31,9 +31,6 @@ in
         services.nginx = {
             enable = true;
             virtualHosts = dynamicVhosts;
-            # virtualHosts = {
-            #     "jellyfin.stefdp.com" = config.modules.server.jellyfin.nginxConfig;
-            # };
         };
 
         security.acme = {
