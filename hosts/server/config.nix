@@ -98,12 +98,14 @@
                 enable = true;
                 domain = "api.spotify.stefdp.com";
                 port = 9000;
+                icon = "sh:your-spotify";
             };
 
             your_spotify-web = {
                 enable = true;
                 domain = "spotify.stefdp.com";
                 port = 3000;
+                icon = "sh:your-spotify";
             };
 
             speedtest-tracker = {
@@ -142,6 +144,7 @@
                     "you-are.part-of.my.id"
                 ];
                 port = 3002;
+                icon = "https://cdn.jsdelivr.net/gh/selfhst/icons/png/zipline.png";
             };
 
             umami = {
@@ -160,6 +163,7 @@
                 enable = true;
                 domain = "links.stefdp.com";
                 port = 3004;
+                icon = "https://cdn.jsdelivr.net/gh/selfhst/icons/png/linkwarden.png";
             };
 
             convertx = {
@@ -237,6 +241,7 @@
                 ];
                 port = 3016;
                 repoUrl = "https://github.com/Stef-00012/create-addons";
+                icon = "https://create-addons.stefdp.com/favicon.ico";
             };
 
             personal-site = {
@@ -247,6 +252,7 @@
                 ];
                 port = 3017;
                 repoUrl = "https://github.com/Stef-00012/personal-site";
+                icon = "https://stefdp.com/icon";
             };
 
             receiptify = {
@@ -254,20 +260,19 @@
                 domain = "receiptify.stefdp.com";
                 port = 3018;
                 repoUrl = "https://github.com/Stef-00012/receiptify";
+                icon = "https://receiptify.stefdp.com/favicon.ico";
             };
 
             create-addon-notifier-telegram = {
                 enable = true;
-                # domain = "create-addon-notifier-telegram.stefdp.com";
-                # port = 3019;
                 repoUrl = "https://github.com/Stef-00012/telegram-create-notifier";
+                icon = "sh:telegram";
             };
 
             create-addon-notifier-discord = {
                 enable = true;
-                # domain = "create-addon-notifier-telegram.stefdp.com";
-                # port = 3019;
                 repoUrl = "https://github.com/Stef-00012/discord-create-notifier";
+                icon = "sh:discord";
             };
 
             api = {
