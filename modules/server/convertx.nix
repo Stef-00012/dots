@@ -30,16 +30,22 @@ in
             description = "Optional list of domain aliases for convertx";
         };
 
-        icon = mkOption {
-            type = types.nullOr types.str;
-            default = null;
-            description = "The icon for ";
-        };
-
         port = mkOption {
             type = types.port;
             default = 3013;
             description = "The port for convertx to be hosted at";
+        };
+
+        icon = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The icon for convertx";
+        };
+
+        url = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The URL for convertx";
         };
 
         nginxConfig = mkOption {

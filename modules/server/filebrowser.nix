@@ -52,7 +52,13 @@ in
         icon = mkOption {
             type = types.nullOr types.str;
             default = null;
-            description = "The icon for ";
+            description = "The icon for filebrowser";
+        };
+
+        url = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The URL for filebrowser";
         };
 
         dataDir = mkOption {

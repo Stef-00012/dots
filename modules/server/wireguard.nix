@@ -26,7 +26,13 @@ in
         icon = mkOption {
             type = types.nullOr types.str;
             default = null;
-            description = "The icon for ";
+            description = "The icon for wireguard";
+        };
+
+        url = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The URL for wireguard";
         };
 
         interface = mkOption {

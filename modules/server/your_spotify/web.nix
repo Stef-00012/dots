@@ -22,7 +22,7 @@ in
 
         name = mkOption {
             type = types.str;
-            default = "your_spotify-web";
+            default = "Your Spotify Web";
         };
 
         port = mkOption {
@@ -46,7 +46,13 @@ in
         icon = mkOption {
             type = types.nullOr types.str;
             default = null;
-            description = "The icon for ";
+            description = "The icon for your_spotify web UI";
+        };
+
+        url = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The URL for your_spotify web UI";
         };
 
         nginxConfig = mkOption {

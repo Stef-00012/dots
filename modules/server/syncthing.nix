@@ -39,7 +39,13 @@ in
         icon = mkOption {
             type = types.nullOr types.str;
             default = null;
-            description = "The icon for ";
+            description = "The icon for syncthing";
+        };
+
+        url = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The URL for syncthing";
         };
 
         nginxConfig = mkOption {

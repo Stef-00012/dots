@@ -90,7 +90,13 @@ in
         icon = mkOption {
             type = types.nullOr types.str;
             default = null;
-            description = "The icon for ";
+            description = "The icon for mailcow-dockerized";
+        };
+
+        url = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The URL for mailcow-dockerized";
         };
 
         repoUrl = mkOption {

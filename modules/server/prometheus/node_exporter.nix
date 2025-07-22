@@ -27,7 +27,13 @@ in
         icon = mkOption {
             type = types.nullOr types.str;
             default = null;
-            description = "The icon for ";
+            description = "The icon for prometheus-node_exporter";
+        };
+
+        url = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The URL for prometheus-node_exporter";
         };
 
         nginxConfig = mkOption {

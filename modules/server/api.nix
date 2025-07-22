@@ -24,12 +24,6 @@ in
             description = "The domain for api to be hosted at";
         };
 
-        icon = mkOption {
-            type = types.nullOr types.str;
-            default = null;
-            description = "The icon for ";
-        };
-
         domainAliases = mkOption {
             type = types.listOf types.str;
             default = [ ];
@@ -41,6 +35,18 @@ in
             type = types.port;
             default = 3019;
             description = "The port for api to be hosted at";
+        };
+
+        icon = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The icon for api";
+        };
+
+        url = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The URL for api";
         };
 
         repoUrl = mkOption {

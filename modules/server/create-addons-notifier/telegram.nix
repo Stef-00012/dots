@@ -27,7 +27,13 @@ in
         icon = mkOption {
             type = types.nullOr types.str;
             default = null;
-            description = "The icon for ";
+            description = "The icon for create-addon-notifier-telegram";
+        };
+
+        url = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The URL for create-addon-notifier-telegram";
         };
 
         repoUrl = mkOption {

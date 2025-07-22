@@ -225,6 +225,7 @@
                 enable = true;
                 domain = "bot.stefdp.com";
                 port = 3009;
+                url = "https://bot.stefdp.com/invite";
             };
 
             pi-hole = {
@@ -267,12 +268,14 @@
                 enable = true;
                 repoUrl = "https://github.com/Stef-00012/telegram-create-notifier";
                 icon = "sh:telegram";
+                url = "https://t.me/CreateAddonsNotifierBot";
             };
 
             create-addon-notifier-discord = {
                 enable = true;
                 repoUrl = "https://github.com/Stef-00012/discord-create-notifier";
                 icon = "sh:discord";
+                url = "https://discord.com/oauth2/authorize?client_id=1390937506710683708&permissions=536870912&integration_type=0&scope=bot+applications.commands";
             };
 
             api = {

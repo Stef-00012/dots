@@ -19,7 +19,7 @@ in
 
         name = mkOption {
             type = types.str;
-            default = "your_spotify-api";
+            default = "Your Spotify API";
         };
 
         domain = mkOption {
@@ -43,7 +43,13 @@ in
         icon = mkOption {
             type = types.nullOr types.str;
             default = null;
-            description = "The icon for ";
+            description = "The icon for your_spotify API";
+        };
+
+        url = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The URL for your_spotify API";
         };
 
         nginxConfig = mkOption {

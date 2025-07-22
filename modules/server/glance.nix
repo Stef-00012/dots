@@ -16,12 +16,12 @@ let
     serverModules = config.modules.server;
 
     sites = builtins.attrValues (
-        filterAttrs (_name: mod: mod ? enable && mod.enable == true && mod ? domain) serverModules
+        filterAttrs (_name: mod: mod ? enable && mod.enable == true && (mod ? domain || (mod ? url && mod.url != null))) serverModules
     );
 
     siteList = builtins.map (mod: {
         title = mod.name or mod.domain;
-        url = "https://${mod.domain}";
+        url = if mod.url != null then mod.url else "https://${mod.domain}";
         icon = if mod.icon != null then mod.icon else "sh:${lib.strings.replaceStrings [" "] ["-"] (lib.strings.toLower mod.name)}";
     }) sites;
 in
@@ -55,7 +55,13 @@ in
         icon = mkOption {
             type = types.nullOr types.str;
             default = null;
-            description = "The icon for ";
+            description = "The icon for glance";
+        };
+
+        url = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The URL for glance";
         };
 
         nginxConfig = mkOption {

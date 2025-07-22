@@ -30,6 +30,12 @@ in
             description = "The icon for create-addon-notifier-discord";
         };
 
+        url = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            description = "The URL for create-addon-notifier-discord";
+        };
+
         repoUrl = mkOption {
             type = types.str;
             default = "https://github.com/Stef-00012/discord-create-notifier";
