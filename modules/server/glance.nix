@@ -16,7 +16,10 @@ let
     serverModules = config.modules.server;
 
     sites = builtins.attrValues (
-        filterAttrs (_name: mod: mod ? enable && mod.enable == true && mod ? domain) serverModules
+        lib.filterAttrs (_name: mod:
+            mod ? enable && mod.enable == true &&
+            mod ? domain && mod.domain != null && mod.domain != ""
+        ) serverModules
     );
 
     siteList = builtins.map (mod: {
