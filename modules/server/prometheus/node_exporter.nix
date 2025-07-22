@@ -18,17 +18,6 @@ in
             default = "Prometheus-node_exporter";
         };
 
-        domain = mkOption {
-            type = types.str;
-            description = "The domain for prometheus-node_exporter to be hosted at";
-        };
-
-        domainAliases = mkOption {
-            type = types.listOf types.str;
-            default = [ ];
-            description = "Optional list of domain aliases for prometheus-node_exporter";
-        };
-
         port = mkOption {
             type = types.port;
             default = 9100;

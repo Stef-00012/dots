@@ -23,17 +23,6 @@ in
             description = "The port for wireguard to be hosted at";
         };
 
-        domain = mkOption {
-            type = types.str;
-            description = "The domain for wireguard to be hosted at";
-        };
-
-        domainAliases = mkOption {
-            type = types.listOf types.str;
-            default = [ ];
-            description = "Optional list of domain aliases for wireguard";
-        };
-
         interface = mkOption {
             type = types.str;
             default = "eth0";

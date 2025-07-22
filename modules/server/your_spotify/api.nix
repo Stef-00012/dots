@@ -47,6 +47,7 @@ in
             default = {
                 enableACME = true;
                 forceSSL = true;
+                http2 = true;
 
                 serverName = cfg.domain;
                 serverAliases = cfg.domainAliases;

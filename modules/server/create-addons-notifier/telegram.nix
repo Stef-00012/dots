@@ -18,17 +18,6 @@ in
             default = "Telegram Create Addon Notifier Bot";
         };
 
-        domain = mkOption {
-            type = types.str;
-            description = "The domain for create-addon-notifier-telegram to be hosted at";
-        };
-
-        domainAliases = mkOption {
-            type = types.listOf types.str;
-            default = [ ];
-            description = "Optional list of domain aliases for create-addon-notifier-telegram";
-        };
-
         # Nothing on this bot uses ports
         port = mkOption {
             type = types.port;

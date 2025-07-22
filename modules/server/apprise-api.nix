@@ -18,17 +18,6 @@ in
             default = "Apprise API";
         };
 
-        domain = mkOption {
-            type = types.str;
-            description = "The domain for apprise-api to be hosted at";
-        };
-
-        domainAliases = mkOption {
-            type = types.listOf types.str;
-            default = [ ];
-            description = "Optional list of domain aliases for apprise-api";
-        };
-
         port = mkOption {
             type = types.port;
             default = 3012;

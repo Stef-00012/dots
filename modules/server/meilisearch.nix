@@ -24,17 +24,6 @@ in
             description = "The port for meilisearch to be hosted at";
         };
 
-        domain = mkOption {
-            type = types.str;
-            description = "The domain for meilisearch to be hosted at";
-        };
-
-        domainAliases = mkOption {
-            type = types.listOf types.str;
-            default = [ ];
-            description = "Optional list of domain aliases for meilisearch";
-        };
-
         nginxConfig = mkOption {
             type = types.nullOr types.attrs;
             readOnly = true;
