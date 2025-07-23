@@ -7,5 +7,6 @@
         ./compression.nix
         ./disk-usage.nix
         ./media.nix
+        ./rclone.nix
     ];
 }

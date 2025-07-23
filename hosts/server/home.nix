@@ -28,6 +28,7 @@
             utilities.enable = true;
             instagram.enable = false;
             spicetify.enable = false;
+            rclone.enable = true;
 
             git = {
                 enable = true;

@@ -20,6 +20,27 @@
             group = group;
             mode = "0400";
         };
+
+        rclone-gdrive-client-id = {
+            path = "/var/secrets/gdrive-client-id";
+            owner = username;
+            group = group;
+            mode = "0400";
+        };
+
+        rclone-gdrive-client-secret = {
+            path = "/var/secrets/gdrive-client-secret";
+            owner = username;
+            group = group;
+            mode = "0400";
+        };
+
+        rclone-gdrive-token = {
+            path = "/var/secrets/gdrive-token";
+            owner = username;
+            group = group;
+            mode = "0400";
+        };
     };
 
     boot = {
