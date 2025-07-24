@@ -91,12 +91,12 @@ in
                 EnvironmentFile = "/var/secrets/api-env";
                 Environment = [
                     "PORT=${toString cfg.port}"
-                    "YOUR_SPOTIFY_API_URL=https://api.spotify.stefdp.com"
+                    "YOUR_SPOTIFY_API_URL=https://${config.modules.server.your_spotify-api.domain}"
                     "SPOTIFY_JOIN_DATE=2020-04-17T09:53:57.348Z"
                     "SPOTIFY_UPDATE_INTERVAL=60000"
                     "SPOTIFY_DEFAULT_NO_DATA_MESSAGE=Loading..."
                     "TZ=${config.time.timeZone}"
-                    "NTFY_URL=https://ntfy.stefdp.com"
+                    "NTFY_URL=https://${config.modules.server.ntfy.domain}"
                     "SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt"
                 ];
                 ExecStartPre = pkgs.writeShellScript "prepare-api" ''

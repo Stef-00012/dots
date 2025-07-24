@@ -99,16 +99,16 @@ in
                 OWNERS = "694986201739952229";
                 PUBLIC = "true";
                 AUTO_UPDATE_AVATAR = "694986201739952229";
-                ZIPLINE_URL = "https://i.stefdp.com";
+                ZIPLINE_URL = "https://${config.modules.server.zipline.domain}";
                 ZIPLINE_CHUNK_SIZE = "20";
                 ZIPLINE_MAX_FILE_SIZE = "1024";
                 ZIPLINE_VERSION = "v4";
                 DASHBOARD_ENABLED = "true";
-                DASHBOARD_HOSTNAME = "bot.stefdp.com";
+                DASHBOARD_HOSTNAME = cfg.domain;
                 DASHBOARD_SECURE = "true";
                 DASHBOARD_URL_KEEP_PORT = "false";
                 DISCORD_CLIENT_ID = "1223221223685886032";
-                DISCORD_REDIRECT_URI = "http://bot.stefdp.com/login";
+                DISCORD_REDIRECT_URI = "https://${cfg.domain}/login";
                 DISCORD_WEBHOOK_ENABLED= "true";
             };
             dependsOn = [

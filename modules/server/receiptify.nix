@@ -109,10 +109,10 @@ in
                 Environment = [
                     "NEXT_TELEMETRY_DISABLED=1"
                     "NODE_ENV=production"
-                    "NEXT_PUBLIC_SPOTIFY_REDIRECT_URI=https://receiptify.stefdp.com"
+                    "NEXT_PUBLIC_SPOTIFY_REDIRECT_URI=https://${cfg.domain}"
                     "NEXT_PUBLIC_LASTFM_ENABLED=true"
                     "NEXT_PUBLIC_SPOTIFY_ENABLED=true"
-                    "NEXT_PUBLIC_UMAMI_URI=https://umami.stefdp.com/data.js"
+                    "NEXT_PUBLIC_UMAMI_URI=https://${config.modules.server.umami.domain}/data.js"
                     "NEXT_PUBLIC_SPOTIFY_CLIENT_ID=e8ed68a2e9414910acec38a6aee777dd"
                     "NEXT_PUBLIC_UMAMI_WEBSITE_ID=702b6c53-da15-4808-801b-17d683e6053d"
                     "LD_LIBRARY_PATH=${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.vips}/lib"

@@ -141,7 +141,7 @@ in
                                 widgets = [
                                     {
                                         type = "search";
-                                        search-engine = "https://search.stefdp.com/search?q={QUERY}";
+                                        search-engine = "https://${config.modules.server.searxng.domain}/search?q={QUERY}";
                                     }
                                     {
                                         type = "clock";

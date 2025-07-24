@@ -91,7 +91,7 @@ in
             ];
             environment = {
                 SPOTIFY_CLIENT_ID="c739c26d591d439bbb439991e5b44315";
-                SPOTIFY_BASE_URL="https://likeify.stefdp.com";
+                SPOTIFY_BASE_URL="https://${cfg.domain}";
                 SPOTIFY_DEFAULT_PLAYLIST_NAME="Liked Songs";
                 SPOTIFY_DEFAULT_PLAYLIST_DESCRIPTION="Managed by https://github.com/Stef-00012/Likeify";
                 REFRESH_INTERVAL="1800000";
