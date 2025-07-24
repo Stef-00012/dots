@@ -163,252 +163,300 @@ in
         };
     };
 
-    config = mkIf cfg.enable {
-        modules.common.sops.secrets.mailcow-dockerized-env.path = "/var/secrets/mailcow-dockerized-env";
-
-        systemd.tmpfiles.rules = [
-            "d /var/lib/mailcow-dockerized 0755 root root -"
-            "d /var/lib/mailcow-installer 0755 root root -" 
-            "C /var/lib/mailcow-installer/finish.sh 0755 root root - ${finishScript}"
-        ];
-
-        virtualisation.docker.enable = true;
-
-        environment.systemPackages = with pkgs; [
-            git
-            docker
-            docker-compose
-            gnutar
-            wget
-            # certbot
-        ];
-
-        systemd.services.mailcow-dockerized = {
-            description = "Run mailcow-dockerized app";
-            after = [ "network.target" "nginx.service" ];
-            wantedBy = [ "multi-user.target" ];
-            path = [
-                pkgs.git
-                pkgs.gcc
-                pkgs.vips
-                pkgs.wget
-                pkgs.docker
-                pkgs.docker-compose
-                pkgs.gnutar
-                pkgs.gzip
-            ];
-            serviceConfig = {
-                WorkingDirectory = "/var/lib/mailcow-dockerized";
-                ExecStart = pkgs.writeShellScript "run-mailcow-dockerized" ''
-                    if [ "$(ls -A /var/lib/mailcow-dockerized)" ]; then
-                        echo "Directory is not empty. Exiting."
-                        cd /var/lib/mailcow-dockerized
-                        docker compose up -d
-                        exit 0
-                    fi
-
-                    umask 0022
-                    git clone ${cfg.repoUrl} /var/lib/mailcow-dockerized
-
-                    cat <<EOF > /var/lib/mailcow-dockerized/mailcow.conf
-                    # Default admin user is "admin"
-                    # Default password is "moohoo"
-
-                    MAILCOW_HOSTNAME=mail.stefdp.com
-                    MAILCOW_PASS_SCHEME=BLF-CRYPT
-
-                    DBNAME=mailcow
-                    DBUSER=mailcow
-
-                    HTTP_PORT=${toString cfg.port}
-                    HTTP_BIND=127.0.0.1
-
-                    HTTPS_PORT=7443
-                    HTTPS_BIND=127.0.0.1
-
-                    SMTP_PORT=25
-                    SMTPS_PORT=465
-                    SUBMISSION_PORT=587
-                    IMAP_PORT=143
-                    IMAPS_PORT=993
-                    POP_PORT=110
-                    POPS_PORT=995
-                    SIEVE_PORT=4190
-                    DOVEADM_PORT=127.0.0.1:19991
-                    SQL_PORT=127.0.0.1:13306
-                    REDIS_PORT=127.0.0.1:7654
-
-                    TZ=Europe/Rome
-
-                    COMPOSE_PROJECT_NAME=mailcowdockerized
-                    DOCKER_COMPOSE_VERSION=native
-
-                    ACL_ANYONE=disallow
-                    MAILDIR_GC_TIME=7200
-                    ADDITIONAL_SAN=
-                    AUTODISCOVER_SAN=y
-                    ADDITIONAL_SERVER_NAMES=
-                    ENABLE_SSL_SNI=n
-
-                    SKIP_LETS_ENCRYPT=n
-                    SKIP_IP_CHECK=n
-                    SKIP_HTTP_VERIFICATION=n
-                    SKIP_UNBOUND_HEALTHCHECK=n
-                    SKIP_CLAMD=n
-                    SKIP_SOGO=n
-
-                    ALLOW_ADMIN_EMAIL_LOGIN=n
-
-                    USE_WATCHDOG=y
-                    WATCHDOG_NOTIFY_BAN=n
-                    WATCHDOG_NOTIFY_START=y
-                    WATCHDOG_EXTERNAL_CHECKS=n
-                    WATCHDOG_VERBOSE=n
-
-                    LOG_LINES=9999
-
-                    IPV4_NETWORK=172.22.1
-                    IPV6_NETWORK=fd4d:6169:6c63:6f77::/64
-
-                    MAILDIR_SUB=Maildir
-
-                    SOGO_EXPIRE_SESSION=480
-
-                    # DOVECOT_MASTER_USER and DOVECOT_MASTER_PASS must both be provided. No special chars.
-                    # Empty by default to auto-generate master user and password on start.
-                    # User expands to DOVECOT_MASTER_USER@mailcow.local
-                    # LEAVE EMPTY IF UNSURE
-                    DOVECOT_MASTER_USER=
-                    # LEAVE EMPTY IF UNSURE
-                    DOVECOT_MASTER_PASS=
-
-                    ACME_CONTACT=
-                    WEBAUTHN_ONLY_TRUSTED_VENDORS=n
-                    SPAMHAUS_DQS_KEY=
-                    DISABLE_NETFILTER_ISOLATION_RULE=n
-
-                    FTS_HEAP=128
-                    FTS_PROCS=1
-                    SKIP_FTS=y
-                    HTTP_REDIRECT=n
-
-                    DISABLE_IPv6=n
-                    SKIP_OLEFY=n
-
-                    SKIP_LETS_ENCRYPT=y
-                    EOF
-                    
-                    cat /var/secrets/mailcow-dockerized-env >> /var/lib/mailcow-dockerized/mailcow.conf
-
-                    cd /var/lib/mailcow-dockerized
-
-                    mkdir -p data/assets/ssl
-
-                    chmod 600 /var/lib/mailcow-dockerized/mailcow.conf
-
-                    source /var/lib/mailcow-dockerized/mailcow.conf
-
-                    echo "Generating snake-oil certificate..."
-                    openssl req -x509 -newkey rsa:4096 -keyout data/assets/ssl-example/key.pem -out data/assets/ssl-example/cert.pem -days 365 -subj "/C=DE/ST=NRW/L=Willich/O=mailcow/OU=mailcow/CN=''${MAILCOW_HOSTNAME}" -sha256 -nodes
-                    
-                    echo "Copying snake-oil certificate..."
-                    cp -n -d data/assets/ssl-example/*.pem data/assets/ssl/
-
-                    cp /var/lib/acme/${cfg.domain}/fullchain.pem data/assets/ssl/cert.pem
-                    cp /var/lib/acme/${cfg.domain}/key.pem data/assets/ssl/key.pem
-
-                    docker compose up -d
-
-                    # source /var/lib/mailcow-dockerized/mailcow.conf
-
-                    source /var/lib/mailcow-dockerized/mailcow.conf
-
-                    echo "downloading roundcube"
+    config = (
+        lib.mkMerge [
+            (mkIf cfg.enable {
+                modules.common.sops.secrets.mailcow-dockerized-env.path = "/var/secrets/mailcow-dockerized-env";
         
-                    mkdir -m 755 data/web/rc
-                    wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.11/roundcubemail-1.6.11-complete.tar.gz | tar -xvz --no-same-owner -C data/web/rc --strip-components=1 -f -
-                    docker exec $(docker ps -f name=php-fpm-mailcow -q) chown www-data:www-data /web/rc/logs /web/rc/temp
-                    docker exec $(docker ps -f name=php-fpm-mailcow -q) chown root:www-data /web/rc/config
-                    docker exec $(docker ps -f name=php-fpm-mailcow -q) chmod 750 /web/rc/logs /web/rc/temp /web/rc/config
-                    
-                    echo "downloading mimetypes"
-
-                    wget -O data/web/rc/config/mime.types http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
-                    
-                    echo "creating roundcube database and user"
-
-                    DBROUNDCUBE=$(LC_ALL=C </dev/urandom tr -dc A-Za-z0-9 2> /dev/null | head -c 28)
-                    echo Database password for user roundcube is $DBROUNDCUBE
-                    docker exec $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p''${DBROOT} -e "CREATE DATABASE roundcubemail CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-                    docker exec $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p''${DBROOT} -e "CREATE USER 'roundcube'@'%' IDENTIFIED BY '${"\${DBROUNDCUBE}"}';"
-                    docker exec $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p''${DBROOT} -e "GRANT ALL PRIVILEGES ON roundcubemail.* TO 'roundcube'@'%';"
-                    
-                    echo "creating roundcube config file"
-
-                    cat <<EOCONFIG > data/web/rc/config/config.inc.php
-                    <?php
-                    \$config['db_dsnw'] = 'mysql://roundcube:''${DBROUNDCUBE}@mysql/roundcubemail';
-                    \$config['imap_host'] = 'dovecot:143';
-                    \$config['smtp_host'] = 'postfix:588';
-                    \$config['smtp_user'] = '%u';
-                    \$config['smtp_pass'] = '%p';
-                    \$config['support_url'] = ''';
-                    \$config['product_name'] = 'Roundcube Webmail';
-                    \$config['cipher_method'] = 'chacha20-poly1305';
-                    \$config['des_key'] = '$(LC_ALL=C </dev/urandom tr -dc "A-Za-z0-9 !#$%&()*+,-./:;<=>?@[\\]^_{|}~" 2> /dev/null | head -c 32)';
-                    \$config['plugins'] = [
-                      'archive',
-                      'managesieve',
-                      'acl',
-                      'markasjunk',
-                      'zipdownload',
-                      'password',
-                      'carddav',
+                systemd.tmpfiles.rules = [
+                    "d /var/lib/mailcow-dockerized 0755 root root -"
+                    "d /var/lib/mailcow-installer 0755 root root -" 
+                    "C /var/lib/mailcow-installer/finish.sh 0755 root root - ${finishScript}"
+                ];
+        
+                virtualisation.docker.enable = true;
+        
+                environment.systemPackages = with pkgs; [
+                    git
+                    docker
+                    docker-compose
+                    gnutar
+                    wget
+                ];
+        
+                systemd.services.mailcow-dockerized = {
+                    description = "Run mailcow-dockerized app";
+                    after = [ "network.target" "nginx.service" ];
+                    requires = [ "nginx.service" ];
+                    wantedBy = [ "multi-user.target" ];
+                    path = [
+                        pkgs.git
+                        pkgs.gcc
+                        pkgs.vips
+                        pkgs.wget
+                        pkgs.docker
+                        pkgs.docker-compose
+                        pkgs.gnutar
+                        pkgs.gzip
                     ];
-                    \$config['spellcheck_engine'] = 'aspell';
-                    \$config['mime_types'] = '/web/rc/config/mime.types';
-                    \$config['enable_installer'] = true;
-                    
-                    \$config['managesieve_host'] = 'dovecot:4190';
-                    // Enables separate management interface for vacation responses (out-of-office)
-                    // 0 - no separate section (default); 1 - add Vacation section; 2 - add Vacation section, but hide Filters section
-                    \$config['managesieve_vacation'] = 1;
-                    EOCONFIG
-                    
-                    docker exec $(docker ps -f name=php-fpm-mailcow -q) chown root:www-data /web/rc/config/config.inc.php
-                    docker exec $(docker ps -f name=php-fpm-mailcow -q) chmod 640 /web/rc/config/config.inc.php
+                    serviceConfig = {
+                        WorkingDirectory = "/var/lib/mailcow-dockerized";
+                        ExecStart = pkgs.writeShellScript "run-mailcow-dockerized" ''
+                            if [ "$(ls -A /var/lib/mailcow-dockerized)" ]; then
+                                echo "Starting Mailcow..."
 
-                    echo "======================= !! IMPORTANT !! ======================="
-                    echo "Visit https://${cfg.domain}/rc/installer and make sure everything is set to 'OK' (some 'NOT AVAILABLE' are expected)"
-                    echo "If there is no 'NOT OK', press next"
-                    echo "If in the next page there is no 'NOT OK', press the 'Initialize database' button"
-                    echo "After you pressed the button, run the following script as root:"
-                    echo "/var/lib/mailcow-installer/finish.sh"
-                    echo "======================= !! IMPORTANT !! ======================="
-                '';
-                # ExecStopPost = pkgs.writeShellScript "stop-mailcow-dockerized" ''
-                #     cd /var/lib/mailcow-dockerized
-                #     docker compose down
-                # '';
-                Restart = "no";
-            };
-        };
+                                cd /var/lib/mailcow-dockerized
 
-        networking.firewall = {
-            allowedTCPPorts = [
-                25
-                465
-                587
-                143
-                993
-                110
-                995
-                4190
-            ];
+                                source /var/lib/mailcow-dockerized/mailcow.conf
+        
+                                cp /var/lib/acme/${cfg.domain}/fullchain.pem data/assets/ssl/cert.pem
+                                cp /var/lib/acme/${cfg.domain}/key.pem data/assets/ssl/key.pem
+        
+                                docker compose up -d
 
-            # trustedInterfaces = [
-            #     "br-mailcow"
-            # ];
-        };
-    };
+                                exit 0
+                            fi
+        
+                            umask 0022
+                            git clone ${cfg.repoUrl} /var/lib/mailcow-dockerized
+        
+                            echo "Installing Mailcow..."
+
+                            cat <<EOF > /var/lib/mailcow-dockerized/mailcow.conf
+                            # Default admin user is "admin"
+                            # Default password is "moohoo"
+        
+                            MAILCOW_HOSTNAME=mail.stefdp.com
+                            MAILCOW_PASS_SCHEME=BLF-CRYPT
+        
+                            DBNAME=mailcow
+                            DBUSER=mailcow
+        
+                            HTTP_PORT=${toString cfg.port}
+                            HTTP_BIND=127.0.0.1
+        
+                            HTTPS_PORT=7443
+                            HTTPS_BIND=127.0.0.1
+        
+                            SMTP_PORT=25
+                            SMTPS_PORT=465
+                            SUBMISSION_PORT=587
+                            IMAP_PORT=143
+                            IMAPS_PORT=993
+                            POP_PORT=110
+                            POPS_PORT=995
+                            SIEVE_PORT=4190
+                            DOVEADM_PORT=127.0.0.1:19991
+                            SQL_PORT=127.0.0.1:13306
+                            REDIS_PORT=127.0.0.1:7654
+        
+                            TZ=Europe/Rome
+        
+                            COMPOSE_PROJECT_NAME=mailcowdockerized
+                            DOCKER_COMPOSE_VERSION=native
+        
+                            ACL_ANYONE=disallow
+                            MAILDIR_GC_TIME=7200
+                            ADDITIONAL_SAN=
+                            AUTODISCOVER_SAN=y
+                            ADDITIONAL_SERVER_NAMES=
+                            ENABLE_SSL_SNI=n
+        
+                            SKIP_LETS_ENCRYPT=n
+                            SKIP_IP_CHECK=n
+                            SKIP_HTTP_VERIFICATION=n
+                            SKIP_UNBOUND_HEALTHCHECK=n
+                            SKIP_CLAMD=n
+                            SKIP_SOGO=n
+        
+                            ALLOW_ADMIN_EMAIL_LOGIN=n
+        
+                            USE_WATCHDOG=y
+                            WATCHDOG_NOTIFY_BAN=n
+                            WATCHDOG_NOTIFY_START=y
+                            WATCHDOG_EXTERNAL_CHECKS=n
+                            WATCHDOG_VERBOSE=n
+        
+                            LOG_LINES=9999
+        
+                            IPV4_NETWORK=172.22.1
+                            IPV6_NETWORK=fd4d:6169:6c63:6f77::/64
+        
+                            MAILDIR_SUB=Maildir
+        
+                            SOGO_EXPIRE_SESSION=480
+        
+                            # DOVECOT_MASTER_USER and DOVECOT_MASTER_PASS must both be provided. No special chars.
+                            # Empty by default to auto-generate master user and password on start.
+                            # User expands to DOVECOT_MASTER_USER@mailcow.local
+                            # LEAVE EMPTY IF UNSURE
+                            DOVECOT_MASTER_USER=
+                            # LEAVE EMPTY IF UNSURE
+                            DOVECOT_MASTER_PASS=
+        
+                            ACME_CONTACT=
+                            WEBAUTHN_ONLY_TRUSTED_VENDORS=n
+                            SPAMHAUS_DQS_KEY=
+                            DISABLE_NETFILTER_ISOLATION_RULE=n
+        
+                            FTS_HEAP=128
+                            FTS_PROCS=1
+                            SKIP_FTS=y
+                            HTTP_REDIRECT=n
+        
+                            DISABLE_IPv6=n
+                            SKIP_OLEFY=n
+        
+                            SKIP_LETS_ENCRYPT=y
+                            EOF
+                            
+                            cat /var/secrets/mailcow-dockerized-env >> /var/lib/mailcow-dockerized/mailcow.conf
+        
+                            cd /var/lib/mailcow-dockerized
+        
+                            mkdir -p data/assets/ssl
+        
+                            chmod 600 /var/lib/mailcow-dockerized/mailcow.conf
+        
+                            source /var/lib/mailcow-dockerized/mailcow.conf
+        
+                            echo "Generating snake-oil certificate..."
+                            openssl req -x509 -newkey rsa:4096 -keyout data/assets/ssl-example/key.pem -out data/assets/ssl-example/cert.pem -days 365 -subj "/C=DE/ST=NRW/L=Willich/O=mailcow/OU=mailcow/CN=''${MAILCOW_HOSTNAME}" -sha256 -nodes
+                            
+                            echo "Copying snake-oil certificate..."
+                            cp -n -d data/assets/ssl-example/*.pem data/assets/ssl/
+        
+                            cp /var/lib/acme/${cfg.domain}/fullchain.pem data/assets/ssl/cert.pem
+                            cp /var/lib/acme/${cfg.domain}/key.pem data/assets/ssl/key.pem
+        
+                            docker compose up -d
+        
+                            # source /var/lib/mailcow-dockerized/mailcow.conf
+        
+                            source /var/lib/mailcow-dockerized/mailcow.conf
+        
+                            echo "downloading roundcube"
+                
+                            mkdir -m 755 data/web/rc
+                            wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.11/roundcubemail-1.6.11-complete.tar.gz | tar -xvz --no-same-owner -C data/web/rc --strip-components=1 -f -
+                            docker exec $(docker ps -f name=php-fpm-mailcow -q) chown www-data:www-data /web/rc/logs /web/rc/temp
+                            docker exec $(docker ps -f name=php-fpm-mailcow -q) chown root:www-data /web/rc/config
+                            docker exec $(docker ps -f name=php-fpm-mailcow -q) chmod 750 /web/rc/logs /web/rc/temp /web/rc/config
+                            
+                            echo "downloading mimetypes"
+        
+                            wget -O data/web/rc/config/mime.types http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
+                            
+                            echo "creating roundcube database and user"
+        
+                            DBROUNDCUBE=$(LC_ALL=C </dev/urandom tr -dc A-Za-z0-9 2> /dev/null | head -c 28)
+                            echo Database password for user roundcube is $DBROUNDCUBE
+                            docker exec $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p''${DBROOT} -e "CREATE DATABASE roundcubemail CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+                            docker exec $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p''${DBROOT} -e "CREATE USER 'roundcube'@'%' IDENTIFIED BY '${"\${DBROUNDCUBE}"}';"
+                            docker exec $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p''${DBROOT} -e "GRANT ALL PRIVILEGES ON roundcubemail.* TO 'roundcube'@'%';"
+                            
+                            echo "creating roundcube config file"
+        
+                            cat <<EOCONFIG > data/web/rc/config/config.inc.php
+                            <?php
+                            \$config['db_dsnw'] = 'mysql://roundcube:''${DBROUNDCUBE}@mysql/roundcubemail';
+                            \$config['imap_host'] = 'dovecot:143';
+                            \$config['smtp_host'] = 'postfix:588';
+                            \$config['smtp_user'] = '%u';
+                            \$config['smtp_pass'] = '%p';
+                            \$config['support_url'] = ''';
+                            \$config['product_name'] = 'Roundcube Webmail';
+                            \$config['cipher_method'] = 'chacha20-poly1305';
+                            \$config['des_key'] = '$(LC_ALL=C </dev/urandom tr -dc "A-Za-z0-9 !#$%&()*+,-./:;<=>?@[\\]^_{|}~" 2> /dev/null | head -c 32)';
+                            \$config['plugins'] = [
+                              'archive',
+                              'managesieve',
+                              'acl',
+                              'markasjunk',
+                              'zipdownload',
+                              'password',
+                              'carddav',
+                            ];
+                            \$config['spellcheck_engine'] = 'aspell';
+                            \$config['mime_types'] = '/web/rc/config/mime.types';
+                            \$config['enable_installer'] = true;
+                            
+                            \$config['managesieve_host'] = 'dovecot:4190';
+                            // Enables separate management interface for vacation responses (out-of-office)
+                            // 0 - no separate section (default); 1 - add Vacation section; 2 - add Vacation section, but hide Filters section
+                            \$config['managesieve_vacation'] = 1;
+                            EOCONFIG
+                            
+                            docker exec $(docker ps -f name=php-fpm-mailcow -q) chown root:www-data /web/rc/config/config.inc.php
+                            docker exec $(docker ps -f name=php-fpm-mailcow -q) chmod 640 /web/rc/config/config.inc.php
+        
+                            echo "======================= !! IMPORTANT !! ======================="
+                            echo "Visit https://${cfg.domain}/rc/installer and make sure everything is set to 'OK' (some 'NOT AVAILABLE' are expected)"
+                            echo "If there is no 'NOT OK', press next"
+                            echo "If in the next page there is no 'NOT OK', press the 'Initialize database' button"
+                            echo "After you pressed the button, run the following script as root:"
+                            echo "/var/lib/mailcow-installer/finish.sh"
+                            echo "======================= !! IMPORTANT !! ======================="
+                        '';
+                        Restart = "no";
+                    };
+                };
+        
+                networking.firewall.allowedTCPPorts = [
+                    25
+                    465
+                    587
+                    143
+                    993
+                    110
+                    995
+                    4190
+                ];
+            })
+
+            (mkIf (cfg.enable == false) {
+                environment.systemPackages = with pkgs; [
+                    git
+                    docker
+                    docker-compose
+                    gnutar
+                    wget
+                ];
+
+                virtualisation.docker.enable = true;
+
+                systemd.services.stop-mailcow-dockerized = {
+                    description = "Stop mailcow-dockerized app";
+                    after = [ "network.target" ];
+                    wantedBy = [ "multi-user.target" ];
+                    path = [
+                        pkgs.git
+                        pkgs.gcc
+                        pkgs.vips
+                        pkgs.wget
+                        pkgs.docker
+                        pkgs.docker-compose
+                        pkgs.gnutar
+                        pkgs.gzip
+                    ];
+                    serviceConfig = {
+                        ExecStart = pkgs.writeShellScript "stop-mailcow-dockerized" ''
+                            if [ "$(ls -A /var/lib/mailcow-dockerized)" ]; then
+                                echo "Stopping Mailcow..."
+
+                                cd /var/lib/mailcow-dockerized
+
+                                source /var/lib/mailcow-dockerized/mailcow.conf
+        
+                                docker compose down
+
+                                exit 0
+                            fi
+                        '';
+                        Restart = "no";
+                    };
+                };
+            })
+        ]
+    );
 }
