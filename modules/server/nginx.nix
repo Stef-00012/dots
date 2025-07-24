@@ -16,7 +16,7 @@ let
 
     allModules = config.modules.server or { };
     validModules = filterAttrs (
-        _: mod: mod ? nginxConfig && mod.nginxConfig != null
+        _: mod: mod ? nginxConfig && mod.nginxConfig != null && mod ? enable && mod.enable
     ) allModules;
 
     dynamicVhosts = mapAttrs' (
