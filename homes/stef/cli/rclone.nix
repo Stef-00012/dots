@@ -18,16 +18,18 @@ in
         programs.rclone = {
             enable = true;
             
-            remotes.gdrive = {
-                config = {
-                    type = "drive";
-                    scope = "drive";
-                };
+            remotes = {
+                gdrive = {
+                    config = {
+                        type = "drive";
+                        scope = "drive";
+                    };
 
-                secrets = {
-                    client_id = "/var/secrets/gdrive-client-id";
-                    client_secret = "/var/secrets/gdrive-client-secret";
-                    token = "/var/secrets/gdrive-token";
+                    secrets = {
+                        client_id = "/var/secrets/gdrive-client-id";
+                        client_secret = "/var/secrets/gdrive-client-secret";
+                        token = "/var/secrets/gdrive-token";
+                    };
                 };
             };
         };

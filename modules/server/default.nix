@@ -28,6 +28,7 @@
         ./api.nix
         ./nginx.nix
         ./mailcow-dockerized.nix
+        ./mongodb.nix
         ./your_spotify
         ./fail2ban.nix
         ./cloud-init.nix

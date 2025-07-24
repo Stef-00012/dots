@@ -94,6 +94,11 @@
                 ];
             };
 
+            mongodb = {
+                enable = false;
+                port = 27017;
+            };
+
             your_spotify-api = {
                 enable = false;
                 domain = "api.spotify.stefdp.com";

@@ -94,6 +94,13 @@
                 ];
             };
 
+            # Required for your_spotify-api
+            mongodb = {
+                enable = true;
+                port = 27017;
+            };
+
+            # Required for your_spotify-web
             your_spotify-api = {
                 enable = true;
                 domain = "api.spotify.stefdp.com";

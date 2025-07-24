@@ -87,11 +87,13 @@ in
     config = mkIf cfg.enable {
         modules.common.sops.secrets.your-spotify-secret.path = "/var/secrets/your_spotify-secret";
 
+        systemd.services.your_spotify.requires = [ "mongodb.service" ];
+        systemd.services.your_spotify.after = [ "mongodb.service" ];
+
         services.your_spotify = {
             enable = true;
 
             spotifySecretFile = "/var/secrets/your_spotify-secret";
-            enableLocalDB = true;
 
             settings = {
                 SPOTIFY_PUBLIC = "e5f671a44755418e8fb5a190dbcd9c10";
@@ -99,6 +101,7 @@ in
                 PORT = cfg.port;
                 CORS = "i-want-a-security-vulnerability-and-want-to-allow-all-origins";
                 API_ENDPOINT = "https://${cfg.domain}";
+                TIMEZONE = config.time.timeZone;
             };
         };
     };
