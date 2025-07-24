@@ -69,7 +69,7 @@ in
                 '';
 
                 locations."/" = {
-                    proxyPass = "http://localhost:${toString cfg.port}";
+                    proxyPass = "http://127.0.0.1:${toString cfg.port}";
                     extraConfig = ''
                         proxy_set_header Upgrade $http_upgrade;
                         proxy_set_header Connection $http_connection;
