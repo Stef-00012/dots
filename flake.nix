@@ -39,6 +39,11 @@
             url = "github:Gerg-L/spicetify-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        wireguard-gui = {
+            url = "github:leon3s/wireguard-gui";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = { self, nixpkgs, home-manager, ... } @ inputs:

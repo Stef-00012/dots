@@ -96,6 +96,28 @@
         "type": "github"
       }
     },
+    "fenix": {
+      "inputs": {
+        "nixpkgs": [
+          "wireguard-gui",
+          "nixpkgs"
+        ],
+        "rust-analyzer-src": "rust-analyzer-src"
+      },
+      "locked": {
+        "lastModified": 1737700483,
+        "narHash": "sha256-1778bR4GDDc51/iZQvcshGLZ4JU87zCzqei8Hn7vU1A=",
+        "owner": "nix-community",
+        "repo": "fenix",
+        "rev": "bab2a2840bc2d5ae7c6a133602185edbe4ca7daa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "fenix",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -109,6 +131,24 @@
       "original": {
         "owner": "edolstra",
         "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
         "type": "github"
       }
     },
@@ -526,7 +566,25 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-small": "nixpkgs-small",
         "sops-nix": "sops-nix",
-        "spicetify-nix": "spicetify-nix"
+        "spicetify-nix": "spicetify-nix",
+        "wireguard-gui": "wireguard-gui"
+      }
+    },
+    "rust-analyzer-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1737634189,
+        "narHash": "sha256-AG5G9KDsl0Ngby9EfWvlemma7WWG0KCADTIccPJuzUE=",
+        "owner": "rust-lang",
+        "repo": "rust-analyzer",
+        "rev": "84d44d0a574630aa8500ed62b6c01ccd3fae2473",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rust-lang",
+        "ref": "nightly",
+        "repo": "rust-analyzer",
+        "type": "github"
       }
     },
     "sops-nix": {
@@ -597,6 +655,43 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_3": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "wireguard-gui": {
+      "inputs": {
+        "fenix": "fenix",
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1741573709,
+        "narHash": "sha256-E0BqjscX/zttVzKBX7V+0H1/yD1eKzSfGjxQMV8RU8Q=",
+        "owner": "leon3s",
+        "repo": "wireguard-gui",
+        "rev": "a942f9bc9736f6fdcac7a4e1f00984c494796a69",
+        "type": "github"
+      },
+      "original": {
+        "owner": "leon3s",
+        "repo": "wireguard-gui",
         "type": "github"
       }
     },
