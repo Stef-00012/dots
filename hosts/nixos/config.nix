@@ -21,9 +21,9 @@
             appimages.enable = true;
             waydroid.enable = false;
             wireguard = {
-                enable = true;
+                enable = false;
                 port = 51820;
-            }
+            };
         };
 
         gaming = {

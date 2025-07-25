@@ -20,6 +20,10 @@
             hyprland.enable = false;
             appimages.enable = false;
             waydroid.enable = false;
+            wireguard = {
+                enable = false;
+                port = 51820;
+            };
         };
 
         gaming = {
@@ -296,7 +300,7 @@
             };
 
             wireguard = {
-                enable = true;
+                enable = false;
                 port = 51820;
                 interface = "ens3";
             };
