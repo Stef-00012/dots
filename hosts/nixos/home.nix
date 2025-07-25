@@ -119,7 +119,7 @@
                 kate.enable = true;
                 syncthing.enable = true;
                 realvnc.enable = true;
-                wireguard-gui.enable = true;
+                wireguard-gui.enable = false;
             };
 
             editors = {

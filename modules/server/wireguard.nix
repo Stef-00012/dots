@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, host, ... }:
 let
     inherit (lib)
         mkIf
@@ -61,6 +61,9 @@ in
             "d /var/lib/wireguard 0755 root root -"
         ];
 
+        modules.common.sops.secrets.wireguard-private-key-nixos.path = "/var/lib/wireguard/nixos";
+        modules.common.sops.secrets.wireguard-private-key-server.path = "/var/lib/wireguard/private-key";
+
         networking.wireguard.enable = true;
         networking.wireguard.interfaces = {
             wg0 = {
@@ -75,11 +78,11 @@ in
                     ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.100.0.0/24 -o ${cfg.interface} -j MASQUERADE
                 '';
 
-                privateKeyFile = "/var/lib/wireguard/privatekey";
+                privateKeyFile = "/var/lib/wireguard/private-key";
 
                 peers = [
                     {
-                        publicKey = "t9uJD/IPgkBkrH3ZUXnCVm+6PbaLSxZaJjVoR+2SjCE=";
+                        publicKey = "kH0zENnOCG6o11tOsVnnFiSBimlFrMbEBWwGasAZ3U0=";
                         allowedIPs = [ "10.100.0.2/32" ];
                     }
                 ];

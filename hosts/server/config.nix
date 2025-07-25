@@ -296,7 +296,7 @@
             };
 
             wireguard = {
-                enable = false;
+                enable = true;
                 port = 51820;
                 interface = "ens3";
             };

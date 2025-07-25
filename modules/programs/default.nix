@@ -6,5 +6,6 @@
         ./appimages.nix
         ./core.nix
         ./waydroid.nix
+        ./wireguard.nix
     ];
 }

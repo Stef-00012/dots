@@ -88,6 +88,7 @@ in
                 cloc
                 lm_sensors
                 inetutils
+                openssl_3
             ];
 
             hmModules.cli.shell.extraAliases = {
