@@ -80,6 +80,7 @@
             
             nix.enable = false;
             misc.enable = false;
+            java.enable = false;
         };
 
         programs = {
