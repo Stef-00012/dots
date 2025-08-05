@@ -76,6 +76,7 @@
             javascript = {
                 enable = true;
                 bun.enable = true;
+                eas.enable = true;
             };
             
             nix.enable = true;

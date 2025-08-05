@@ -58,32 +58,14 @@ in
                 userSettings = lib.mkForce {
                     "workbench.colorTheme" = "Default Dark+";
                     "workbench.editor.enablePreview" = false;
-                    "[javascript]" = {
-                        "editor.defaultFormatter" = "biomejs.biome";
-                    };
                     "workbench.iconTheme" = "material-icon-theme";
                     "explorer.confirmDelete" = false;
                     "explorer.confirmDragAndDrop" = false;
-                    "[typescriptreact]" = {
-                        "editor.defaultFormatter" = "biomejs.biome";
-                    };
-                    "[json]" = {
-                        "editor.defaultFormatter" = "biomejs.biome";
-                    };
-                    "[typescript]" = {
-                        "editor.defaultFormatter" = "biomejs.biome";
-                    };
                     "window.zoomLevel" = 1;
                     "markdown-preview-enhanced.previewTheme" = "atom-dark.css";
                     "markdown-preview-enhanced.codeBlockTheme" = "atom-dark.css";
                     "liveServer.settings.donotShowInfoMsg" = true;
-                    "[jsonc]" = {
-                        "editor.defaultFormatter" = "biomejs.biome";
-                    };
                     "git.openRepositoryInParentFolders" = "never";
-                    "[css]" = {
-                        "editor.defaultFormatter" = "biomejs.biome";
-                    };
                     "workbench.startupEditor" = "none";
                     "svelte.ask-to-enable-ts-plugin" = false;
                     "github.copilot.enable" = {
@@ -101,13 +83,34 @@ in
                         "*.copilotmd" = "vscode.markdown.preview.editor";
                         "*.svg" = "default";
                     };
-                    "[svg]" = {
-                        "editor.defaultFormatter" = "jock.svg";
-                    };
                     "security.workspace.trust.untrustedFiles" = "open";
                     "editor.fontFamily" = "FiraCode Nerd Font";
                     "redhat.telemetry.enabled" = false;
                     "editor.tabSize" = 4;
+                    "[javascript]" = {
+                        "editor.defaultFormatter" = "biomejs.biome";
+                    };
+                    "[html]" = {
+                        "editor.defaultFormatter" = "biomejs.biome";
+                    };
+                    "[css]" = {
+                        "editor.defaultFormatter" = "biomejs.biome";
+                    };
+                    "[json]" = {
+                        "editor.defaultFormatter" = "biomejs.biome";
+                    };
+                    "[jsonc]" = {
+                        "editor.defaultFormatter" = "biomejs.biome";
+                    };
+                    "[typescript]" = {
+                        "editor.defaultFormatter" = "biomejs.biome";
+                    };
+                    "[typescriptreact]" = {
+                        "editor.defaultFormatter" = "biomejs.biome";
+                    };
+                    "[svg]" = {
+                        "editor.defaultFormatter" = "jock.svg";
+                    };
                 };
 
                 keybindings = [

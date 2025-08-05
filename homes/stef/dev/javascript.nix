@@ -17,6 +17,10 @@ in
         enable = mkEnableOption "Enable Bun";
     };
 
+    options.hmModules.dev.javascript.eas = {
+        enable = mkEnableOption "Enable EAS";
+    };
+
     config = mkIf cfg.enable (
         lib.mkMerge [
             {
@@ -27,6 +31,10 @@ in
 
             (mkIf cfg.bun.enable {
                 home.packages = [ pkgs.bun ];
+            })
+
+            (mkIf cfg.eas.enable {
+                home.packages = [ pkgs.eas-cli ];
             })
         ]
     );
