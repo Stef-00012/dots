@@ -14,6 +14,8 @@ in
     config = mkIf cfg.enable {
         home.packages = with pkgs; [
             jdk
+            android-tools
+            # android-studio
         ];
     };
 }
