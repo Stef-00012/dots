@@ -114,7 +114,7 @@
                 blender.enable = false;
                 blockbench.enable = false;
                 cheese.enable = true;
-                gimp.enable = false;
+                gimp.enable = true;
                 gparted.enable = true;
                 kdeConnect.enable = true;
                 obs-studio.enable = true;
