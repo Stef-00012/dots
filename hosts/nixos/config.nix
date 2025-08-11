@@ -28,9 +28,9 @@
 
         gaming = {
             enable = true;
-            wine.enable = false;
-            lutris.enable = false;
-            heroic.enable = false;
+            wine.enable = true;
+            lutris.enable = true;
+            heroic.enable = true;
             bottles.enable = false;
             steam.enable = true;
             minecraft = {
