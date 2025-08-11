@@ -15,7 +15,3 @@ Modular NixOS configuration for my machine.
 
 ## License
 - [License: GNU AGPLv3](./LICENSE)
-
-## TO-DO
-- [ ] Test `your_spotify`
-- [ ] Check if postgresql db is accessible publicly or just locally
