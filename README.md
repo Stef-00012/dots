@@ -15,3 +15,6 @@ Modular NixOS configuration for my machine.
 
 ## License
 - [License: GNU AGPLv3](./LICENSE)
+
+## TO-DO
+- [ ] Install Weblate on the server
