@@ -104,6 +104,7 @@ in
 
             environment = {
                 DATABASE_URL = "postgresql://zipline:@localhost/zipline?host=/run/postgresql";
+                DEBUG = "zipline";
             };
         };
     };
