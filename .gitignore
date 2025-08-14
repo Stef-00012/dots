@@ -2,5 +2,3 @@ node_modules/
 @girs
 /todo.md
 /z__tmp/
-
-/modules/server/weblate.nix

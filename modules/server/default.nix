@@ -29,7 +29,7 @@
         ./nginx.nix
         ./mailcow-dockerized.nix
         ./mongodb.nix
-        # ./weblate.nix
+        ./weblate.nix
         ./fail2ban.nix
         ./cloud-init.nix
         ./prometheus
