@@ -61,12 +61,17 @@ in
                     name = "linkwarden";
                     ensureDBOwnership = true;
                 }
+                # {
+                #     name = "weblate";
+                #     ensureDBOwnership = true;
+                # }
             ];
 
             ensureDatabases = [
                 "zipline"
                 "umami"
                 "linkwarden"
+                # "weblate"
             ];
 
             authentication = builtins.concatStringsSep "\n" (

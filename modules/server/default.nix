@@ -29,10 +29,11 @@
         ./nginx.nix
         ./mailcow-dockerized.nix
         ./mongodb.nix
-        ./your_spotify
+        # ./weblate.nix
         ./fail2ban.nix
         ./cloud-init.nix
         ./prometheus
+        ./your_spotify
         ./create-addons-notifier
     ];
 }

@@ -98,21 +98,25 @@
                 ];
             };
 
+            # Required for your_spotify-api
             mongodb = {
                 enable = false;
                 port = 27017;
             };
 
+            # Required for your_spotify-web
             your_spotify-api = {
                 enable = false;
                 domain = "api.spotify.stefdp.com";
                 port = 9000;
+                icon = "sh:your-spotify";
             };
 
             your_spotify-web = {
                 enable = false;
                 domain = "spotify.stefdp.com";
                 port = 3000;
+                icon = "sh:your-spotify";
             };
 
             speedtest-tracker = {
@@ -133,6 +137,13 @@
                 port = 3006;
             };
 
+            # Required for zipline, linkwarden, weblate and umami
+            postgresql = {
+                enable = false;
+                name = "PostgreSQL";
+                port = 5432;
+            };
+
             zipline = {
                 enable = false;
                 domain = "i.stefdp.com";
@@ -144,13 +155,7 @@
                     "you-are.part-of.my.id"
                 ];
                 port = 3002;
-            };
-
-            # Required for zipline, linkwarden and umami
-            postgresql = {
-                enable = false;
-                name = "PostgreSQL";
-                port = 5432;
+                icon = "https://cdn.jsdelivr.net/gh/selfhst/icons/png/zipline.png";
             };
 
             umami = {
@@ -159,22 +164,31 @@
                 port = 3011;
             };
 
-            linkwarden = {
-                enable = false;
-                domain = "links.stefdp.com";
-                port = 3004;
-            };
-
             # Required for linkwarden
             meilisearch = {
                 enable = false;
                 port = 3005;
             };
 
+            linkwarden = {
+                enable = false;
+                domain = "links.stefdp.com";
+                port = 3004;
+                icon = "https://cdn.jsdelivr.net/gh/selfhst/icons/png/linkwarden.png";
+            };
+
+            # BROKEN
+            weblate = {
+                enable = false;
+                domain = "translate.stefdp.com";
+                port = 8080;
+            };
+
             convertx = {
                 enable = false;
                 domain = "convert.stefdp.com";
                 port = 3013;
+                icon = "https://cdn.jsdelivr.net/gh/selfhst/icons/png/convertx.png";
             };
 
             syncthing = {
@@ -210,18 +224,14 @@
                 enable = false;
                 domain = "lyrics.stefdp.com";
                 port = 3010;
+                icon = "mdi:music-note";
             };
 
             likeify = {
                 enable = false;
                 domain = "likeify.stefdp.com";
                 port = 3008;
-            };
-
-            discord-user-apps = {
-                enable = false;
-                domain = "bot.stefdp.com";
-                port = 3009;
+                icon = "mdi:thumb-up";
             };
 
             # Required for discord-user-apps
@@ -229,6 +239,14 @@
                 enable = false;
                 # domain = "apprise.stefdp.com";
                 port = 3012;
+            };
+
+            discord-user-apps = {
+                enable = false;
+                domain = "bot.stefdp.com";
+                port = 3009;
+                icon = "sh:discord";
+                url = "https://bot.stefdp.com/invite";
             };
 
             pi-hole = {
@@ -245,13 +263,18 @@
                 ];
                 port = 3016;
                 repoUrl = "https://github.com/Stef-00012/create-addons";
+                icon = "https://create-addons.stefdp.com/favicon.ico";
             };
 
             personal-site = {
                 enable = false;
                 domain = "stefdp.com";
+                domainAliases = [
+                    "www.stefdp.com"
+                ];
                 port = 3017;
                 repoUrl = "https://github.com/Stef-00012/personal-site";
+                icon = "https://stefdp.com/icon";
             };
 
             receiptify = {
@@ -259,20 +282,21 @@
                 domain = "receiptify.stefdp.com";
                 port = 3018;
                 repoUrl = "https://github.com/Stef-00012/receiptify";
+                icon = "https://receiptify.stefdp.com/favicon.ico";
             };
 
             create-addon-notifier-telegram = {
                 enable = false;
-                # domain = "create-addon-notifier-telegram.stefdp.com";
-                # port = 3019;
                 repoUrl = "https://github.com/Stef-00012/telegram-create-notifier";
+                icon = "sh:telegram";
+                url = "https://t.me/CreateAddonsNotifierBot";
             };
 
             create-addon-notifier-discord = {
                 enable = false;
-                # domain = "create-addon-notifier-telegram.stefdp.com";
-                # port = 3019;
                 repoUrl = "https://github.com/Stef-00012/discord-create-notifier";
+                icon = "sh:discord";
+                url = "https://discord.com/oauth2/authorize?client_id=1390937506710683708&permissions=536870912&integration_type=0&scope=bot+applications.commands";
             };
 
             api = {
@@ -285,15 +309,15 @@
             wireguard = {
                 enable = false;
                 port = 51820;
-                interface = "wlp0s20f3";
+                interface = "ens3";
             };
 
             mailcow-dockerized = {
                 enable = false;
                 domain = "mail.stefdp.com";
                 domainAliases = [
-                    "autodiscover.*"
-                    "autoconfig.*"
+                    "autodiscover.mail.stefdp.com"
+                    "autoconfig.mail.stefdp.com"
                 ];
                 port = 7080;
                 repoUrl = "https://github.com/mailcow/mailcow-dockerized";
@@ -308,7 +332,7 @@
             };
 
             nginx = {
-                enable = false;
+                enable = true;
             };
         };
     };
