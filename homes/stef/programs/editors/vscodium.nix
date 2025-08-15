@@ -50,6 +50,10 @@ in
     };
 
     config = mkIf cfg.enable {
+        home.packages = with pkgs; [
+            wakatime-cli
+        ];
+
         programs.vscode = {
             enable = true;
             package = pkgs.vscodium;
