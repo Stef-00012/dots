@@ -9,7 +9,7 @@ let
     cfg = config.hmModules.misc.xdg;
     browser = [ "chromium.desktop" ];
     fileManager = [ "thunar.desktop" ];
-    editor = [ "codium.desktop" ];
+    editor = [ "vscode.desktop" ];
 
     associations = {
         "text/html" = browser;

@@ -18,7 +18,7 @@
                 dim = "du -s -h";
                 neofetch = "fastfetch";
                 igdownload = "instaloader -l stefanodelprete_ --stories --no-posts --no-metadata-json";
-                code = "codium";
+                # code = "codium";
             };
 
             fetch.enable = true;
@@ -124,13 +124,13 @@
             };
 
             editors = {
-                vscodium = {
+                vscode = {
                     enable = false;
-                    webdev = false;
-                    style = false;
-                    github = false;
-                    shell = false;
-                    markdown = false;
+                    # webdev = false;
+                    # style = false;
+                    # github = false;
+                    # shell = false;
+                    # markdown = false;
                 };
 
                 vim.enable = true;

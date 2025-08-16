@@ -1,6 +1,6 @@
 {
     imports = [
-        ./vscodium.nix
+        ./vscode.nix
         ./vim.nix
     ];
 }

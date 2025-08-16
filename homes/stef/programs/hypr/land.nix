@@ -37,7 +37,7 @@ in
                     "QT_STYLE_OVERRIDE,Adwaita-dark"
                     "SDL_VIDEODRIVER,x11"
                     "MOZ_ENABLE_WAYLAND,1"
-                    "EDITOR,codium"
+                    "EDITOR,code"
                     "GTK_THEME,Adwaita-dark"
                 ];
 
@@ -252,7 +252,7 @@ in
                     "opacity 0.85 override 0.75 override 0.85 override, class:^(kitty)$"
                     "opacity 0.85 override 0.75 override 0.85 override, class:^(thunar)$"
                     "opacity 0.85 override 0.75 override 0.85 override, initialTitle:^(Open Folder)$"
-                    "opacity 0.85 override 0.75 override 0.85 override, class:^(codium-url-handler)$"
+                    "opacity 0.85 override 0.75 override 0.85 override, class:^(vscode-url-handler)$"
 
                     # Picture-in-Picture
                     "float, title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"

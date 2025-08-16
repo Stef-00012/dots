@@ -12,41 +12,41 @@ let
         mkIf
         ;
 
-    cfg = config.hmModules.programs.editors.vscodium;
+    cfg = config.hmModules.programs.editors.vscode;
 in
 {
-    options.hmModules.programs.editors.vscodium = {
-        enable = mkEnableOption "Enable VSCodium";
+    options.hmModules.programs.editors.vscode = {
+        enable = mkEnableOption "Enable VSCode";
 
-        webdev = mkOption {
-            type = types.bool;
-            default = false;
-            description = "Enable web development extensions.";
-        };
+        # webdev = mkOption {
+        #     type = types.bool;
+        #     default = false;
+        #     description = "Enable web development extensions.";
+        # };
 
-        style = mkOption {
-            type = types.bool;
-            default = false;
-            description = "Enable styling extensions.";
-        };
+        # style = mkOption {
+        #     type = types.bool;
+        #     default = false;
+        #     description = "Enable styling extensions.";
+        # };
 
-        github = mkOption {
-            type = types.bool;
-            default = false;
-            description = "Enable github extensions.";
-        };
+        # github = mkOption {
+        #     type = types.bool;
+        #     default = false;
+        #     description = "Enable github extensions.";
+        # };
 
-        shell = mkOption {
-            type = types.bool;
-            default = false;
-            description = "Enable shell extensions.";
-        };
+        # shell = mkOption {
+        #     type = types.bool;
+        #     default = false;
+        #     description = "Enable shell extensions.";
+        # };
 
-        markdown = mkOption {
-            type = types.bool;
-            default = false;
-            description = "Enable markdown extensions.";
-        };
+        # markdown = mkOption {
+        #     type = types.bool;
+        #     default = false;
+        #     description = "Enable markdown extensions.";
+        # };
     };
 
     config = mkIf cfg.enable {
@@ -56,7 +56,7 @@ in
 
         programs.vscode = {
             enable = true;
-            package = pkgs.vscodium;
+            # package = pkgs.vscodium;
 
             profiles.default = {
                 userSettings = lib.mkForce {
@@ -91,6 +91,7 @@ in
                     "editor.fontFamily" = "FiraCode Nerd Font";
                     "redhat.telemetry.enabled" = false;
                     "editor.tabSize" = 4;
+                    "wakatime.apiUrl" = "https://hackatime.hackclub.com/api/hackatime/v1";
                     "[javascript]" = {
                         "editor.defaultFormatter" = "biomejs.biome";
                     };
@@ -133,57 +134,57 @@ in
                     }
                 ];
 
-                extensions = with pkgs.vscode-extensions;
-                    let
-                        extensions = [
-                            wakatime.vscode-wakatime
-                            leonardssh.vscord
-                            biomejs.biome
-                            usernamehw.errorlens
-                            eamodio.gitlens
-                            wix.vscode-import-cost
-                            ms-vsliveshare.vsliveshare
-                            jock.svg
-                            meganrogge.template-string-converter
-                            gruntfuggly.todo-tree
-                            redhat.vscode-xml
-                        ];
+                # extensions = with pkgs.vscode-extensions;
+                #     let
+                #         extensions = [
+                #             wakatime.vscode-wakatime
+                #             leonardssh.vscord
+                #             biomejs.biome
+                #             usernamehw.errorlens
+                #             eamodio.gitlens
+                #             wix.vscode-import-cost
+                #             ms-vsliveshare.vsliveshare
+                #             jock.svg
+                #             meganrogge.template-string-converter
+                #             gruntfuggly.todo-tree
+                #             redhat.vscode-xml
+                #         ];
 
-                        styleExtensions = lib.optionals cfg.style [
-                            johnpapa.vscode-peacock
-                            pkief.material-icon-theme
-                            oderwat.indent-rainbow
-                        ];
+                #         styleExtensions = lib.optionals cfg.style [
+                #             johnpapa.vscode-peacock
+                #             pkief.material-icon-theme
+                #             oderwat.indent-rainbow
+                #         ];
 
-                        githubExtensions = lib.optionals cfg.github [
-                            github.vscode-github-actions
-                            github.copilot
-                            github.copilot-chat
-                        ];
+                #         githubExtensions = lib.optionals cfg.github [
+                #             github.vscode-github-actions
+                #             github.copilot
+                #             github.copilot-chat
+                #         ];
 
-                        shellExtensions = lib.optionals cfg.shell [
-                            timonwong.shellcheck
-                        ];
+                #         shellExtensions = lib.optionals cfg.shell [
+                #             timonwong.shellcheck
+                #         ];
 
-                        nixExtensions = lib.optionals config.hmModules.dev.nix.enable [
-                            jnoortheen.nix-ide
-                        ];
+                #         nixExtensions = lib.optionals config.hmModules.dev.nix.enable [
+                #             jnoortheen.nix-ide
+                #         ];
 
-                        markdownExtensions = lib.optionals cfg.markdown [
-                            shd101wyy.markdown-preview-enhanced
-                        ];
+                #         markdownExtensions = lib.optionals cfg.markdown [
+                #             shd101wyy.markdown-preview-enhanced
+                #         ];
 
-                        pythonExtensions = lib.optionals config.hmModules.dev.python.enable [
-                            ms-python.python
-                        ];
+                #         pythonExtensions = lib.optionals config.hmModules.dev.python.enable [
+                #             ms-python.python
+                #         ];
                         
-                        webdevExtensions = lib.optionals cfg.webdev [
-                            ecmel.vscode-html-css
-                            bradlc.vscode-tailwindcss
-                            ritwickdey.liveserver
-                        ];
-                    in
-                        extensions ++ webdevExtensions ++ nixExtensions ++ pythonExtensions ++ styleExtensions ++ githubExtensions ++ markdownExtensions;
+                #         webdevExtensions = lib.optionals cfg.webdev [
+                #             ecmel.vscode-html-css
+                #             bradlc.vscode-tailwindcss
+                #             ritwickdey.liveserver
+                #         ];
+                #     in
+                #         extensions ++ webdevExtensions ++ nixExtensions ++ pythonExtensions ++ styleExtensions ++ githubExtensions ++ markdownExtensions;
             };
         };
     };

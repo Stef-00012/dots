@@ -11,7 +11,7 @@
             path = "/home/${username}/.wakatime.cfg";
             owner = username;
             group = group;
-            mode = "0440";
+            mode = "0666";
         };
 
         zipline_token = {
