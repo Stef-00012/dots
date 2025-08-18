@@ -82,6 +82,7 @@
             nix.enable = true;
             misc.enable = true;
             java.enable = true;
+            rust.enable = true;
         };
 
         programs = {
@@ -122,6 +123,7 @@
                 syncthing.enable = true;
                 realvnc.enable = true;
                 wireguard-gui.enable = false;
+                godot.enable = true;
             };
 
             editors = {

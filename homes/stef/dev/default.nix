@@ -6,5 +6,6 @@
         ./javascript.nix
         ./misc.nix
         ./java.nix
+        ./rust.nix
     ];
 }

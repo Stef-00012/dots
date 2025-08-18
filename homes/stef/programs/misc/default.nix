@@ -12,5 +12,6 @@
         ./syncthing.nix
         ./realvnc.nix
         ./wireguard-gui.nix
+        ./godot.nix
     ];
 }
