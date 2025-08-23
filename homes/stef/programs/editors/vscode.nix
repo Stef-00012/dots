@@ -71,7 +71,6 @@ in
                     "liveServer.settings.donotShowInfoMsg" = true;
                     "git.openRepositoryInParentFolders" = "never";
                     "workbench.startupEditor" = "none";
-                    "svelte.ask-to-enable-ts-plugin" = false;
                     "github.copilot.enable" = {
                         "*" = true;
                         "plaintext" = false;
@@ -111,7 +110,7 @@ in
                         "editor.defaultFormatter" = "biomejs.biome";
                     };
                     "[typescriptreact]" = {
-                        "editor.defaultFormatter" = "biomejs.biome";
+                        "editor.defaultFormatter" = "vscode.typescript-language-features";
                     };
                     "[svg]" = {
                         "editor.defaultFormatter" = "jock.svg";
