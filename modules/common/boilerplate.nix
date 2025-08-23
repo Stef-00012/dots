@@ -183,6 +183,13 @@
         gnome.gnome-keyring.enable = true;
     };
 
+    virtualisation.podman = {
+        enable = true;
+        # dockerCompat = true;
+    };
+
+    environment.systemPackages = [ pkgs.distrobox ];
+
     hardware.graphics.enable = true;
 
     system.stateVersion = "25.05";
