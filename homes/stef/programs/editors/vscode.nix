@@ -110,7 +110,7 @@ in
                         "editor.defaultFormatter" = "biomejs.biome";
                     };
                     "[typescriptreact]" = {
-                        "editor.defaultFormatter" = "vscode.typescript-language-features";
+                        "editor.defaultFormatter" = "biomejs.biome";
                     };
                     "[svg]" = {
                         "editor.defaultFormatter" = "jock.svg";
