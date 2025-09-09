@@ -647,3 +647,50 @@ window.session-menu {
         }
     }
 }
+
+window.media-player {
+    background: $base-color;
+    color: $text-color;
+    padding: 10px;
+
+    .no-media-text {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .cover-art {
+        border-radius: 15px;
+        min-width: 35px;
+        min-height: 35px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .active {
+        color: $mauvre-color;
+    }
+
+    .disabled {
+        color: $surface2-color;
+    }
+
+    // oc
+    scale {
+         // full progress
+        trough {
+            background-color: $surface0-color;
+            min-height: 4px;
+
+             // active progress
+            highlight {
+                background-color: $text-color;
+                min-height: 4px;
+            }
+
+            slider {
+                background-color: $mauvre-color;
+                background-image: unset;
+            }
+        }
+    }
+}

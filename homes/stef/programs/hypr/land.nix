@@ -186,10 +186,11 @@ in
                     # accel_profile = "flat";
                 };
 
-                gestures = {
-                    workspace_swipe = true;
-                    workspace_swipe_fingers = 3;
-                };
+                gesture = [
+                    "3, horizontal, workspace"
+                    "4, up, fullscreen"
+                    "4, down, float"
+                ];
 
                 misc = {
                     mouse_move_enables_dpms = true;

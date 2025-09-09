@@ -120,6 +120,7 @@
                 kdeConnect.enable = true;
                 obs-studio.enable = true;
                 kate.enable = true;
+                kruler.enable = true;
                 syncthing.enable = true;
                 realvnc.enable = true;
                 wireguard-gui.enable = false;

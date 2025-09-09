@@ -299,6 +299,13 @@
                 repoUrl = "https://github.com/Stef-00012/api";
             };
 
+            app-version-control = {
+                enable = true;
+                domain = "versions.stefdp.com";
+                port = 3020;
+                repoUrl = "https://github.com/Stef-00012/app-version-control";
+            };
+
             wireguard = {
                 enable = false;
                 port = 51820;

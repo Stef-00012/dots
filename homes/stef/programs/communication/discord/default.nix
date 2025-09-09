@@ -25,7 +25,7 @@ in
         (mkIf cfg.enable {
             wayland.windowManager.hyprland.settings = {
                 exec-once = mkIf cfg.arrpc [
-                    "${pkgs.arrpc}/bin/arrpc &"
+                    "sleep 3; ${pkgs.arrpc}/bin/arrpc &"
                 ];
 
                 bindd = [
@@ -50,7 +50,7 @@ in
 
                 exec-once = [
                     # Open Discord App on startup in its special workspace
-                    "[workspace special:discord silent] discord"
+                    "[workspace special:discord silent] sleep 3; discord"
                 ];
 
                 windowrule = [
@@ -67,7 +67,7 @@ in
 
                 exec-once = [
                     # Open Discord Web App on startup in its special workspace
-                    "[workspace special:discord silent] bash ${./script.sh}"
+                    "[workspace special:discord silent] sleep 3; bash ${./script.sh}"
                 ];
 
                 windowrule = [

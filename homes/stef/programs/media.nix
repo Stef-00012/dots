@@ -5,7 +5,7 @@
     ...
 }:
 let
-    inherit (lib) mkEnableOption mkIf;
+    inherit (lib) mkEnableOption mkDefault mkIf;
     cfg = config.hmModules.programs.media;
 in
 {
@@ -17,6 +17,11 @@ in
         feh = mkEnableOption "Enable feh image viewer";
         qimgv = mkEnableOption "Enable qimgv image viewer";
         file-roller = mkEnableOption "Enable file roller archive manager";
+
+        xdg = lib.mkOption {
+            type = lib.types.str;
+            description = "The .desktop filename to use for XDG";
+        };
     };
 
     config = mkIf cfg.enable (
@@ -40,10 +45,12 @@ in
             }
 
             (mkIf cfg.gwenview {
-                home.packages = [ pkgs.libsForQt5.gwenview ];
+                hmModules.programs.media.xdg = mkDefault "org.kde.kdegraphics.gwenview.lib";
+                home.packages = [ pkgs.kdePackages.gwenview ];
             })
 
             (mkIf cfg.imv {
+                hmModules.programs.media.xdg = "imv.desktop";
                 programs.imv.enable = true;
             })
 
@@ -52,6 +59,7 @@ in
             })
 
             (mkIf cfg.qimgv {
+                hmModules.programs.media.xdg = "qimgv.desktop";
                 home.packages = [ pkgs.qimgv ];
             })
 

@@ -32,6 +32,7 @@
         ./weblate.nix
         ./fail2ban.nix
         ./cloud-init.nix
+        ./app-version-control.nix
         ./prometheus
         ./your_spotify
         ./create-addons-notifier

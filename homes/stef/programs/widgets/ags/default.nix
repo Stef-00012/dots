@@ -77,9 +77,11 @@ in
                 windowrule = [
                     "float, class:^(gjs)$"
                     "noanim, class:^(gjs)$"
+
                     "noblur, class:^(gjs)$, title:negative:^(AGS Session Menu)$"
-                    "pin, class:^(gjs)$, title:^(AGS Notification Center)$"
                     "pin, class:^(gjs)$, title:^(AGS Session Menu)$"
+
+                    "pin, class:^(gjs)$, title:^(AGS Notification Center)$"
                 ];
 
                 layerrule = [

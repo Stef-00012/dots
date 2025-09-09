@@ -50,6 +50,8 @@ in
     };
 
     config = mkIf cfg.enable {
+        hmModules.programs.editors.xdg = "vscode";
+
         home.packages = with pkgs; [
             wakatime-cli
         ];

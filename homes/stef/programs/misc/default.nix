@@ -13,5 +13,6 @@
         ./realvnc.nix
         ./wireguard-gui.nix
         ./godot.nix
+        ./kruler.nix
     ];
 }

@@ -17,7 +17,7 @@ in
         services = {
             printing = {
                 enable = true;
-                drivers = [ pkgs.brgenml1cupswrapper ];
+                drivers = [ pkgs.cnijfilter2 ];
             };
 
             avahi = {
