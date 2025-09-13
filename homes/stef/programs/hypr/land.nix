@@ -53,7 +53,7 @@ in
                         # Main Bindings
                         "SUPER, E, Open File Manager, exec, thunar"
                         "SUPER, Q, Close Window, killactive,"
-                        "SUPER, M, Exit, exit,"
+                        # "SUPER, M, Exit, exit,"
                         "SUPER, F, Toggle Floating Window, togglefloating,"
                         "SUPER, P, Toggle Dwindle Pseudo, pseudo,"
                         "SUPER, J, Toggle Dwindle Split, togglesplit,"
@@ -99,21 +99,21 @@ in
 
                 # Media Bindings
                 binddl = [
-                    # Mute Spealer
+                    # Mute Speaker
                     ",XF86AudioMute, Mute Audio, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-                    ",F16, Mute Audio (Mouse Extra Button), exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+                    ", F19, Mute Audio (Extra Mouse Button - Normal), exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
                     # Mute Microphone
                     ",XF86AudioMicMute, Mute Mic, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-                    ",F18, Mute Mic (Mouse Extra Button), exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+                    "ALT, F19, Mute Mic (Extra Mouse Button - G-Shift), exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
 
                     # Play Media
                     ",XF86AudioPlay, Play Media, exec, playerctl play-pause"
-                    "ALT, F15, Play Media (Mouse Extra Button), exec, playerctl play"
+                    ", F16, Play Media (Mouse Extra Button - Normal), exec, playerctl play"
 
                     # Pause Media
                     ",XF86AudioPause, Pause Media, exec, playerctl play-pause"
-                    ",F15, Pause Media (Mouse Extra Button), exec, playerctl pause"
+                    ", F15, Pause Media (Mouse Extra Button - Normal), exec, playerctl pause"
 
                     # Next/Previous Media
                     ",XF86AudioNext, Next Media, exec, playerctl next"
@@ -136,13 +136,17 @@ in
 
                 # Media Bindings
                 binddel = [
-                    # Raise Volume
+                    # Raise Speaker Volume
                     ",XF86AudioRaiseVolume, Raise Volume, exec,  wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-                    "ALT, F14, Raise Volume (Extra Mouse Button), exec,  wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+                    ", F14, Raise Speaker Volume (Extra Mouse Button - Normal), exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
 
-                    # Lower Volume
+                    # Lower Speaker Volume
                     ",XF86AudioLowerVolume, Lower Volume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-                    ", F14, Lower Volume (Extra Mouse Button), exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+                    ", F13, Lower Speaker Volume (Extra Mouse Button - Normal), exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+
+                    # Raise/Lower Microphone Volume
+                    "ALT, F14, Raise Microphone Volume (Extra Mouse Button - G-Shift), exec,  wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+"
+                    "ALT, F13, Lower Microphone Volume (Extra Mouse Button - G-Shift), exec,  wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"
 
                     # Raise/Lower Brightness
                     ",XF86MonBrightnessUp, Raise Brightness, exec, brightnessctl set +5%"
