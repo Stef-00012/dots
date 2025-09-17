@@ -14,5 +14,6 @@
         ./wireguard-gui.nix
         ./godot.nix
         ./kruler.nix
+        ./qFlipper.nix
     ];
 }

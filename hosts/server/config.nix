@@ -367,6 +367,7 @@
                 "lp"
                 "libvirtd"
                 "docker"
+                "dialout"
             ];
             shell = pkgs.zsh;
             ignoreShellProgramCheck = true;
