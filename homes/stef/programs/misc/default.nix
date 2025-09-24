@@ -15,5 +15,6 @@
         ./godot.nix
         ./kruler.nix
         ./qFlipper.nix
+        ./cpu-x.nix
     ];
 }
