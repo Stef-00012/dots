@@ -393,7 +393,7 @@
 
     networking.interfaces.ens3.ipv4.addresses = [
         {
-            address = "51.79.13.222";
+            address = "51.79.13.193";
             prefixLength = 27;
         }
     ];
@@ -410,7 +410,7 @@
     #     interface = "ens3";
     # };
 
-    networking.defaultGateway = "51.79.13.193";
+    networking.defaultGateway = "51.79.13.222";
     networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
 
     # Open ports in the firewall.
