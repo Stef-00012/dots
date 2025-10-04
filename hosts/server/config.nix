@@ -191,7 +191,7 @@
             };
 
             searxng = {
-                enable = true;
+                enable = false;
                 domain = "search.stefdp.com";
                 port = 3015;
             };
