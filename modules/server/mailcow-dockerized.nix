@@ -414,49 +414,49 @@ in
                 ];
             })
 
-            (mkIf (cfg.enable == false) {
-                environment.systemPackages = with pkgs; [
-                    git
-                    docker
-                    docker-compose
-                    gnutar
-                    wget
-                ];
+            # (mkIf (cfg.enable == false) {
+            #     environment.systemPackages = with pkgs; [
+            #         git
+            #         docker
+            #         docker-compose
+            #         gnutar
+            #         wget
+            #     ];
 
-                virtualisation.docker.enable = true;
+            #     virtualisation.docker.enable = true;
 
-                systemd.services.stop-mailcow-dockerized = {
-                    description = "Stop mailcow-dockerized app";
-                    after = [ "network.target" ];
-                    wantedBy = [ "multi-user.target" ];
-                    path = [
-                        pkgs.git
-                        pkgs.gcc
-                        pkgs.vips
-                        pkgs.wget
-                        pkgs.docker
-                        pkgs.docker-compose
-                        pkgs.gnutar
-                        pkgs.gzip
-                    ];
-                    serviceConfig = {
-                        ExecStart = pkgs.writeShellScript "stop-mailcow-dockerized" ''
-                            if [ "$(ls -A /var/lib/mailcow-dockerized)" ]; then
-                                echo "Stopping Mailcow..."
+            #     systemd.services.stop-mailcow-dockerized = {
+            #         description = "Stop mailcow-dockerized app";
+            #         after = [ "network.target" ];
+            #         wantedBy = [ "multi-user.target" ];
+            #         path = [
+            #             pkgs.git
+            #             pkgs.gcc
+            #             pkgs.vips
+            #             pkgs.wget
+            #             pkgs.docker
+            #             pkgs.docker-compose
+            #             pkgs.gnutar
+            #             pkgs.gzip
+            #         ];
+            #         serviceConfig = {
+            #             ExecStart = pkgs.writeShellScript "stop-mailcow-dockerized" ''
+            #                 if [ "$(ls -A /var/lib/mailcow-dockerized)" ]; then
+            #                     echo "Stopping Mailcow..."
 
-                                cd /var/lib/mailcow-dockerized
+            #                     cd /var/lib/mailcow-dockerized
 
-                                source /var/lib/mailcow-dockerized/mailcow.conf
+            #                     source /var/lib/mailcow-dockerized/mailcow.conf
         
-                                docker compose down
+            #                     docker compose down
 
-                                exit 0
-                            fi
-                        '';
-                        Restart = "no";
-                    };
-                };
-            })
+            #                     exit 0
+            #                 fi
+            #             '';
+            #             Restart = "no";
+            #         };
+            #     };
+            # })
         ]
     );
 }

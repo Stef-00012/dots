@@ -100,20 +100,20 @@
 
             # Required for your_spotify-api
             mongodb = {
-                enable = true;
+                enable = false;
                 port = 27017;
             };
 
             # Required for your_spotify-web
             your_spotify-api = {
-                enable = true;
+                enable = false;
                 domain = "api.spotify.stefdp.com";
                 port = 9000;
                 icon = "sh:your-spotify";
             };
 
             your_spotify-web = {
-                enable = true;
+                enable = false;
                 domain = "spotify.stefdp.com";
                 port = 3000;
                 icon = "sh:your-spotify";
@@ -203,12 +203,12 @@
             };
 
             prometheus = {
-                enable = true;
+                enable = false;
                 port = 9090;
             };
 
             prometheus-node_exporter = {
-                enable = true;
+                enable = false;
                 # domain = "node-exporter.stefdp.com";
                 port = 9100;
             };
@@ -313,7 +313,7 @@
             };
 
             mailcow-dockerized = {
-                enable = true;
+                enable = false;
                 domain = "mail.stefdp.com";
                 domainAliases = [
                     "autodiscover.mail.stefdp.com"
