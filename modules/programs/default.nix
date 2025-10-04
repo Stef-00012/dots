@@ -7,5 +7,7 @@
         ./core.nix
         ./waydroid.nix
         ./wireguard.nix
+        ./qFlipper.nix
+        ./react-native.nix
     ];
 }

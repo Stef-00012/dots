@@ -125,8 +125,8 @@
                 realvnc.enable = true;
                 wireguard-gui.enable = false;
                 godot.enable = false;
-                qFlipper.enable = true;
                 cpu-x.enable = true;
+                libreoffice.enable = true;
             };
 
             editors = {

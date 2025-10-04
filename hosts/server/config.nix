@@ -393,24 +393,24 @@
 
     networking.interfaces.ens3.ipv4.addresses = [
         {
-            address = "173.208.137.167";
-            prefixLength = 28;
+            address = "51.79.13.222";
+            prefixLength = 27;
         }
     ];
 
-    networking.interfaces.ens3.ipv6.addresses = [
-        {
-            address = "2604:4300:a:353:2b9:d7ff:fe5e:d79";
-            prefixLength = 64;
-        }
-    ];
+    # networking.interfaces.ens3.ipv6.addresses = [
+    #     {
+    #         address = "2604:4300:a:353:2b9:d7ff:fe5e:d79";
+    #         prefixLength = 64;
+    #     }
+    # ];
 
-    networking.defaultGateway6 = {
-        address = "2604:4300:a:353::1";
-        interface = "ens3";
-    };
+    # networking.defaultGateway6 = {
+    #     address = "2604:4300:a:353::1";
+    #     interface = "ens3";
+    # };
 
-    networking.defaultGateway = "173.208.137.161";
+    networking.defaultGateway = "51.79.13.193";
     networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
 
     # Open ports in the firewall.

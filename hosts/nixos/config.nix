@@ -24,6 +24,7 @@
                 enable = false;
                 port = 51820;
             };
+            qFlipper.enable = true;
         };
 
         gaming = {
