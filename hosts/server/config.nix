@@ -203,12 +203,12 @@
             };
 
             prometheus = {
-                enable = false;
+                enable = true;
                 port = 9090;
             };
 
             prometheus-node_exporter = {
-                enable = false;
+                enable = true;
                 # domain = "node-exporter.stefdp.com";
                 port = 9100;
             };
@@ -313,7 +313,7 @@
             };
 
             mailcow-dockerized = {
-                enable = false;
+                enable = true;
                 domain = "mail.stefdp.com";
                 domainAliases = [
                     "autodiscover.mail.stefdp.com"
