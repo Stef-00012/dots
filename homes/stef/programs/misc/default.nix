@@ -16,5 +16,6 @@
         ./kruler.nix
         ./cpu-x.nix
         ./libreoffice.nix
+        ./anydesk.nix
     ];
 }
