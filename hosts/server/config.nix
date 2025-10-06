@@ -203,12 +203,12 @@
             };
 
             prometheus = {
-                enable = true;
+                enable = false;
                 port = 9090;
             };
 
             prometheus-node_exporter = {
-                enable = true;
+                enable = false;
                 # domain = "node-exporter.stefdp.com";
                 port = 9100;
             };
