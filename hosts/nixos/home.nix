@@ -127,6 +127,7 @@
                 godot.enable = false;
                 cpu-x.enable = true;
                 libreoffice.enable = true;
+                anydesk.enable = true;
             };
 
             editors = {

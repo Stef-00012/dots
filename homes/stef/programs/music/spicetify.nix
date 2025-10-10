@@ -34,9 +34,9 @@ in
 
     config = mkIf cfg.enable {
         wayland.windowManager.hyprland.settings = {
-            # exec-once = [
-            #     "[workspace special:spotify silent] spotify"
-            # ];
+            exec-once = [
+                "[workspace special:spotify silent] spotify"
+            ];
 
             bindd = [
                 "SUPER CONTROL SHIFT, S, Move To Special Workspace (Spotify), movetoworkspace, special:spotify"
