@@ -2,6 +2,7 @@
     config,
     lib,
     pkgs,
+    inputs,
     ...
 }:
 let
@@ -14,9 +15,10 @@ in
     config = mkIf cfg.enable {
         home.packages = with pkgs; [
             imagemagick
-            catimg
             ffmpeg
             yt-dlp
+            # tmp fix for catimg build error
+            inputs.nixpkgs-cmake-fix.legacyPackages.${pkgs.system}.catimg
         ];
     };
 }

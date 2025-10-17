@@ -5,6 +5,8 @@
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
 
+        nixpkgs-cmake-fix.url = "github:nixos/nixpkgs/65e94121d81e290003ec09ca964062d959bfcbed";
+
         astal = {
             url = "github:aylur/astal";
             inputs.nixpkgs.follows = "nixpkgs";

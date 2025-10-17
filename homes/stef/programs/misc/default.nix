@@ -17,5 +17,7 @@
         ./cpu-x.nix
         ./libreoffice.nix
         ./anydesk.nix
+        ./scrcpy.nix
+        ./kdenlive.nix
     ];
 }

@@ -22,7 +22,8 @@ let
 
         # nix stuff
         fr = "nh os switch --hostname ${host} /home/${username}/dots";
-        fu = "nh os switch --hostname ${host} --update /home/${username}/dots";
+        # fu = "nh os switch --hostname ${host} --update /home/${username}/dots";
+        fu = "nix flake update && echo -e '\nRun \"fr\" to update the system'";
         gcnix = "sudo nh clean all && nix store optimise && sudo journalctl --vacuum-time=1s";
     };
 
@@ -35,9 +36,15 @@ let
         if [ -f /tmp/.current_wallpaper_path ]; then
         export WALLPAPER=$(cat /tmp/.current_wallpaper_path)
         fi
+
         if [ -f ~/.config/secrets.env ]; then
         export $(grep -v '^#' ~/.config/secrets.env | xargs)
         fi
+
+        if [ "$TERM" = "xterm-kitty" ]; then
+            alias ssh="kitty +kitten ssh"
+        fi
+
         export EDITOR=vim
     '';
 in
