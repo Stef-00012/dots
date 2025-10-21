@@ -57,25 +57,25 @@
 
         server = {
             filebrowser = {
-                enable = true;
+                enable = false;
                 domain = "fb.stefdp.com";
                 port = 5080;
             };
 
             it-tools = {
-                enable = true;
+                enable = false;
                 domain = "tools.stefdp.com";
                 port = 3014;
             };
 
             jellyfin = {
-                enable = true;
+                enable = false;
                 domain = "jellyfin.stefdp.com";
                 port = 8096;
             };
 
             ntfy = {
-                enable = true;
+                enable = false;
                 domain = "ntfy.stefdp.com";
                 port = 3003;
                 users = [
@@ -120,32 +120,32 @@
             };
 
             speedtest-tracker = {
-                enable = true;
+                enable = false;
                 domain = "speedtest.stefdp.com";
                 port = 6080;
             };
 
             glance = {
-                enable = true;
+                enable = false;
                 domain = "dash.stefdp.com";
                 port = 3001;
             };
 
             vaultwarden = {
-                enable = true;
+                enable = false;
                 domain = "vw.stefdp.com";
                 port = 3006;
             };
 
             # Required for zipline, linkwarden and umami
             postgresql = {
-                enable = true;
+                enable = false;
                 name = "PostgreSQL";
                 port = 5432;
             };
 
             zipline = {
-                enable = true;
+                enable = false;
                 domain = "i.stefdp.com";
                 domainAliases = [
                     "sdp.li"
@@ -159,45 +159,45 @@
             };
 
             umami = {
-                enable = true;
+                enable = false;
                 domain = "umami.stefdp.com";
                 port = 3011;
             };
 
             # Required for linkwarden
             meilisearch = {
-                enable = true;
+                enable = false;
                 port = 3005;
             };
 
             linkwarden = {
-                enable = true;
+                enable = false;
                 domain = "links.stefdp.com";
                 port = 3004;
                 icon = "https://cdn.jsdelivr.net/gh/selfhst/icons/png/linkwarden.png";
             };
 
             convertx = {
-                enable = true;
+                enable = false;
                 domain = "convert.stefdp.com";
                 port = 3013;
                 icon = "https://cdn.jsdelivr.net/gh/selfhst/icons/png/convertx.png";
             };
 
             syncthing = {
-                enable = true;
+                enable = false;
                 domain = "syncthing.stefdp.com";
                 port = 8384;
             };
 
             searxng = {
-                enable = true;
+                enable = false;
                 domain = "search.stefdp.com";
                 port = 3015;
             };
 
             grafana = {
-                enable = true;
+                enable = false;
                 domain = "grafana.stefdp.com";
                 port = 3007;
             };
@@ -214,14 +214,14 @@
             };
 
             lyrics-api = {
-                enable = true;
+                enable = false;
                 domain = "lyrics.stefdp.com";
                 port = 3010;
                 icon = "mdi:music-note";
             };
 
             likeify = {
-                enable = true;
+                enable = false;
                 domain = "likeify.stefdp.com";
                 port = 3008;
                 icon = "mdi:thumb-up";
@@ -229,13 +229,13 @@
 
             # Required for discord-user-apps
             apprise-api = {
-                enable = true;
+                enable = false;
                 # domain = "apprise.stefdp.com";
                 port = 3012;
             };
 
             discord-user-apps = {
-                enable = true;
+                enable = false;
                 domain = "bot.stefdp.com";
                 port = 3009;
                 icon = "sh:discord";
@@ -249,7 +249,7 @@
             };
 
             create-addons = {
-                enable = true;
+                enable = false;
                 domain = "create-addons.stefdp.com";
                 domainAliases = [
                     "create.orangc.net"
@@ -260,7 +260,7 @@
             };
 
             personal-site = {
-                enable = true;
+                enable = false;
                 domain = "stefdp.com";
                 domainAliases = [
                     "www.stefdp.com"
@@ -271,7 +271,7 @@
             };
 
             receiptify = {
-                enable = true;
+                enable = false;
                 domain = "receiptify.stefdp.com";
                 port = 3018;
                 repoUrl = "https://github.com/Stef-00012/receiptify";
@@ -279,28 +279,28 @@
             };
 
             create-addon-notifier-telegram = {
-                enable = true;
+                enable = false;
                 repoUrl = "https://github.com/Stef-00012/telegram-create-notifier";
                 icon = "sh:telegram";
                 url = "https://t.me/CreateAddonsNotifierBot";
             };
 
             create-addon-notifier-discord = {
-                enable = true;
+                enable = false;
                 repoUrl = "https://github.com/Stef-00012/discord-create-notifier";
                 icon = "sh:discord";
                 url = "https://discord.com/oauth2/authorize?client_id=1390937506710683708&permissions=536870912&integration_type=0&scope=bot+applications.commands";
             };
 
             api = {
-                enable = true;
+                enable = false;
                 domain = "api.stefdp.com";
                 port = 3019;
                 repoUrl = "https://github.com/Stef-00012/api";
             };
 
             app-version-control = {
-                enable = true;
+                enable = false;
                 domain = "versions.stefdp.com";
                 port = 3020;
                 repoUrl = "https://github.com/Stef-00012/app-version-control";
@@ -313,7 +313,7 @@
             };
 
             mailcow-dockerized = {
-                enable = true;
+                enable = false;
                 domain = "mail.stefdp.com";
                 domainAliases = [
                     "autodiscover.mail.stefdp.com"
@@ -332,7 +332,7 @@
             };
 
             nginx = {
-                enable = true;
+                enable = false;
             };
         };
     };

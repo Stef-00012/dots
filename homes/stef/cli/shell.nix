@@ -23,7 +23,7 @@ let
         # nix stuff
         fr = "nh os switch --hostname ${host} /home/${username}/dots";
         # fu = "nh os switch --hostname ${host} --update /home/${username}/dots";
-        fu = "nix flake update && echo -e '\nRun \"fr\" to update the system'";
+        fu = "cd /home/${username}/dots && nix flake update && echo -e '\nRun \"fr\" to update the system' && cd -";
         gcnix = "sudo nh clean all && nix store optimise && sudo journalctl --vacuum-time=1s";
     };
 
