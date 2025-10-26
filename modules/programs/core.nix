@@ -4,7 +4,7 @@
 }:
 {
     environment.systemPackages = with pkgs; [
-        lxqt.lxqt-policykit
+        # lxqt.lxqt-policykit
         xdotool
         libnotify
         libsoup_3
