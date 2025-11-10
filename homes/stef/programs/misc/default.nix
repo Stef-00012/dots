@@ -19,5 +19,6 @@
         ./anydesk.nix
         ./scrcpy.nix
         ./kdenlive.nix
+        ./rustdesk.nix
     ];
 }

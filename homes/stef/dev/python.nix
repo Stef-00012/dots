@@ -48,13 +48,14 @@ in
             home.packages = with pkgs; [
                 # (python3.withPackages (
                 #     ps: with ps; [
-                #     (inputs.ignis.packages.${pkgs.stdenv.hostPlatform.system}.ignis.override {
-                #         extraPackages = [
-                #         # Add extra packages if needed
-                #         ];
-                #     })
+                #         (inputs.ignis.packages.${pkgs.stdenv.hostPlatform.system}.ignis.override {
+                #             extraPackages = [
+                #             # Add extra packages if needed
+                #             ];
+                #         })
                 #     ]
                 # ))
+                # python3
                 uv
                 ruff
                 virtualenv

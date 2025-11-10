@@ -1,6 +1,7 @@
 {
     config,
     lib,
+    pkgs,
     ...
 }:
 let
@@ -77,6 +78,10 @@ in
                 key = cfg.signingKey;
                 signByDefault = cfg.signByDefault;
             });
+
+            extraConfig = {
+                credential."https://git.stefdp.com".helper = "store --file ~/.config/git/credentials_store";
+            };
         };
 
         hmModules.cli.shell.extraAliases = {

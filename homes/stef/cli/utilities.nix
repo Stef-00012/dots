@@ -8,6 +8,15 @@ let
     inherit (lib) mkEnableOption mkIf;
 
     cfg = config.hmModules.cli;
+
+    # instaloader = pkgs.python3.withPackages (ps: [
+    #     pkgs.instaloader
+    #     ps.browser-cookie3
+    # ]);
+
+    instaloader = pkgs.instaloader.overrideAttrs (old: {
+        propagatedBuildInputs = (old.propagatedBuildInputs or []) ++ [ pkgs.python313Packages.browser-cookie3 ];
+    });
 in
 {
     options.hmModules.cli = {
@@ -97,9 +106,13 @@ in
         })
 
         (mkIf cfg.instagram.enable {
-            home.packages = with pkgs; [
+            home.packages = [
                 instaloader
             ];
+
+            # home.packages = with pkgs; [
+            #     instaloader
+            # ];
         })
 
         (mkIf cfg.spicetify.enable {

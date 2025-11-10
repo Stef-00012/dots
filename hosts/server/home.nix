@@ -17,6 +17,7 @@
                 cls = "clear";
                 dim = "du -s -h";
                 neofetch = "fastfetch";
+                igdownloadcookie = "instaloader --load-cookies Chromium --stories --no-posts --no-metadata-json";
                 igdownload = "instaloader -l stefanodelprete_ --stories --no-posts --no-metadata-json";
                 # code = "codium";
             };
