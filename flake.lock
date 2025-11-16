@@ -682,15 +682,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1760268172,
-        "narHash": "sha256-psqiIEcCwN7Iqzgn+xFQa+T6Q94nVwpX94uCAS80gYg=",
-        "owner": "leon3s",
+        "lastModified": 1763311201,
+        "narHash": "sha256-fBpfEYSOvxwoVOmRRhPJfIhH79k11ZmMcFPRRVOhunU=",
+        "owner": "Stef-00012",
         "repo": "wireguard-gui",
-        "rev": "725677def3215b2df4f15e36f2973be5bb3d178d",
+        "rev": "d505db1209f49a68b0e292eaea0775aa1f18e2be",
         "type": "github"
       },
       "original": {
-        "owner": "leon3s",
+        "owner": "Stef-00012",
         "repo": "wireguard-gui",
         "type": "github"
       }

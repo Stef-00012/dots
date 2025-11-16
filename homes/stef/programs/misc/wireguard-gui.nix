@@ -15,8 +15,8 @@ in
     };
 
     config = mkIf cfg.enable {
-        home.packages = with pkgs; [
-            # inputs.wireguard-gui.packages.${pkgs.stdenv.hostPlatform.system}.default
+        home.packages = [
+            inputs.wireguard-gui.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];
     };
 }
