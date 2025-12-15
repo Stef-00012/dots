@@ -131,7 +131,8 @@
                 anydesk.enable = false;
                 scrcpy.enable = true;
                 kdenlive.enable = true;
-                rustdesk.enable = true;
+                rustdesk.enable = false;
+                irssi.enable = true;
             };
 
             editors = {

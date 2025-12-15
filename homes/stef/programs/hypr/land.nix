@@ -58,20 +58,22 @@ in
                         "SUPER, P, Toggle Dwindle Pseudo, pseudo,"
                         "SUPER, J, Toggle Dwindle Split, togglesplit,"
                         "SUPER ALT, P, Color Picker, exec, hyprpicker -a"
+                        "SUPER SHIFT, F, Toggled Fake Fullsreen (Keeps Bar Visible), fullscreen, 1"
+                        "SUPER SHIFT, P, Toggle Pin, pin,"
 
                         # Special Workspace Bindings
-                        "SUPER SHIFT, S, Move To Special Workspace (General), movetoworkspace,special"
+                        "SUPER SHIFT, S, Move To Special Workspace (General), movetoworkspace, special"
                         "SUPER, S, Open Special Workspace (General), togglespecialworkspace"
 
                         # Window Bindings
-                        "SUPER, left, Move Focus Left, movefocus,l"
-                        "SUPER, right, Move Focus Right, movefocus,r"
-                        "SUPER, up, Move Focus Up, movefocus,u"
-                        "SUPER, down, Move Focus Down, movefocus,d"
-                        "SUPER SHIFT, left, Move Window Left, movewindow,l"
-                        "SUPER SHIFT, right, Move Window Right, movewindow,r"
-                        "SUPER SHIFT, up, Move Window Up, movewindow,u"
-                        "SUPER SHIFT, down, Move Window Down, movewindow,d"
+                        "SUPER, left, Move Focus Left, movefocus, l"
+                        "SUPER, right, Move Focus Right, movefocus, r"
+                        "SUPER, up, Move Focus Up, movefocus, u"
+                        "SUPER, down, Move Focus Down, movefocus, d"
+                        "SUPER SHIFT, left, Move Window Left, movewindow, l"
+                        "SUPER SHIFT, right, Move Window Right, movewindow, r"
+                        "SUPER SHIFT, up, Move Window Up, movewindow, u"
+                        "SUPER SHIFT, down, Move Window Down, movewindow, d"
                         "SUPER, B, Blur/Unblur Current Window, exec, hyprctl setprop active opaque toggle # toggle transparency for le active window"
 
                         # "SUPERSHIFT, APOSTROPHE, Choose Wallpaper, exec, wall-select" # choose a wallpaper

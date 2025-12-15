@@ -20,5 +20,6 @@
         ./scrcpy.nix
         ./kdenlive.nix
         ./rustdesk.nix
+        ./irssi.nix
     ];
 }
